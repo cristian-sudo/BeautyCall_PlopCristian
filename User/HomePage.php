@@ -5,6 +5,7 @@
     <title></title>
   </head>
   <body>
+    <h1>ci siamo</h1>
     <?php
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
 /*    if (isset($_SESSION['Name'])) {
