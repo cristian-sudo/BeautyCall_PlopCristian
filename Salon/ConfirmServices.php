@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .zui-table {
+  border: solid 1px #DDEEEE;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: normal 13px Arial, sans-serif;
+}
+.zui-table thead th {
+  background-color: #DDEFEF;
+  border: solid 1px #DDEEEE;
+  color: #336B6B;
+  padding: 10px;
+  text-align: left;
+  text-shadow: 1px 1px 1px #fff;
+}
+.zui-table tbody td {
+  border: solid 1px #DDEEEE;
+  color: #333;
+  padding: 10px;
+  text-shadow: 1px 1px 1px #fff;
+}
+    </style>
+  </head>
+  <body>
+
+  </body>
+</html>
 <?php
 require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
 if (isset($_POST['Confirm'])) {
@@ -41,24 +73,16 @@ if ($_POST['ShortDescription']!= null) {
     WHERE ServiceID="'.$_POST['ServiceID'].'"');
     $stmt->execute();
 }
-//print_r($_POST);
 header('Location: ManageServices.php');
 exit;
 }
-echo '
-<td><input type="text" name="ServiceID" value="'.$value['ServiceID'].'" readonly></td>
-<td><input type="text" name="ServiceName"></td>
-<td><input type="number" step=0.01 min=1 name="Price"></td>
-<td><input type="number" name="TimeDurationHours"></td>
-<td><input type="text" name="TimeDurationMinutes"></td>';
-echo '
-<td>
-<select name="ServiceCategoryID">
-<option></option>';
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingCategories.php');
-foreach ($resultCategories as $key2 => $value2) {
-echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
+if (isset($_POST['Add'])) {
+  $stmt = $dbh->getInstance()->prepare('INSERT INTO services (ServiceName,ServiceCategoryID,Price,TimeDurationHours,TimeDurationMinutes,ShortDescription,SalonID)'.'
+  VALUES
+("'.$_POST["ServiceName"].'",'.$_POST["ServiceCategoryID"].','.$_POST["Price"].','.$_POST["TimeDurationHours"].','.$_POST["TimeDurationMinutes"].',"'.$_POST["ShortDescription"].'",'.$_SESSION["SalonID"].')');
+  $stmt->execute();
+  header('Location: ManageServices.php');
+  exit;
 }
-echo '
-</select>
+
 ?>

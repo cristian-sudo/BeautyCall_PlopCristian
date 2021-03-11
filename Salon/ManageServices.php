@@ -42,12 +42,42 @@
        services
    INNER JOIN hairdressingsalons ON services.SalonID = hairdressingsalons.SalonID
    INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.ServiceCategoryID
-   WHERE hairdressingsalons.Name='".$_SESSION['SalonName']."' ORDER BY servicecategories.ServiceCategoryName DESC
+   WHERE hairdressingsalons.Name='".$_SESSION['SalonName']."' ORDER BY servicecategories.ServiceCategoryName ASC
  ");
     $stmt->execute();
     $row=$stmt;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    if ($row) {//if exist results
+     echo '<form method="POST" action="ConfirmServices.php">
+     <table class="zui-table">
+     <tr>
+     <th>Service Name</th>
+     <th>Price</th>
+     <th>Time Duration Hours</th>
+     <th>Time Duration Minutes</th>
+     <th>Service Category Name</th>
+     <th>Short Description</th>
+     </tr>
+     <tr>
+     <td><input type="text" name="ServiceName" required></td>
+     <td><input type="number" step=0.01 min=1 name="Price" equired></td>
+     <td><input type="number" name="TimeDurationHours" required></td>
+     <td><input type="number" name="TimeDurationMinutes" required></td>
+     <td>
+     <select name="ServiceCategoryID" required>
+     <option></option>';
+     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingCategories.php');
+     foreach ($resultCategories as $key2 => $value2) {
+     echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
+     }
+     echo '
+     </select></td>
+     <td><input type="text" name="ShortDescription" required></td>
+     <td><button type="submit" name="Add">Add a new service</button></td>
+     </tr>
+     </table>
+     </form>';
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       echo "
     <table class='zui-table'><tr>
     <th>Service ID</th>
@@ -76,7 +106,7 @@
         <td><input type="text" name="ServiceName"></td>
         <td><input type="number" step=0.01 min=1 name="Price"></td>
         <td><input type="number" name="TimeDurationHours"></td>
-        <td><input type="text" name="TimeDurationMinutes"></td>';
+        <td><input type="number" name="TimeDurationMinutes"></td>';
         echo '
         <td>
         <select name="ServiceCategoryID">
@@ -94,9 +124,7 @@
         </form>
         </tr>';}
       echo "</table>";
-      echo '<form method="get" action="ConfirmServices.php">
-      <button type="submit" name="Add">Add a new service</button>
-      </form>';
+
 }
      ?>
   </body>
