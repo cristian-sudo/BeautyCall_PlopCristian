@@ -86,7 +86,7 @@ INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.S
         echo "<td>".$value['Email']."</td>";
         echo "<td>".$value['PhoneNumber']."</td>";
         echo "<td>".$value['BookingStatus']."</td>";
-        if ($value['BookingStatus']=="Not Confirmed") {
+        if (strcmp($value['BookingStatus'], "Confirmed") != 0) {
           echo '<td><input type="checkbox" name ="'.$value['BookingID'] . '" value="cb"></td></tr>';
         }
       echo "</tr>";}

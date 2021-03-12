@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style media="screen">
-    .zui-table {
-  border: solid 1px #DDEEEE;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font: normal 13px Arial, sans-serif;
-}
-.zui-table thead th {
-  background-color: #DDEFEF;
-  border: solid 1px #DDEEEE;
-  color: #336B6B;
-  padding: 10px;
-  text-align: left;
-  text-shadow: 1px 1px 1px #fff;
-}
-.zui-table tbody td {
-  border: solid 1px #DDEEEE;
-  color: #333;
-  padding: 10px;
-  text-shadow: 1px 1px 1px #fff;
-}
-    </style>
-  </head>
-  <body>
-
-  </body>
-</html>
 <?php
 require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
 if (isset($_POST['Confirm'])) {
@@ -84,5 +52,18 @@ if (isset($_POST['Add'])) {
   header('Location: ManageServices.php');
   exit;
 }
+
+
+
+if (isset($_POST['Delete'])) {
+  print_r($_POST);
+
+  $stmt = $dbh->getInstance()->prepare('DELETE FROM services '.'
+  WHERE ServiceID="'.$_POST['ServiceID'].'"');
+  $stmt->execute();
+  header('Location: ManageServices.php');
+  exit;
+}
+
 
 ?>
