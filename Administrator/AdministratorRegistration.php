@@ -61,6 +61,7 @@
                 $Name = $_POST['Name'];
                 $Surname = $_POST['Surname'];
                 $Username = $_POST['Username'];
+                $_SESSION["AdministratorUsername"]=$_POST['Username'];
                 $Password = password_hash($_POST['Password'], PASSWORD_DEFAULT);
                 $Country = $_POST['Country'];
                 $City = $_POST['City'];

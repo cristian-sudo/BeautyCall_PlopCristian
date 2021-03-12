@@ -52,12 +52,11 @@ INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.S
     WHERE hairdressingsalons.Name='".$_SESSION['SalonName']."' ORDER BY bookings.BookingStatus DESC
  ");
     $stmt->execute();
-    $row=$stmt;
+    $Try=$stmt->fetch();
 ///////////////////////////////////////////////////////////////////////////////////////
-
-   if ($row) {
+   if ($Try) {
       echo "
-    <form method='post' action='ConfirmBookings.php'>
+    <form method='POST' action='ConfirmBookings.php'>
     <table class='zui-table'><tr>
     <th>BookingID</th>
     <th>ServiceName</th>
@@ -72,6 +71,8 @@ INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.S
     <th>User's Phone Number</th>
     <th>Booking Status</th>
   </tr>";
+  $stmt->execute();
+  $row=$stmt;
       foreach ($row as $key => $value) {
         echo "<tr>";
         echo "<td>".$value['BookingID']."</td>";
@@ -93,6 +94,8 @@ INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.S
       echo "</table>";
       echo '<input type="submit" value="Confirm selected bookings">';
       echo '</form>';
+}else{
+echo "No bookings yet";
 }
      ?>
   </body>

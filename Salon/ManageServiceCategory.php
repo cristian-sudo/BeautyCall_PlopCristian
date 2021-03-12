@@ -41,7 +41,7 @@ INNER JOIN servicecategories ON hairdressingsalonsservicecategories.ServiceCateg
 WHERE hairdressingsalonsservicecategories.SalonID='".$_SESSION['SalonID']."' ORDER BY ServiceCategories.ServiceCategoryName ASC
 ");
 $stmt->execute();
-$row=$stmt;
+$Try=$stmt->fetch();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 echo "<h1>Add a new ServiceCategory<h1><br>";
 echo '<form method="POST" action="ConfirmServiceCategories.php">
@@ -55,7 +55,7 @@ echo '<form method="POST" action="ConfirmServiceCategories.php">
 </tr>
 </table>
 </form>';
-if ($row) {//if exist results
+if ($Try) {//if exist results
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 echo "<h1>Edit existing service categories</h1><br>";
   echo "
@@ -63,6 +63,8 @@ echo "<h1>Edit existing service categories</h1><br>";
 <th>Service Category ID</th>
 <th>Service Category Name</th>
 </tr>";//print the values
+$stmt->execute();
+$row=$stmt;
   foreach ($row as $key => $value) {
     echo "<form method='post' action='ConfirmServiceCategories.php'>";
     echo "<tr>";
@@ -79,5 +81,7 @@ echo "<h1>Edit existing service categories</h1><br>";
     </form>
     </tr>';}
   echo "</table>";
+}else{
+  echo "No service categories yet";
 }
  ?>

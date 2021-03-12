@@ -46,7 +46,8 @@
    WHERE hairdressingsalons.Name='".$_SESSION['SalonName']."' ORDER BY servicecategories.ServiceCategoryName ASC
  ");
     $stmt->execute();
-    $row=$stmt;
+    $Try=$stmt->fetch();
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 echo '<form method="POST" action="ConfirmServices.php">
 <table class="zui-table">
@@ -77,7 +78,7 @@ echo '
 </tr>
 </table>
 </form>';
-   if ($row!=NULL) {//if exist results
+   if ($Try) {//if exist results
 echo "<h1>Edit existing service</h1><br>";
       echo "
     <table class='zui-table'><tr>
@@ -89,6 +90,8 @@ echo "<h1>Edit existing service</h1><br>";
     <th>Service Category Name</th>
     <th>Short Description</th>
   </tr>";//print the values
+  $stmt->execute();
+  $row=$stmt;
       foreach ($row as $key => $value) {
         echo "<form method='post' action='ConfirmServices.php'>";
         echo "<tr>";
@@ -127,6 +130,8 @@ echo "<h1>Edit existing service</h1><br>";
         </tr>';}
       echo "</table>";
 
+}else{
+  echo "No Services yet";
 }
      ?>
   </body>
