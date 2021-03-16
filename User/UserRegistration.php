@@ -5,35 +5,39 @@
     <title></title>
   </head>
   <body>
+    <?php
+    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/conessione/DBHandler.php');
+    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/conessione/DBHandlerObject.php');
+     ?>
     <h1>User registration</h1>
     <form action="/EZCUT/User/UserRegistration.php" method="post">
       <label for="Name">Name</label>
-      <input type="text" name="Name"><br>
+      <input type="text" name="Name" required><br>
       <label for="Surname">Surname</label>
-      <input type="text" name="Surname"><br>
+      <input type="text" name="Surname" required><br>
       <label for="Username">Username</label>
-      <input type="text" name="Username"><br>
+      <input type="text" name="Username" required><br>
       <label for="Password">Password</label>
-      <input type="text" name="Password"><br>
+      <input type="text" name="Password" required><br>
       <label for="Country">Country</label>
-      <input type="text" name="Country"><br>
+      <input type="text" name="Country" required><br>
       <label for="City">City</label>
-      <input type="text" name="City"><br>
+      <input type="text" name="City" required><br>
       <label for="Address">Address</label>
-      <input type="text" name="Address"><br>
+      <input type="text" name="Address" required><br>
       <label for="PostalCode">PostalCode</label>
-      <input type="text" name="PostalCode"><br>
+      <input type="text" name="PostalCode" required><br>
       <label for="Email">Email</label>
-      <input type="email" name="Email"><br>
+      <input type="email" name="Email" required><br>
       <label for="PhoneNumber">PhoneNumber</label>
-      <input type="text" name="PhoneNumber"><br>
+      <input type="text" name="PhoneNumber" required><br>
       <input type="submit" name="submit" value="Invia" >
-    </form>'
+    </form>
+      <a href="/EZCUT/index.php">Log in</a>
   </body>
 </html>
 
 <?php
-  require_once('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
     if (isset($_POST['submit'])) {
             $stmt = $dbh->getInstance()->prepare("INSERT INTO users(Name, Surname, Username, Password, Country, City, Address, PostalCode, Email, PhoneNumber)
                     values(:Name, :Surname, :Username, :Password, :Country, :City, :Address, :PostalCode, :Email, :PhoneNumber)");

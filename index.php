@@ -13,7 +13,7 @@
 <h1>Login</h1>
     <form action="/EZCUT/User/UserLogin.php" method="post">
       <label for="Username">Username</label>
-      <input type="text" name="Username"><br>
+      <input type="text" name="Username" required><br>
       <label for="Password">Password
 <?php
 if (isset($_GET['id'])) {
@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
  }
 }?>
      </label>
-      <input type="Password" name="Password"><br>
+      <input type="Password" name="Password" required><br>
 
       <input type="submit" value="Login">
     </form>
