@@ -38,14 +38,14 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingInformationsSa
  echo $_SESSION['SalonName'] ?></h1>
 <ul>
   <li><a href="/EZCUT/Salon/HomePageSalon.php">Home</a></li>
-  <li><a href="/EZCUT/Salon/OpeningTime.php">Opening Times</a></li>
-  <li><a href="/EZCUT/Salon/Bookings.php">Bookings</a></li>
+  <li><a href="/EZCUT/Salon/ManageOpeningTime.php">Opening Times</a></li>
+  <li><a href="/EZCUT/Salon/ManageBookings.php">Bookings</a></li>
   <li><a href="/EZCUT/Salon/ManageServices.php">Manage Services</a></li>
   <li><a href="/EZCUT/Salon/ManageServiceCategory.php">Manage Service Categories</a></li>
   <li><a href="/EZCUT/Salon/AddEvent.php">Add Event</a></li>
   <li><a href="/EZCUT/Salon/ManageAdministratorAccount.php">Manage administrator account</a></li>
   <li><a href="/EZCUT/Salon/ManageHairdressSalon.php">Manage hairdress salon</a></li>
-  <li><a href="/EZCUT/Salon/Products.php">Products</a></li>
+  <li><a href="/EZCUT/Salon/ManageProducts.php">Products</a></li>
   <li style="float:right"><a class="active" href="/EZCUT/User/Logout.php">Logout</a></li>
 </ul>
 </body>

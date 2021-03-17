@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body class="jumbotron">
     <?php
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
     $stmt = $dbh->getInstance()->prepare("SELECT * FROM OpeningTime WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
@@ -23,7 +23,7 @@
       echo "</table>";
       /////////////////////////////////////////////////////////////////////////////////////////////
       echo '
-      <form action="/EZCUT/Salon/OpeningTime.php" method="post">
+      <form action="/EZCUT/Salon/ManageOpeningTime.php" method="post">
       <h1>OpeningTime</h1>
       <label for="MondayOpen">Monday</label>
       <input type="time" name="MondayOpen" required>
@@ -91,7 +91,7 @@
             $Sunday = $_POST['SundayOpen']."-".$_POST['SundayClosing'];
             $AdministratorID = $_SESSION['AdministratorID'];
            $stmt->execute();
-          header('Location: /EZCUT/Salon/OpeningTime.php');
+          header('Location: /EZCUT/Salon/ManageOpeningTime.php');
   }}
   ?>
   </body>

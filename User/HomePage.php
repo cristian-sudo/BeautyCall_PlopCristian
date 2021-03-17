@@ -12,6 +12,7 @@
          echo "ciao".$_SESSION['Name']."<br>";
     }*/
     if (isset($_SESSION['Name'])) {
+
       $stmt = $dbh->getInstance()->prepare("SELECT ServiceCategoryName FROM ServiceCategories");
        $stmt->execute();
        $row = $stmt;

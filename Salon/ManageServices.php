@@ -26,7 +26,7 @@
 }
     </style>
   </head>
-  <body>
+  <body class="jumbotron">
     <?php
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
     echo "<h1>Add a new service<h1><br>";
@@ -67,7 +67,7 @@ echo '<form method="POST" action="ConfirmServices.php">
 <td>
 <select name="ServiceCategoryID" required>
 <option></option>';
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingCategories.php');
+require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingServiceCategories.php');
 foreach ($resultCategories as $key2 => $value2) {
 echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
 }
@@ -115,7 +115,7 @@ echo "<h1>Edit existing service</h1><br>";
         <td>
         <select name="ServiceCategoryID">
         <option></option>';
-        require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingCategories.php');
+        require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingServiceCategories.php');
         foreach ($resultCategories as $key2 => $value2) {
         echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
       }

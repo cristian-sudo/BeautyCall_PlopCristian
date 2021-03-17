@@ -11,6 +11,6 @@
                 $bolean = $index;
                 $stmt->execute();
         }
-        header('Location: Bookings.php');
+        header('Location: ManageBookings.php');
         exit;
 ?>
