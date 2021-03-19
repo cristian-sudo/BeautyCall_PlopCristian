@@ -1,52 +1,27 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 7px 6px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-</style>
-</head>
-<body>
-<h1><?php
+<?php
 require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingInformationsSalon.php');
- echo $_SESSION['SalonName'] ?></h1>
-<ul>
-  <li><a href="/EZCUT/Salon/HomePageSalon.php">Home</a></li>
-  <li><a href="/EZCUT/Salon/ManageOpeningTime.php">Opening Times</a></li>
-  <li><a href="/EZCUT/Salon/ManageBookings.php">Bookings</a></li>
-  <li><a href="/EZCUT/Salon/ManageServices.php">Manage Services</a></li>
-  <li><a href="/EZCUT/Salon/ManageServiceCategory.php">Manage Service Categories</a></li>
-  <li><a href="/EZCUT/Salon/AddEvent.php">Add Event</a></li>
-  <li><a href="/EZCUT/Salon/ManageAdministratorAccount.php">Manage administrator account</a></li>
-  <li><a href="/EZCUT/Salon/ManageHairdressSalon.php">Manage hairdress salon</a></li>
-  <li><a href="/EZCUT/Salon/ManageProducts.php">Products</a></li>
-  <li style="float:right"><a class="active" href="/EZCUT/User/Logout.php">Logout</a></li>
-</ul>
-</body>
-</html>
+echo'
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" id="logo" href="/EZCUT/Salon/HomePageSalon.php">'.$_SESSION['SalonName'].'</a>
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Managements</a>
+              <div class="dropdown-menu">
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageOpeningTime.php">Opening Times</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageBookings.php">Bookings</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageServices.php">Manage Services</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageServiceCategory.php">Manage Service Categories</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/AddEvent.php">Add Event</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageAdministratorAccount.php">Manage administrator account</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageHairdressSalon.php">Manage hairdress salon</a>
+              <a class="dropdown-item" href="/EZCUT/Salon/ManageProducts.php">Products</a>
+              </div>
+    </li>
+    <a class="navbar-brand" id="logout" href="/EZCUT/User/Logout.php">Logout</a>
+  </ul>
+</nav>
+<br>
+  </body>
+  </html>
+'?>
