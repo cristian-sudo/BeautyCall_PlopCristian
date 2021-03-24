@@ -229,7 +229,7 @@
             <div class='welcome'>EZCUT</div>
             <div class='subtitle'>We're almost done. Before using our services you need to create an account or login.</div>
             <div class='input-fields'>
-              <form action="/EZCUT/User/UserLogin.php" method="post">
+              <form action="/EZCUT/Login.php" method="post">
                     <input type='text' placeholder='Username' class='input-line full-width' name="Username" required></input>
                     <input type='password' placeholder='Password' class='input-line full-width' name="Password" required></input>
                     <button type="submit" class='ghost-round full-width'>Login</button>

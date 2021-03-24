@@ -5,28 +5,55 @@
     <title></title>
   </head>
   <body>
-    <h1>ci siamo</h1>
     <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
-/*    if (isset($_SESSION['Name'])) {
-         echo "ciao".$_SESSION['Name']."<br>";
-    }*/
-    if (isset($_SESSION['Name'])) {
+    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+    ?>
+    <h1 id="HomePageCategories">Main Categories</h1>
+    <br>
 
-      $stmt = $dbh->getInstance()->prepare("SELECT ServiceCategoryName FROM ServiceCategories");
-       $stmt->execute();
-       $row = $stmt;
-       if ($row) {
-         echo "<table>";
-         foreach ($row as $key => $value) {
-           echo "<tr><td>";
-            //echo "<a href=".url.">link text</a">
-           echo $value['ServiceCategoryName'];
-           echo "</td></tr>";
-         }
-         echo "</table>";
-       }
-    }
-     ?>
+<div class="advL">
+  adv
+</div>
+
+<div class="advR">
+  adv
+</div>
+
+<div class="container-fluid centralContent">
+
+<?php
+require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingCategories.php');
+$NumerOfElements;
+while($row = $resultCategories->fetch()){
+  $NumerOfElements++;
+}
+echo $NumerOfElements;
+$rowsNeeded;
+$rowsNeeded=$NumerOfElements/3;
+echo $rowsNeeded;
+
+
+?>
+<br><br>
+<div>
+  <div class="row">
+    <div class=" col cols">
+      <div class="row rows">
+         <div class=" col cols TitleCategory">
+            TitleCategory
+         </div>
+         </div>
+
+         <div class="row rows">
+         <div class=" col cols">
+            Image
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
   </body>
 </html>
