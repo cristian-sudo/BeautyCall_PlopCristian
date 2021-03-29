@@ -58,7 +58,7 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
     </div>
 
             <div class="col-2 coll">
-     //////////////////
+     
             </div>
 
     <div  class="col-2 coll">

@@ -1,38 +1,39 @@
 
-
-.row{
-  padding: 0;
-  background-color: cornflowerblue;
-  border: solid;
+body{
+  background-image: url("https://lh3.googleusercontent.com/proxy/hQ1BY3I0121NJT58NfBtRoqf_ii2SfOxQL1cz-i2uM6x5xyGWRBXyz5BJC64988HLEK2i5t_EQZPTp7JO9NbvHWc6TRZod8w8RR1vXfL1azUcQszuz9HENEAtby6CAGMK1tMJyJYZ3Dt");
 }
+
 #HomePageCategories{
   text-align: center;
   font-size: 50px;
   color: #052939;
-  background-color: antiquewhite;
 }
 
 .advL{
  float: left; 
- background-color: red;
  border: solid;
- height:800px;
+ height:2300px;
  padding: 40px;
 }
 
 .advR{
   float: right; 
-  background-color: red;
   border: solid;
-  height:800px;
+  height:2300px;
   padding: 40px;
  }
 
-.cols{
-border: solid white 6px;
-}
-.rows{
-  border: solid green;
+
+.RowTitle{
+  text-align: center;
+  font-family: Cursive;
+  padding: 10px;
+  font-size: 40px;
+  }
+
+  
+  .MainCollons{
+    margin: 3px;
   }
 
 #Logo{
@@ -58,17 +59,38 @@ border: solid white 6px;
   border: none;
 }
 
+a{
+  color: inherit;
+}
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
 
 
 .dropdown{
-  display: flex;
+display: flex;
  align-items: left;
  padding: 0px;
  border: none;
 }
 
 
-.coll{
+.MainCollons{
+  border-style: outset;
+  margin: 0px;
+
+}
+.colImageContainer{
+  margin: 2px;
+  padding-left: 2px;
+}
+
+.ImageCategoryDimentions{
+margin: 2px;
+padding: 2px;
+width:386px;
+height:340px;
 }
 
 

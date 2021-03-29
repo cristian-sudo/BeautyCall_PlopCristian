@@ -10,12 +10,12 @@
   border-spacing: 0;
   font: normal 13px Arial, sans-serif;
 }
-.zui-table thead th {
-  background-color: #DDEFEF;
-  border: solid 1px #DDEEEE;
-  color: #336B6B;
-  padding: 10px;
-  text-align: left;
+              .zui-table thead th {
+                background-color: #DDEFEF;
+                border: solid 1px #DDEEEE;
+                color: #336B6B;
+                padding: 10px;
+                text-align: left;
   text-shadow: 1px 1px 1px #fff;
 }
 .zui-table tbody td {
@@ -69,7 +69,7 @@ echo '<form method="POST" action="ConfirmServices.php">
 <option></option>';
 require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingServiceCategories.php');
 foreach ($resultCategories as $key2 => $value2) {
-echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
+    echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
 }
 echo '
 </select></td>
@@ -79,8 +79,8 @@ echo '
 </table>
 </form>';
    if ($Try) {//if exist results
-echo "<h1>Edit existing service</h1><br>";
-      echo "
+       echo "<h1>Edit existing service</h1><br>";
+       echo "
     <table class='zui-table'><tr>
     <th>Service ID</th>
     <th>Service Name</th>
@@ -90,36 +90,36 @@ echo "<h1>Edit existing service</h1><br>";
     <th>Service Category Name</th>
     <th>Short Description</th>
   </tr>";//print the values
-  $stmt->execute();
-  $row=$stmt;
-      foreach ($row as $key => $value) {
-        echo "<form method='post' action='ConfirmServices.php'>";
-        echo "<tr>";
-        echo "<td>".$value['ServiceID']."</td>";
-        echo "<td>".$value['ServiceName']."</td>";
-        echo "<td>".$value['Price']."</td>";
-        echo "<td>".$value['TimeDurationHours']."Hrs</td>";
-        echo "<td>".$value['TimeDurationMinutes']."Min</td>";
-        echo "<td>".$value['ServiceCategoryName']."</td>";
-        echo "<td>".$value['ShortDescription']."</td>";
-        echo "</tr>";
-        //inputs
-        echo "<tr>";
-        echo '
+       $stmt->execute();
+       $row=$stmt;
+       foreach ($row as $key => $value) {
+           echo "<form method='post' action='ConfirmServices.php'>";
+           echo "<tr>";
+           echo "<td>".$value['ServiceID']."</td>";
+           echo "<td>".$value['ServiceName']."</td>";
+           echo "<td>".$value['Price']."</td>";
+           echo "<td>".$value['TimeDurationHours']."Hrs</td>";
+           echo "<td>".$value['TimeDurationMinutes']."Min</td>";
+           echo "<td>".$value['ServiceCategoryName']."</td>";
+           echo "<td>".$value['ShortDescription']."</td>";
+           echo "</tr>";
+           //inputs
+           echo "<tr>";
+           echo '
         <td><input type="text" name="ServiceID" value="'.$value['ServiceID'].'" readonly></td>
         <td><input type="text" name="ServiceName"></td>
         <td><input type="number" step=0.01 min=1 name="Price"></td>
         <td><input type="number" name="TimeDurationHours"></td>
         <td><input type="number" name="TimeDurationMinutes" max="60"></td>';
-        echo '
+           echo '
         <td>
         <select name="ServiceCategoryID">
         <option></option>';
-        require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingServiceCategories.php');
-        foreach ($resultCategories as $key2 => $value2) {
-        echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
-      }
-        echo '
+           require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingServiceCategories.php');
+           foreach ($resultCategories as $key2 => $value2) {
+               echo '<option value="'.$value2['ServiceCategoryID'].'">' . $value2['ServiceCategoryName'] . '</option>';
+           }
+           echo '
         </select>
         </td>
 
@@ -127,12 +127,12 @@ echo "<h1>Edit existing service</h1><br>";
         <td><input type="submit" value="Confirm Changes" name="Confirm"></td>
         <td><input type="submit" value="Delete Service" name="Delete"></td>
         </form>
-        </tr>';}
-      echo "</table>";
-
-}else{
-  echo "No Services yet";
-}
+        </tr>';
+       }
+       echo "</table>";
+   } else {
+       echo "No Services yet";
+   }
      ?>
   </body>
 </html>

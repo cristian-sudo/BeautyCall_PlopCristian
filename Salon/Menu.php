@@ -11,7 +11,6 @@ echo'
               <a class="dropdown-item" href="/EZCUT/Salon/ManageOpeningTime.php">Opening Times</a>
               <a class="dropdown-item" href="/EZCUT/Salon/ManageBookings.php">Bookings</a>
               <a class="dropdown-item" href="/EZCUT/Salon/ManageServices.php">Manage Services</a>
-              <a class="dropdown-item" href="/EZCUT/Salon/ManageServiceCategory.php">Manage Service Categories</a>
               <a class="dropdown-item" href="/EZCUT/Salon/AddEvent.php">Add Event</a>
               <a class="dropdown-item" href="/EZCUT/Salon/ManageAdministratorAccount.php">Manage administrator account</a>
               <a class="dropdown-item" href="/EZCUT/Salon/ManageHairdressSalon.php">Manage hairdress salon</a>
