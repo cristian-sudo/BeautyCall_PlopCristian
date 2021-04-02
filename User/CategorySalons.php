@@ -11,13 +11,6 @@
     <h1 id="HomePageCategories"><?php echo $_GET['CategoryPass'] ?></h1>
     <br>
 
-<div class="advL">
-  adv
-</div>
-
-<div class="advR">
-  adv
-</div>
 
 <div class="container-fluid centralContent">
 
@@ -26,6 +19,7 @@ $GETSalonsCategories = $dbh->getInstance()->prepare('SELECT DISTINCT hairdressin
 INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID
 INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
 WHERE servicecategories.ServiceCategoryName="'.$_GET['CategoryPass'].'"
+AND hairdressingsalons.Status="Confirmed"
 ORDER BY hairdressingsalons.Name DESC ;');//get  salons categories
 $GETSalonsCategories->execute();
 $resultSalonsCategories=$GETSalonsCategories;
@@ -54,7 +48,7 @@ if ($NumerOfElements>0) {
                   for ($u=0;$u<3;$u++) {//faccio 3 collone esterne grandi
                       echo'
                         <div class="col-4 MainCollons">
-                        <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
+                        <a  href="Salonview.php?Salonview='.$ArrayElements[$NumerOfElements-1].'&Categoryview='.$_GET['CategoryPass'].'">
                             <div class="row RowTitle">
                                   <div class=" col ColTitle">
                                     '.$ArrayElements[$NumerOfElements-1].'
@@ -80,7 +74,7 @@ if ($NumerOfElements>0) {
                     for ($u=0;$u<2;$u++) {//faccio 3 collone esterne grandi
                       echo'
                       <div class="col-4 MainCollons">
-                      <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
+                      <a  href="Salonview.php?Salonview='.$ArrayElements[$NumerOfElements-1].'&Categoryview='.$_GET['CategoryPass'].'">
                           <div class="row RowTitle">
                                 <div class=" col ColTitle">
                                   '.$ArrayElements[$NumerOfElements-1].'
@@ -107,7 +101,7 @@ if ($NumerOfElements>0) {
                   for ($u=0;$u<1;$u++) {//faccio 3 collone esterne grandi
                     echo'
                     <div class="col-4 MainCollons">
-                    <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
+                    <a  href="Salonview.php?Salonview='.$ArrayElements[$NumerOfElements-1].'&Categoryview='.$_GET['CategoryPass'].'">
                         <div class="row RowTitle">
                               <div class=" col ColTitle">
                                 '.$ArrayElements[$NumerOfElements-1].'
@@ -135,7 +129,7 @@ if ($NumerOfElements>0) {
           for ($u=0;$u<3;$u++) {//faccio 3 collone esterne grandi
             echo'
                         <div class="col-4 MainCollons">
-                        <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
+                        <a  href="Salonview.php?Salonview='.$ArrayElements[$NumerOfElements-1].'&Categoryview='.$_GET['CategoryPass'].'">
                             <div class="row RowTitle">
                                   <div class=" col ColTitle">
                                     '.$ArrayElements[$NumerOfElements-1].'

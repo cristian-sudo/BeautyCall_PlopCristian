@@ -11,13 +11,6 @@
     <h1 id="HomePageCategories">Main Categories</h1>
     <br>
 
-<div class="advL">
-  adv
-</div>
-
-<div class="advR">
-  adv
-</div>
 
 <div class="container-fluid centralContent">
 
