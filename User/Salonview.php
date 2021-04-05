@@ -108,9 +108,10 @@ $InputRow=$resultSalonsCategoriesServices;
 $NumerOfElements=0;
 $ArrayElements;
 $indice=0;
+$today = date("Y-m-d");
 while ($row = $InputRow->fetch()) {
    echo '
-   <a href="/EZCUT/User/Serviceview.php?ServicePass='.$row['ServiceName'].'">
+   <a href="/EZCUT/User/Serviceview.php?ServicePass='.$row['ServiceName'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'&Date='.$today.'">
 
    <div class="row ServicesRows">
       <div class="col-3 col">
