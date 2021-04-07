@@ -54,12 +54,11 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
 
    //getting all the bookings from given date and for the single staff
    //i need to create an associativ array for every staff
-   print_r($AllStaffID);
+   //print_r($AllStaffID);
    $StaffIDBookingPerDate=null;
    $ScorrimentoY=0;
    for ($External=0;$External<count($AllStaffID);$External++) {
        $IndiceIntervallo=0;
-       $IndiceAllAvalablesBookingsIntervals=0;
                 $stmt1 = $dbh->getInstance()->prepare("SELECT bookings.BeginTime, bookings.FinishTime FROM bookings
             INNER JOIN hairdressingsalons ON bookings.SalonID=hairdressingsalons.SalonID
             WHERE hairdressingsalons.Name =:SalonName
@@ -100,9 +99,15 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
                             $StaffIDBookingPerDate[$ScorrimentoY][0]=strval($AllStaffID[$External]);
                             $StaffIDBookingPerDate[$ScorrimentoY][1]=strval($IndiceIntervallo);
                             $StaffIDBookingPerDate[$ScorrimentoY][2]="07:00:00";
-                            $StaffIDBookingPerDate[$ScorrimentoY][3]=strval($FoundDateLast);
-                        $ScorrimentoY++;
-                        $IndiceIntervallo++;
+                            //ho tutto in secondi
+                            $finishTimeInSeconds=strtotime($BookingsArray[$BookingsArrayLastX][$BookingsArrayLastY]->format('H:i:s'));
+                            $finishTimeInSeconds=$finishTimeInSeconds-(intval($TotalMinutesNeeded)*60);
+                            $dataDaInserire=date("H:i:s",$finishTimeInSeconds);
+                            //
+                            $StaffIDBookingPerDate[$ScorrimentoY][3]=$dataDaInserire;
+
+                            $ScorrimentoY++;
+                            $IndiceIntervallo++;
 
                         
                     
@@ -117,7 +122,14 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
                         $StaffIDBookingPerDate[$ScorrimentoY][0]=strval($AllStaffID[$External]);
                         $StaffIDBookingPerDate[$ScorrimentoY][1]=strval($IndiceIntervallo);
                         $StaffIDBookingPerDate[$ScorrimentoY][2]=strval($FoundDateBegin);
-                        $StaffIDBookingPerDate[$ScorrimentoY][3]=strval($FoundDateFinish);
+
+
+                        $finishTimeInSeconds=strtotime($BookingsArray[$i+1][$BookingsArrayLastY]->format('H:i:s'));
+                        $finishTimeInSeconds=$finishTimeInSeconds-(intval($TotalMinutesNeeded)*60);
+                        $dataDaInserire=date("H:i:s",$finishTimeInSeconds);
+
+
+                        $StaffIDBookingPerDate[$ScorrimentoY][3]=$dataDaInserire;
                         $ScorrimentoY++;
                         $IndiceIntervallo++;
                         
@@ -136,7 +148,13 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
                             $StaffIDBookingPerDate[$ScorrimentoY][0]=strval($AllStaffID[$External]);
                             $StaffIDBookingPerDate[$ScorrimentoY][1]=strval($IndiceIntervallo);
                             $StaffIDBookingPerDate[$ScorrimentoY][2]=strval($FoundDateLast);
-                            $StaffIDBookingPerDate[$ScorrimentoY][3]="20:00:00";
+
+                            $date1="20:00:00";
+                            $finishTimeInSeconds=strtotime($date1);
+                            $finishTimeInSeconds=$finishTimeInSeconds-(intval($TotalMinutesNeeded)*60);
+                            $dataDaInserire=date("H:i:s",$finishTimeInSeconds);
+
+                            $StaffIDBookingPerDate[$ScorrimentoY][3]=$dataDaInserire;
                             $ScorrimentoY++;
                             $IndiceIntervallo++;
                         }
@@ -147,129 +165,14 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
    }
 
 }
-
-print_r($StaffIDBookingPerDate);
-
-//devo costruirmi quante volte ci sta il servicio dentro un intervallo per poter illustrare a video 
-//hli efettivi intervalli in cui puo prenotare
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-     //getting all avalable times of the salon of the curent day
-     $stmt = $dbh->getInstance()->prepare("SELECT * FROM FreeSeatsAvalableMinutes
-     INNER JOIN Day0 ON Day0.FreeSeatsAvalableMinutesID=FreeSeatsAvalableMinutes.FreeSeatsAvalableMinutesID
-          INNER JOIN hairdressingsalons ON hairdressingsalons.Day0ID=Day0.Day0ID
-          WHERE hairdressingsalons.Name =:SalonName");
-     $stmt->bindParam(':SalonName', $SalonName);
-     $SalonName = $_GET['Salonview'];
-     $stmt->execute();
-     $row = $stmt->fetch();
-     $SalonDay0AvalableTimesArray=null;
-    if ($row) {
-        ///////putting informations of salons in an array
-        if ($row['EightToNineFreeSeats']>0 & $row['EightToNineAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['8-9']=$row['EightToNineAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['8-9']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['NineToTenFreeSeats']>0 & $row['NineToTenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['9-10']=$row['NineToTenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['9-10']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['TenToElevenFreeSeats']>0 & $row['TenToElevenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['10-11']=$row['TenToElevenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['10-11']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['ElevenToTwelveFreeSeats']>0 & $row['ElevenToTwelveAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['11-12']=$row['ElevenToTwelveAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['11-12']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['TwelveToThirteenFreeSeats']>0 & $row['TwelveToThirteenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['12-13']=$row['TwelveToThirteenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['12-13']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['ThirteenToFourteenFreeSeats']>0 & $row['ThirteenToFourteenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['13-14']=$row['ThirteenToFourteenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['13-14']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['FourteenToFifteenFreeSeats']>0 & $row['FourteenToFifteenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['14-15']=$row['FourteenToFifteenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['14-15']="FULL";   
-        }
-        //////////////////////////////////////////
-        if ($row['FifteenToSixteenFreeSeats']>0 & $row['FifteenToSixteenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['15-16']=$row['FifteenToSixteenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['15-16']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['SixteenToSeventeenFreeSeats']>0 & $row['SixteenToSeventeenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['16-17']=$row['SixteenToSeventeenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['16-17']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['SeventeenToEighteenFreeSeats']>0 & $row['SeventeenToEighteenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['17-18']=$row['SeventeenToEighteenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['17-18']="FULL"; 
-        }
-        //////////////////////////////////////////
-        if ($row['EighteenToNineteenFreeSeats']>0 & $row['EighteenToNineteenAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['18-19']=$row['EighteenToNineteenAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['18-19']="FULL";
-        }
-        //////////////////////////////////////////
-        if ($row['NineteenToTwentyFreeSeats']>0 & $row['NineteenToTwentyAvalableMinutes']>=$TotalMinutesNeeded) {
-            $SalonAvalableTimesArray['19-20']=$row['NineteenToTwentyAvalableMinutes'];
-        }else{
-            $SalonAvalableTimesArray['19-20']="FULL";
-        }
-    }
-
-    print_r($SalonAvalableTimesArray);
-
-    /*
-    $SalonAvalableTimesArray
-    $ServiceTimeRequiredHours
-    $ServiceTimeRequiredMinutes
-   */
-
-   
-
-   
-  
-
-    //verify in what avalable time will fit this service
-    //show the results
-
-
-
-
-
 ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <span>Chose a day you want to book!</span>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
