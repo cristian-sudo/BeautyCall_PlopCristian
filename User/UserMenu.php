@@ -28,19 +28,10 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
     </div>
 
     <div  class="col-2 coll">
-            <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle HeaderElement" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           
+            <a href="BookingsView.php" >
               Bookings
              </a>
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <?php
-                        require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingCategories.php');
-                        foreach ($resultCategories as $key2 => $value2) {
-                            echo '<a class="dropdown-item" href="/EZCUT/Salon/ManageOpeningTime.php">' . $value2['ServiceCategoryName'] . '</a>';
-                        }
-                        ?>
-                      </div>
-      </div>
     </div>
 
             <div class="col-4 coll">
