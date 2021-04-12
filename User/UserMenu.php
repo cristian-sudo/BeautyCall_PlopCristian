@@ -5,11 +5,8 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
 <div class="container-fluid">
   <div class="row HeaderRow">
     <div id="Logo"class="col-1">
-      <a id="Logo"href="/EZCUT/User/HomePage.php">EZCUT</a>
+      <a id="Logo" href="/EZCUT/User/HomePage.php">EZCUT</a>
     </div>
-
-
-    
 
     <div  class="col-3 coll">
             <div class="dropdown">
@@ -27,14 +24,9 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
       </div>
     </div>
 
-    <div  class="col-2 coll">
-           
-            <a href="BookingsView.php" >
-              Bookings
-             </a>
-    </div>
+    
 
-            <div class="col-4 coll">
+            <div class="col-6 coll">
      
             </div>
 
@@ -44,15 +36,18 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
               Account
              </a>
              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+             <a class="dropdown-item" href="BookingsView.php">Bookings</a> 
              <a class="dropdown-item" href="/EZCUT/User/Logout.php">Account informations</a> 
              <a class="dropdown-item" href="/EZCUT/User/Logout.php">History</a>   
-             <a class="dropdown-item" href="/EZCUT/User/Logout.php">Logout</a>   
+             <a class="dropdown-item" href="/EZCUT/User/Logout.php">Logout</a>    
               </div>
       </div>
     </div>
 
 </div>
     </div>
+
+    
     <div class="advL">
   adv
 </div>

@@ -3,8 +3,9 @@
     </head>
     <body>
         <?php
-        require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
-        print_r($_SESSION);
+       // require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
+       require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+       // print_r($_SESSION);
        
         print_r($_POST);
         

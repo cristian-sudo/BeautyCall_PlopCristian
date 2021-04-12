@@ -96,7 +96,7 @@ $row = $stmt->fetch();
 ';
         }
 ///////////////
-$GETSalonsCategoriesServices = $dbh->getInstance()->prepare('SELECT DISTINCT services.ServiceName FROM servicecategories
+$GETSalonsCategoriesServices = $dbh->getInstance()->prepare('SELECT DISTINCT services.ServiceName,services.ShortDescription,services.TimeDurationHours,services.TimeDurationMinutes FROM servicecategories
 INNER JOIN services ON servicecategories.ServiceCategoryID=services.ServiceCategoryID
 INNER JOIN hairdressingsalons ON services.SalonID=hairdressingsalons.SalonID
 WHERE hairdressingsalons.Name="'.$_GET['Salonview'].'"
@@ -118,12 +118,20 @@ while ($row = $InputRow->fetch()) {
        <h1 class="ServiceName">' .$row['ServiceName'].'</h1>
       </div>
 
-      <div class="col-5 col">
-       Description
+      <div class="col-4 col">
+       <h6>Description:<br>
+       '.$row['ShortDescription'].'
+       </h6>
       </div>
 
-      <div class="col-4 col">
+      <div class="col-3 col">
        3 images
+      </div>
+
+      <div class="col-1 col">
+      <h6>Time:<br>
+      '.$row['TimeDurationHours'].'h,'.$row['TimeDurationMinutes'].'min
+      </h6>
       </div>
 
     </div>
@@ -133,8 +141,8 @@ while ($row = $InputRow->fetch()) {
 
 
 
-        print_r($SalonInformationsArray);
-        print_r($_GET);
+        //print_r($SalonInformationsArray);
+        //print_r($_GET);
     } else {
         echo 'Salon not found';
     }

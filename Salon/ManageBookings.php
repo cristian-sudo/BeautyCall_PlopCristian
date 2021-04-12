@@ -35,7 +35,7 @@
         Services.ServiceName,
         ServiceCategories.ServiceCategoryName,
         Services.Price,
-        bookings.BeginDateTime,
+        bookings.Date,
         Services.TimeDurationHours,
         Services.TimeDurationMinutes,
         Users.Name,
@@ -79,7 +79,7 @@ INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.S
         echo "<td>".$value['ServiceName']."</td>";
         echo "<td>".$value['ServiceCategoryName']."</td>";
         echo "<td>".$value['Price']."</td>";
-        echo "<td>".$value['BeginDateTime']."</td>";
+        echo "<td>".$value['Date']."</td>";
         echo "<td>".$value['TimeDurationHours']."Hrs</td>";
         echo "<td>".$value['TimeDurationMinutes']."Min</td>";
         echo "<td>".$value['Name']."</td>";

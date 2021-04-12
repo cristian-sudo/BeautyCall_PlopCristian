@@ -1,9 +1,22 @@
-
 .row{
 
 }
-.col{
+.RowOgniStaff{
+  border: solid blueviolet;
+  padding: 5px;
+  background-color: ghostwhite;
   
+}
+
+.RowOgniStaff2{
+  border: solid brown;
+  padding: 5px;
+  background-color: rgb(139, 180, 180);
+  
+}
+#colIntervals{
+  border: solid black;
+  background-color: red;
   }
 
   #rowStaff{
@@ -26,14 +39,20 @@
   padding-left: 360px;
   
 }
-
+.buton{
+  font-size: 19px;
+  margin-left: 0px;
+  padding-right: 300px;
+}
 .col_color{
   background-color: cornflowerblue;
 }
 
 #InsertTimeInput{
 font-size: 19px;
-margin-left: -15px;
+margin-left: 0px;
+padding-left: 170px;
+padding-right: 300px;
 }
 
 #CinfirmButton{
@@ -58,9 +77,12 @@ border: solid black 2px;
 }
 
 body{
+  background-image: url("https://img.freepik.com/free-vector/creative-abstract-texture-background-vector-illustration_1284-41950.jpg?size=626&ext=jpg");
+
 }
 .HeaderRow{
-  background-image: url("/EZCUT/Images/2.PNG");
+  background-image: url("https://wallpaperaccess.com/full/1429606.jpg");
+
 }
 
 .ShortDescription{

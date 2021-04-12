@@ -30,6 +30,7 @@
               $AdministratorID = $_SESSION['AdministratorID'];
              $stmt->execute();
             header('Location: /EZCUT/Salon/ManageOpeningTime.php');
+            exit;
     }
 
  ?>

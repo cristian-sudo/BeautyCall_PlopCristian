@@ -182,7 +182,7 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
                      $IndiceIntervallo++;
                  }
              }
-             print_r($StaffIDBookingPerDate);
+             //print_r($StaffIDBookingPerDate);
              
          }
      }
@@ -196,7 +196,6 @@ if(!isset($_POST['Confirm'])){
               <a href="/EZCUT/User/DateSelector.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">Change the date</a>  
             </div>
     </div>
-
     <div class="row">
     <div class="col">
         <h4 id="ForDateTEXT">For:'.$_POST['date'].' we have these avalable times intervals and costumers disponible:<br>
@@ -205,7 +204,7 @@ if(!isset($_POST['Confirm'])){
 </div>';
 ////////
 }
-for ($s=0;$s<count($AllStaffID);$s++) {
+for ($s=0;$s<count($AllStaffID);$s++) {//Analizzo ogni staff
     ///getting staff name
     $stmt = $dbh->getInstance()->prepare("SELECT Staff.Name FROM Staff
     WHERE StaffID = :StaffID");
@@ -219,60 +218,66 @@ for ($s=0;$s<count($AllStaffID);$s++) {
     }
     
     echo '
-    <form method="POST" action="Booking.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">
-    <div id="rowStaff" class="row">
+ <div   class="row shadow p-3 mb-5 bg-white rounded RowOgniStaff">
+ <div class="col-12">
+                            <div class="row RowOgniStaff2">
+                                    <div class="col-6 col">'.$StaffName.'</div>
+                                    <div class="col-6 col">Immagine</div>
+                            </div>
+                    ';
+                //il ciclo per mostrare gli intervalli
+                for ($i=0;$i<count($StaffIDBookingPerDate);$i++) {
+                    if ($StaffIDBookingPerDate[$i][0]==$AllStaffID[$s]) {//devo controlare se il elemento analizato è di questo staf
+                     
+                    echo '<div class="row RowOgniStaff2">';//inizio row interna
+                    echo '<div class="col">';
+                    echo '<form method="POST" action="Booking.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">';
+                        if ($StaffIDBookingPerDate[$i][2]==$StaffIDBookingPerDate[$i][3]) {
+                            echo '
+                            <div class="row">
+                            <div class="col-6 ">Booked for all day</div>
+                            <div class="col-6 ">###</div>
+                            </div>
+                            ';
+                            
+                        } else {
+                            echo '
+                                    <div class="row">
+                                            <div class="col">
+                                            '.$StaffIDBookingPerDate[$i][2].'-'.$StaffIDBookingPerDate[$i][3].'
+                                            </div>
 
-    <div class="col-1">
-    <div class="row"><div class="col">'.$StaffName.'</div></div>
-    <div class="row"><div class="col">Immagine</div></div>
-    </div>
+                                            <div class="col ">
+                                                    <div class="row">
+                                                            <div class="col">
+                                                                <input required min="'.$StaffIDBookingPerDate[$i][2].'" max="'.$StaffIDBookingPerDate[$i][3].'" type="time" name="InsertBeginTime" id="InsertTimeInput"> 
+                                                                <input type="hidden" value="'.$AllStaffID[$s].'" name="StaffID"> 
+                                                                <input type="hidden" value="'.$_POST['date'].'" name="Date">
+                                                            </div>
+                                                    </div>
+                                                    <div class="row">
+                                                            <div class="col">
+                                                            <button type="submit" name="ConfirmBooking" class="btn btn-primary btn-lg btn-block buton">Confirm Booking</button>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                        
+                            ';
+                        }
+                        
+                        
+                    echo '</form>';//fine form per ogni riga interna
+                    echo '</div>';//fine col interna
+                    echo '</div>';//fine row interna
+                    }
+                    
+                }
+    echo '</div>';//fine col per ogni staff
+    echo '</div><br>';//fine row per ogni staff
     
-
-    <div class="col-1">
-    <div class="row">
-        <div class="col">
-         <input type="time" name="InsertBeginTime" id="InsertTimeInput"> 
-         <input type="hidden" value="'.$AllStaffID[$s].'" name="StaffID"> 
-         <input type="hidden" value="'.$_POST['date'].'" name="Date">
-       </div>
-   </div>
-    <div class="row">
-        <div class="col">
-        <input type="submit" name="ConfirmBooking" id="CinfirmButton">  
-        </div>
-    </div>
-    </div>';
-    //il ciclo per mostrare gli intervalli
-    for ($i=0;$i<count($StaffIDBookingPerDate);$i++) {
-        if ($StaffIDBookingPerDate[$i][0]==$AllStaffID[$s]) {//devo controlare se il elemento analizato è di questo staf
-            echo '
-             <div class="col">
-             <h6>';
-            if ($StaffIDBookingPerDate[$i][2]==$StaffIDBookingPerDate[$i][3]) {
-                echo 'Booked for all day';
-            } else {
-                echo $StaffIDBookingPerDate[$i][2].'-'.$StaffIDBookingPerDate[$i][3];
-            }
-             
-            echo'
-             </h6>
-             </div>
-             ';
-        }
-    }
-    echo '</div>';//fine riga per ogni staff
-    echo '
-    </div>
-    </form><br>
-    ';//fine container
 }
 
-//devo avere una riga per ogni costumer
-
-//prima collona: due righe(nome)(immagine)
-//prossima collona con un input di time(appena si schiaccia si aggiunge la prenotazione e si va alla pagina dei bookings)
-//collone quanti intervalli
-//nell altra pagina devo avere      BeginTime, Date, idStaff
 ?>
 </body>
 </html>
