@@ -3,13 +3,13 @@
     </head>
     <body>
         <?php
-       // require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
-       require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+       
+       require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
        // print_r($_SESSION);
        
-        print_r($_POST);
+       // print_r($_POST);
         
-        print_r($_GET);
+        //print_r($_GET);
 //getting SalonID
 $SalonID;
 $stmt = $dbh->getInstance()->prepare("SELECT SalonID FROM hairdressingsalons
@@ -24,7 +24,7 @@ $stmt = $dbh->getInstance()->prepare("SELECT SalonID FROM hairdressingsalons
 ///
 ///Getting ServiceID
 $BeginTimeGiven=date($_POST['InsertBeginTime'].":00");
-print_r($BeginTimeGiven);
+//print_r($BeginTimeGiven);
 $BeginTimeGivenInSeconds=strtotime($BeginTimeGiven);
 $ServiceID;
 $TimeDurationHours;
@@ -58,6 +58,7 @@ $stmt->bindParam(':UserID', $UserID);
 $stmt->bindParam(':FinishTime', $FinishTime);
 $stmt->bindParam(':StaffID', $StaffID);
 
+
 echo '<br>'.$BeginTime = $_POST['InsertBeginTime'].":00";
 echo '<br>'.$Date = $_POST['Date'];
 echo '<br>'.$BookingStatus = "Booked";
@@ -67,6 +68,7 @@ echo '<br>'.$SalonID = $SalonID;
 echo '<br>'.$ServiceID = $ServiceIDFind;
 echo '<br>'.$FinishTime = $FinishTimeToPut;
 $stmt->execute();
+echo 'fatto';
 header('Location: BookingsView.php');
 exit;    
         ?>
