@@ -8,7 +8,7 @@
 <html lang="en" dir="ltr">
 <head>
 <style media="screen">
-  <?php require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Style.css'); ?>
+  <?php require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Style.css');?>
 </style>
 </head>
 <body>

@@ -18,6 +18,7 @@ $stmt = $dbh->getInstance()->prepare("SELECT * FROM Users
                  $_SESSION['PhoneNumber']=$row['PhoneNumber'];
              }else {
               header('Location: /EZCUT/index.php');
+              exit;
              }
           
 

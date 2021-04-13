@@ -1,5 +1,23 @@
-.row{
 
+
+
+.textInside{
+  font-size: 40px;
+  text-align: center;
+}
+
+.SalonView{
+background-color:lightcyan;
+margin: 10px;
+padding: 10px;
+}
+.ProfileImage{
+  padding-left: 30px;
+  
+}
+.rounded-circle{
+  width:50px;
+  height:50px;
 }
 .RowOgniStaff{
   border: solid blueviolet;
@@ -77,12 +95,11 @@ border: solid black 2px;
 }
 
 body{
-  background-image: url("https://img.freepik.com/free-vector/creative-abstract-texture-background-vector-illustration_1284-41950.jpg?size=626&ext=jpg");
+  background: transparent;
 
 }
 .HeaderRow{
-  background-image: url("https://wallpaperaccess.com/full/1429606.jpg");
-
+background-color: darkseagreen;
 }
 
 .ShortDescription{
@@ -96,6 +113,9 @@ body{
   text-align: center;
   font-size: 50px;
   color: #052939;
+  font-family: 'Sofia';
+  color:midnightblue;
+  text-shadow: 2px 2px gray; 
 }
 
 .advL{
@@ -123,25 +143,37 @@ body{
   
   .MainCollons{
     margin: 3px;
-    background-image: url("/EZCUT/Images/3.PNG");
+    background-color: lightpink;
   }
 
 #Logo{
   padding-top: 8px;
   font-size: 30px;
   text-align: center;
-  color: black;
+  color:mediumvioletred;
+  font-family: 'Sofia';
+  text-shadow: 2px 2px gray; 
 }
 
 #Logout{
-
   font-size: 30px;
   text-align: center;
   color: black;
 }
 
 .HeaderElement{
-  padding-top: 10px;
+  padding-top: -10px;
+  margin-left: -12px;
+  padding-right: -160px;
+  font-size: 26px;
+  text-align: center;
+  background-color: transparent;
+  color:black;
+  border: none;
+}
+.HeaderElement2{
+  padding-top: -10px;
+  margin-left: 60px;
   font-size: 26px;
   text-align: center;
   background-color: transparent;
@@ -182,7 +214,6 @@ margin: 2px;
 padding: 2px;
 width:386px;
 height:340px;
-
 }
 
 

@@ -65,5 +65,6 @@
             $stmt->execute();
             $_SESSION["Name"]=$_POST['Name'];
             header('Location: HomePage.php');
+            exit;
           }
 ?>

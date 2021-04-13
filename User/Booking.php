@@ -1,10 +1,11 @@
-<html>
-    <head>
-    </head>
-    <body>
+
         <?php
        
-       require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
+       session_start();
+       require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/conessione/DBHandler.php');
+       require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/conessione/DBHandlerObject.php');
+       
+
        // print_r($_SESSION);
        
        // print_r($_POST);
@@ -35,7 +36,7 @@ $stmt = $dbh->getInstance()->prepare("SELECT ServiceID,TimeDurationHours,TimeDur
  $ServiceName = $_GET['ServicePass'];
  $stmt->execute();
  $row = $stmt->fetch();
- if($row){//if isset on administrator
+ if($row){
     $ServiceIDFind= $row['ServiceID']; 
     $TimeDurationHours= $row['TimeDurationHours']; 
     $TimeDurationMinutes= $row['TimeDurationMinutes']; 
@@ -58,19 +59,18 @@ $stmt->bindParam(':UserID', $UserID);
 $stmt->bindParam(':FinishTime', $FinishTime);
 $stmt->bindParam(':StaffID', $StaffID);
 
-
-echo '<br>'.$BeginTime = $_POST['InsertBeginTime'].":00";
-echo '<br>'.$Date = $_POST['Date'];
-echo '<br>'.$BookingStatus = "Booked";
-echo '<br>'.$UserID = $_SESSION['UserID'];
-echo '<br>'.$StaffID = $_POST['StaffID'];
-echo '<br>'.$SalonID = $SalonID;
-echo '<br>'.$ServiceID = $ServiceIDFind;
-echo '<br>'.$FinishTime = $FinishTimeToPut;
+$BeginTime = $_POST['InsertBeginTime'].":00";
+$Date = $_POST['Date'];
+$BookingStatus = "Booked";
+$UserID = $_SESSION['UserID'];
+$StaffID = $_POST['StaffID'];
+$SalonID = $SalonID;
+$ServiceID = $ServiceIDFind;
+$FinishTime = $FinishTimeToPut;
 $stmt->execute();
-echo 'fatto';
+
 header('Location: BookingsView.php');
-exit;    
+exit;   
+ 
         ?>
-    </body>
-</html>
+  

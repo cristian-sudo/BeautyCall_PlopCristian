@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+
     <?php
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
     ?>
@@ -14,8 +8,7 @@
 
 <div class="container-fluid centralContent">
 
-<?php
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingCategories.php');
+<?php require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingCategories.php');
 $NumerOfElements=0;
 $ArrayElements;
 $indice=0;
@@ -140,8 +133,7 @@ if ($NumerOfElements>0) {
 } else {
     echo '<h1 id="HomePageCategories">No categories yet</h1>';
 }
-    echo '<br>';
-  ?>
+    echo '<br>';?>
 
   </body>
 </html>
