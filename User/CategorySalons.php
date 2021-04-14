@@ -21,9 +21,9 @@ $resultSalonsCategories=$GETSalonsCategories;
 
 
 <?php
-
-while ($row = $resultSalonsCategories->fetch()) {
-echo'
+if ($resultSalonsCategories!=null) {
+    while ($row = $resultSalonsCategories->fetch()) {
+        echo'
 <a  href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$_GET['CategoryPass'].'">
 <div class="row SalonView">
 <div class="col coll">
@@ -60,25 +60,25 @@ echo'
     <div class="row">
     <div class="col textInside">
     ';
-    date_default_timezone_set('UTC');
-    echo date("l").':';
+        date_default_timezone_set('UTC');
+        echo date("l").':';
 
 
-    $GetTime = $dbh->getInstance()->prepare('SELECT '.date("l").' FROM openingtime
+        $GetTime = $dbh->getInstance()->prepare('SELECT '.date("l").' FROM openingtime
     INNER JOIN hairdressingsalons ON hairdressingsalons.OpeningTimeID=OpeningTime.OpeningTimeID
 WHERE hairdressingsalons.Name="'.$row['Name'].'"
 ;');//get  salons categories
-$GetTime->execute();
-$resultGetTime=$GetTime;
-while ($row = $resultGetTime->fetch()) {
-echo '
+        $GetTime->execute();
+        $resultGetTime=$GetTime;
+        while ($row = $resultGetTime->fetch()) {
+            echo '
     </div>
 <div class="col textInside">
 '.$row[date("l")].'
 </div>
 ';
-}
-    echo '
+        }
+        echo '
     </div>
     </div>
 
@@ -88,7 +88,10 @@ echo '
 </div>
 </div>
 </a>
-';   
+';
+    }
+}else{
+    echo 'No salons have this category yet';
 }
 
 /*
