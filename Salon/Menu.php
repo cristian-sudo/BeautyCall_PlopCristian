@@ -1,9 +1,14 @@
 <?php
 require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingInformationsSalon.php');
 echo'
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" id="logo" href="/EZCUT/Salon/HomePageSalon.php">'.$_SESSION['SalonName'].'</a>
+<div class="container-fluid">
+<div class="row HeaderRow">
+
+<div class="col-1">
+<a class="navbar-brand" id="logo" href="/EZCUT/Salon/HomePageSalon.php">'.$_SESSION['SalonName'].'</a>
+</div>
+
+<div class="col-3">
     <!-- Dropdown -->
     <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Managements</a>
@@ -17,10 +22,20 @@ echo'
               <a class="dropdown-item" href="/EZCUT/Salon/ManageProducts.php">Products</a>
               </div>
     </li>
-    <a class="navbar-brand" id="logout" href="/EZCUT/User/Logout.php">Logout</a>
-  </ul>
-</nav>
-<br>
+</div>
+
+
+<div class="col-7">
+
+</div>
+
+
+<div class="col-1">
+<a class="navbar-brand" id="logout" href="/EZCUT/User/Logout.php">Logout</a>
+</div>
+
+</div>
+</div>
   </body>
   </html>
 '?>

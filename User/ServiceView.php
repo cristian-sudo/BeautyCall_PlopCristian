@@ -6,6 +6,10 @@ $TotalMinutesNeeded(minutes needed for this service)
 $BookingsArray(a matrix containing all the booking in a specific day for a specific Staff)
 $AllStaffID(all the id of the stafs that is in this salon)
 $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
+
+
+
+
 |StaffID|IntervalNr|BeginTime|FinishTime|
 */
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
@@ -186,7 +190,7 @@ if(!isset($_POST['Confirm'])){
     echo'
     <div class="container-fluid">
     <div class="row">
-            <div class="col-1 col_color">
+            <div class="col-1 Back ">
               <a href="/EZCUT/User/DateSelector.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">Change the date</a>  
             </div>
     </div>

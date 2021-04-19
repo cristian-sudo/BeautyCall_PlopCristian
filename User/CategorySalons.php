@@ -7,7 +7,17 @@
 
 
 <div class="container-fluid centralContent">
-
+    <?php
+echo '
+    <div class="row">
+    
+    <div class="col-1 Back">
+              <a href="HomePage.php">Back</a>  
+    </div>
+    </div>
+   
+    ';
+    ?>
 <?php
 $GETSalonsCategories = $dbh->getInstance()->prepare('SELECT DISTINCT hairdressingsalons.Name,hairdressingsalons.City,hairdressingsalons.AverageSalonRating,hairdressingsalons.Address FROM hairdressingsalons
 INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID
@@ -26,10 +36,10 @@ if ($resultSalonsCategories!=null) {
         echo'
 <a  href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$_GET['CategoryPass'].'">
 <div class="row SalonView">
-<div class="col coll">
+<div class="col ">
 
      <div class="row">
-     <div class="col coll textInside">'.$row['Name'].' </div>
+     <div class="col SalonName">'.$row['Name'].' </div>
      </div>
 
 
@@ -44,7 +54,7 @@ if ($resultSalonsCategories!=null) {
     <div class="col">
 
     <div class="row">
-    <div class="col textInside">Ratings:</div>
+    <div class="col textInside">⭐</div>
     <div class="col textInside">'.$row['AverageSalonRating'].'</div>
     </div>
 

@@ -8,7 +8,11 @@
     <?php
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/conessione/DBHandler.php');
     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/conessione/DBHandlerObject.php');
+    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Bootstrap4.php');
      ?>
+     <div class="containter-fluid">
+       <div class="row">
+         <div class="col">
     <h1>User registration</h1>
     <form action="/EZCUT/User/UserRegistration.php" method="post">
       <label for="Name">Name</label>
@@ -36,7 +40,9 @@
       <a href="/EZCUT/index.php">Log in</a>
   </body>
 </html>
-
+</div>
+</div>
+</div>
 <?php
     if (isset($_POST['submit'])) {
             $stmt = $dbh->getInstance()->prepare("INSERT INTO users(Name, Surname, Username, Password, Country, City, Address, PostalCode, Email, PhoneNumber)

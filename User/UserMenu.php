@@ -56,12 +56,6 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
     </div>
 
     
-    <div class="advL">
-  adv
-</div>
-
-<div class="advR">
-  adv
-</div>
+ 
   </body>
   </html>

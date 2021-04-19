@@ -29,7 +29,7 @@ if ($NumerOfElements>0) {
         echo'<div class="row">';//riga esterna
                   for ($u=0;$u<3;$u++) {//faccio 3 collone esterne grandi
                       echo'
-                        <div class="col-4 MainCollons">
+                        <div class="col MainCollons col-xs-12">
                         <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
                             <div class="row RowTitle">
                                   <div class=" col ColTitle">
@@ -52,10 +52,10 @@ if ($NumerOfElements>0) {
     $ModificheFatte=0;
     //due collone
     if ($NumerOfElements%3==2) {//in sospeso 2 collone
-                    echo'<div class="row">';//riga esterna
+                    echo'<div class="row ">';//riga esterna
                     for ($u=0;$u<2;$u++) {//faccio 3 collone esterne grandi
                       echo'
-                      <div class="col-4 MainCollons">
+                      <div class="col MainCollons col-xs-12">
                       <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
                           <div class="row RowTitle">
                                 <div class=" col ColTitle">
@@ -82,7 +82,7 @@ if ($NumerOfElements>0) {
         echo'<div class="row">';//riga esterna
                   for ($u=0;$u<1;$u++) {//faccio 3 collone esterne grandi
                     echo'
-                    <div class="col-4 MainCollons">
+                    <div class="col MainCollons col-xs-12">
                     <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
                         <div class="row RowTitle">
                               <div class=" col ColTitle">
@@ -110,7 +110,7 @@ if ($NumerOfElements>0) {
             echo'<div class="row">';//riga esterna
           for ($u=0;$u<3;$u++) {//faccio 3 collone esterne grandi
             echo'
-                        <div class="col-4 MainCollons">
+                        <div class="col MainCollons col-xs-12">
                         <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
                             <div class="row RowTitle">
                                   <div class=" col ColTitle">

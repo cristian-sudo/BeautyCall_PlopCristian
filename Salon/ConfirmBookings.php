@@ -1,6 +1,6 @@
 <?php
 
-  require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
         $stmt = $dbh->getInstance()->prepare("UPDATE bookings
           SET BookingStatus= 'Confirmed'
           WHERE BookingID=:bolean");

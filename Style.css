@@ -1,13 +1,38 @@
+.Back{
+  border: solid black 2px;
+  border-radius: 20px;
+  padding-left: 24px;
+}
+.center{
+ padding-left: 200px;
+}
+.col{
+  padding: 10px;
+  border-radius: 50px 20px;
+}
+.row{
+  padding: 10px;
+  border-radius: 50px;
+}
 
 
 
 .textInside{
-  font-size: 40px;
+  font-size: 20px;
   text-align: center;
+  border: solid black 4px;
+  border-radius: 40px;
+  
 }
 
+.SalonName{
+  font-size: 40px;
+  text-align: center;
+  border: solid black 4px;
+  border-radius: 40px; 
+}
 .SalonView{
-background-color:lightcyan;
+border:solid black 1px;
 margin: 10px;
 padding: 10px;
 }
@@ -22,19 +47,19 @@ padding: 10px;
 .RowOgniStaff{
   border: solid blueviolet;
   padding: 5px;
-  background-color: ghostwhite;
+  
   
 }
 
 .RowOgniStaff2{
   border: solid brown;
   padding: 5px;
-  background-color: rgb(139, 180, 180);
+  
   
 }
 #colIntervals{
   border: solid black;
-  background-color: red;
+  
   }
 
   #rowStaff{
@@ -62,9 +87,7 @@ padding: 10px;
   margin-left: 0px;
   padding-right: 300px;
 }
-.col_color{
-  background-color: cornflowerblue;
-}
+
 
 #InsertTimeInput{
 font-size: 19px;
@@ -99,7 +122,9 @@ body{
 
 }
 .HeaderRow{
-background-color: darkseagreen;
+  border: solid 2px;
+  border-radius: 30px;
+  
 }
 
 .ShortDescription{
@@ -143,7 +168,7 @@ background-color: darkseagreen;
   
   .MainCollons{
     margin: 3px;
-    background-color: lightpink;
+   
   }
 
 #Logo{
@@ -201,7 +226,7 @@ display: flex;
 .MainCollons{
   border-style: outset;
   margin: 0px;
-  background-color: cadetblue;
+  
 
 }
 .colImageContainer{

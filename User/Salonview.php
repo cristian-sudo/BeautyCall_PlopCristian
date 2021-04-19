@@ -52,7 +52,6 @@ $row = $stmt->fetch();
 </div>
 <div class="row">
       <div class="col-sm"> 
-      <h2 class="ShortDescription">Short Description</h2><br>
       <h4 class="ShortDescription">'.$SalonInformationsArray['SalonShortDescription'].'</h4>
       </div>
 </div>
@@ -72,7 +71,7 @@ $row = $stmt->fetch();
             echo '
         <div class="row">
 <div class="col-sm"></div>
-<div class="col-sm ">
+<div class="col-sm center ">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle HeaderElement CategoryViewCenterText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
    <h1 class="dropdownText"> '.$_GET['Categoryview'].'</h1>
