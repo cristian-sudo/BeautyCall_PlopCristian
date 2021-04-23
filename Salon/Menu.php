@@ -1,5 +1,5 @@
 <?php
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/GettingInformationsSalon.php');
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/GettingInformationsSalon.php');
 echo'
 <div class="container-fluid">
 <div class="row HeaderRow">

@@ -1,6 +1,6 @@
 
       <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     $today = date("Y-m-d");
 echo '
 <div class="container-fluid">

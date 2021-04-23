@@ -15,7 +15,27 @@
   border-radius: 50px;
 }
 
+tr{
+border-bottom: solid 3px;
 
+}
+.red{
+  color: red;
+}
+.AccountInfo{
+
+font-size: 30px;
+position: absolute;
+
+
+}
+
+#InsertToConfirm{
+
+font-size: 30px;
+position: absolute;
+padding-left: 33%;
+}
 
 .textInside{
   font-size: 20px;
@@ -235,10 +255,11 @@ display: flex;
 }
 
 .ImageCategoryDimentions{
-margin: 2px;
-padding: 2px;
-width:386px;
+
+padding-left: 10px;
+width:440px;
 height:340px;
+border-radius: 30px;
 }
 
 

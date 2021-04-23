@@ -31,7 +31,7 @@
   </body>
 </html>
 <?php
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
 $stmt = $dbh->getInstance()->prepare("
 SELECT ServiceCategories.ServiceCategoryName, ServiceCategories.ServiceCategoryID
    FROM

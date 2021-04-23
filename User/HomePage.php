@@ -1,6 +1,6 @@
 
     <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     ?>
     <h1 id="HomePageCategories">Main Categories</h1>
     <br>
@@ -8,12 +8,13 @@
 
 <div class="container-fluid centralContent">
 
-<?php require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingCategories.php');
+<?php require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingCategories.php');
 $NumerOfElements=0;
 $ArrayElements;
 $indice=0;
 while ($row = $resultCategories->fetch()) {
     $ArrayElements[$indice]=$row['ServiceCategoryName'];
+    $ArrayElementsPhoto[$indice]=$row['ImageName'];
     $NumerOfElements++;
     $indice++;
 }
@@ -39,7 +40,7 @@ if ($NumerOfElements>0) {
 
                             <div class="row rows">
                                 <div class="col colImageContainer">
-                                <img class="ImageCategoryDimentions" src="https://as2.ftcdn.net/jpg/00/61/20/35/1000_F_61203573_res38pBYqXr7gMdY8btaVuIq5ryyeruL.jpg" alt="NomeCategoria" >
+                                <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
                                 </div>
                             </div>
                             </a>
@@ -65,7 +66,7 @@ if ($NumerOfElements>0) {
 
                           <div class="row rows">
                               <div class="col colImageContainer">
-                              <img class="ImageCategoryDimentions" src="https://as2.ftcdn.net/jpg/00/61/20/35/1000_F_61203573_res38pBYqXr7gMdY8btaVuIq5ryyeruL.jpg" alt="NomeCategoria" >
+                              <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
                               </div>
                           </div>
                           </a>
@@ -92,7 +93,7 @@ if ($NumerOfElements>0) {
 
                         <div class="row rows">
                             <div class="col colImageContainer">
-                            <img class="ImageCategoryDimentions" src="https://as2.ftcdn.net/jpg/00/61/20/35/1000_F_61203573_res38pBYqXr7gMdY8btaVuIq5ryyeruL.jpg" alt="NomeCategoria" >
+                            <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
                             </div>
                         </div>
                         </a>
@@ -120,7 +121,7 @@ if ($NumerOfElements>0) {
 
                             <div class="row rows">
                                 <div class="col colImageContainer">
-                                <img class="ImageCategoryDimentions" src="https://as2.ftcdn.net/jpg/00/61/20/35/1000_F_61203573_res38pBYqXr7gMdY8btaVuIq5ryyeruL.jpg" alt="NomeCategoria" >
+                                <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
                                 </div>
                             </div>
                             </a>

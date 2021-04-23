@@ -6,7 +6,7 @@
   </head>
   <body>
     <?php
-      require_once('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
+      require_once($_SERVER['DOCUMENT_ROOT'].'/EZCUT/header.php');
       ?>
     <!DOCTYPE html>
     <html lang="en" dir="ltr">

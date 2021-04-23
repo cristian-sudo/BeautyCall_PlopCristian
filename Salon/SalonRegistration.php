@@ -2,7 +2,7 @@
     <html lang="en" dir="ltr">
       <body>
         <?php
-          require_once('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
+          require_once($_SERVER['DOCUMENT_ROOT'].'/EZCUT/header.php');
           ?>
         <h1>Regist your salon</h1>
         <form action="/EZCUT/Salon/SalonRegistration.php" method="post">

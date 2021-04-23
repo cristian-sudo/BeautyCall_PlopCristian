@@ -1,6 +1,6 @@
 
      <?php
-     require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
 
 
      $stmt1 = $dbh->getInstance()->prepare("SELECT BookingID,Date,BeginTime,FinishTime,hairdressingsalons.Name AS SalonName,ServiceName,staff.Name AS StaffName FROM bookings

@@ -1,5 +1,5 @@
 <?php
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
 if (isset($_POST['Confirm'])) {
 if ($_POST['ProductName']!= null) {//
   $stmt = $dbh->getInstance()->prepare('UPDATE Products SET ProductName="'.$_POST['ProductName'].'"

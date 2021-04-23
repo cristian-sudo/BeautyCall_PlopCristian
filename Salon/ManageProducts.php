@@ -27,7 +27,7 @@
   </head>
   <body class="jumbotron">
     <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
     $stmt = $dbh->getInstance()->prepare("SELECT * FROM products
       INNER JOIN productcategories ON products.ProductCategoryID = productcategories.ProductCategoryID
       WHERE SalonID='".$_SESSION['SalonID']."'");

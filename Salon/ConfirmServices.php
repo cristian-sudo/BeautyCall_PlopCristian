@@ -1,5 +1,5 @@
 <?php
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
 if (isset($_POST['Confirm'])) {
 if ($_POST['ServiceName']!= null) {
   $stmt = $dbh->getInstance()->prepare('UPDATE services SET ServiceName="'.$_POST['ServiceName'].'"

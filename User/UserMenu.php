@@ -1,7 +1,6 @@
 <?php
-require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUser.php');
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingInformationsUser.php');
 ?>
-
 <div class="container-fluid">
 
   <div class="row HeaderRow">
@@ -17,7 +16,7 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
 
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <?php
-                              require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingProductCategories.php');
+                              require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingProductCategories.php');
                               foreach ($resultCategories as $key2 => $value2) {
                                   echo '<a class="dropdown-item" href="/EZCUT/Salon/ManageOpeningTime.php">' . $value2['ProductCategoryName'] . '</a>';
                               }
@@ -39,7 +38,7 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
                   </a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <a class="dropdown-item" href="BookingsView.php">Bookings</a> 
-                  <a class="dropdown-item" href="">Account informations</a> 
+                  <a class="dropdown-item" href="PassConfirm.php">Account informations</a> 
                   <a class="dropdown-item" href="">History</a>   
                   <a class="dropdown-item" href="/EZCUT/User/Logout.php">Logout</a>    
                     </div>
@@ -47,7 +46,28 @@ require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/GettingInformationsUse
           </div>
 
           <div class="col-1 ProfileImage coll">
-          <img  src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="rounded-circle" alt="Profile Image"> 
+<?php
+$stmt = $dbh->getInstance()->prepare("SELECT UserImageName FROM Users
+WHERE UserID =:UserID");
+$stmt->bindParam(':UserID', $UserID);
+$UserID = $_SESSION['UserID'];
+$stmt->execute();
+$row = $stmt->fetch();
+if($row){
+      if($row['UserImageName']!=null){
+        $_SESSION['ProfileImagine'] = $row['UserImageName'];
+        echo '<img  src="/EZCUT/Images/UserImages/'.$_SESSION['ProfileImagine'].'" class="rounded-circle" alt="Profile Image"> ';
+      }else{
+        $_SESSION['ProfileImagine'] = null;
+        echo '<img  src="/EZCUT/Images/DefaultProfileImage.jpeg'.'" class="rounded-circle" alt="Profile Image"> ';
+      }    
+    }
+      
+    
+    
+?>
+
+
           </div>
 
 

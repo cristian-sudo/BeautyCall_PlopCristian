@@ -1,6 +1,6 @@
 
     <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     ?>
     <h1 id="HomePageCategories"><?php echo 'Category:'.$_GET['CategoryPass'] ?></h1>
     <br>

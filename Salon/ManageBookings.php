@@ -28,7 +28,7 @@
   </head>
   <body>
     <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
     $stmt = $dbh->getInstance()->prepare("
     SELECT
         bookings.BookingID,

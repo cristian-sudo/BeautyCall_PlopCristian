@@ -1,6 +1,7 @@
 <?php
-
-require_once('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
+session_start();
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandler.php');
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandlerObject.php');
 $stmt = $dbh->getInstance()->prepare("SELECT Password, AdministratorID, Username FROM Administrators
          WHERE Username =:Username");
  $stmt->bindParam(':Username', $Username);

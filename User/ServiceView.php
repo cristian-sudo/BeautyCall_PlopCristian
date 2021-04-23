@@ -12,7 +12,7 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
 
 |StaffID|IntervalNr|BeginTime|FinishTime|
 */
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/User/UserMenu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     echo '
      <h1 id="HomePageCategories"> '.$_GET['Salonview'].'  ||  '.$_GET['ServicePass'].'</h1>
      ';

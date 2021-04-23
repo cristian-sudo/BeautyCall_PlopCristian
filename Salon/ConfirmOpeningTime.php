@@ -1,5 +1,5 @@
 <?php
-    require('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Salon/Menu.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
     if(isset($_POST['submit'])){
       $stmt = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
         Monday=:Monday,
