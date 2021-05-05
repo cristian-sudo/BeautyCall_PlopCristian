@@ -1,51 +1,44 @@
 <?php
+require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/header.php');
 require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingInformationsUser.php');
 ?>
 <div class="container-fluid">
 
-  <div class="row HeaderRow">
-          <div id="Logo"class="col-1 coll">
-            <a id="Logo" href="/EZCUT/User/HomePage.php">EZCUT</a>
-          </div>
+<div class="TextDimension">
+<nav class="navbar navbar-expand-lg navbar-light bg-light    justify-content-between">
 
-          <div  class="col-3 coll">
-                  <div class="dropdown coll">
-                  <a class="btn btn-secondary dropdown-toggle HeaderElement" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Products Categories
-                  </a>
+  <a class="nav-link" id="Logo" href="/EZCUT/User/HomePage.php">EZCUT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <?php
-                              require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingProductCategories.php');
-                              foreach ($resultCategories as $key2 => $value2) {
-                                  echo '<a class="dropdown-item" href="/EZCUT/Salon/ManageOpeningTime.php">' . $value2['ProductCategoryName'] . '</a>';
-                              }
-                              ?>
-                            </div>
-            </div>
-          </div>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-          
-
-                  <div class="col-5 coll">
-          
-                  </div>
-
-          <div  class="col-2 coll">
-                  <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle HeaderElement2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="Categories.php">Categories <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" href="Salons.php">Salons</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> </a>
+      </li>
+</ul>
+<ul class="navbar-nav">
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle navbar-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="BookingsView.php">Bookings</a> 
                   <a class="dropdown-item" href="PassConfirm.php">Account informations</a> 
-                  <a class="dropdown-item" href="">History</a>   
-                  <a class="dropdown-item" href="/EZCUT/User/Logout.php">Logout</a>    
-                    </div>
-            </div>
-          </div>
+                  <a class="dropdown-item" href="/EZCUT/User/Logout.php">Logout</a> 
+        </div>
+      </li>
+      <li>
 
-          <div class="col-1 ProfileImage coll">
 <?php
 $stmt = $dbh->getInstance()->prepare("SELECT UserImageName FROM Users
 WHERE UserID =:UserID");
@@ -61,21 +54,25 @@ if($row){
         $_SESSION['ProfileImagine'] = null;
         echo '<img  src="/EZCUT/Images/DefaultProfileImage.jpeg'.'" class="rounded-circle" alt="Profile Image"> ';
       }    
-    }
-      
-    
-    
+    }  
 ?>
-
-
           </div>
+      </li>
+    </ul>
+
+  </div>
 
 
-
+</nav>
+  </div>
 </div>
-    </div>
-
-    
- 
   </body>
   </html>
+
+
+
+
+
+
+
+ 

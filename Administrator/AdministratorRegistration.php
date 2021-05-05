@@ -5,75 +5,118 @@
     <title></title>
   </head>
   <body>
-    <?php
-      require_once($_SERVER['DOCUMENT_ROOT'].'/EZCUT/header.php');
-      ?>
     <!DOCTYPE html>
     <html lang="en" dir="ltr">
       <head>
         <meta charset="utf-8">
         <title></title>
       </head>
+      <style media="screen">
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+ </style>
       <body>
-        <h1>Registrazion Administrator</h1>
-        <form action="/EZCUT/Administrator/AdministratorRegistration.php" method="post">
+
+
+      <form action="AdministratorConfirm.php" method="post" enctype="multipart/form-data">
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
           <label for="Name">Name</label>
-          <input type="text" name="Name"><br>
+          <input type="text" name="Name" required><br>
           <label for="Surname">Surname</label>
-          <input type="text" name="Surname"><br>
+          <input type="text" name="Surname" required><br>
           <label for="Username">Username</label>
-          <input type="text" name="Username"><br>
+          <input type="text" name="Username" required><br>
           <label for="Password">Password</label>
-          <input type="text" name="Password"><br>
+          <input type="text" name="Password" required><br>
           <label for="Country">Country</label>
-          <input type="text" name="Country"><br>
+          <input type="text" name="Country" required><br>
           <label for="City">City</label>
-          <input type="text" name="City"><br>
+          <input type="text" name="City" required><br>
           <label for="Address">Address</label>
-          <input type="text" name="Address"><br>
+          <input type="text" name="Address" required><br>
           <label for="PostalCode">PostalCode</label>
-          <input type="text" name="PostalCode"><br>
+          <input type="text" name="PostalCode" required><br>
           <label for="Email">Email</label>
-          <input type="email" name="Email"><br>
+          <input type="text" name="Email" required><br>
           <label for="PhoneNumber">PhoneNumber</label>
-          <input type="text" name="PhoneNumber"><br>
-          <input type="submit" name="submit" value="Invia" >
-        </form>
-      </body>
-    </html>
+          <input type="text" name="PhoneNumber" required><br>
 
-    <?php
-      require_once('/Applications/XAMPP/xamppfiles/htdocs/EZCUT/header.php');
-        if (isset($_POST['submit'])) {
-                $stmt = $dbh->getInstance()->prepare("INSERT INTO administrators(AdministratorName, AdministratorSurname, Username, Password, Country, City, Address, PostalCode, Email, PhoneNumber)
-                        values(:Name, :Surname, :Username, :Password, :Country, :City, :Address, :PostalCode, :Email, :PhoneNumber)");
-                $stmt->bindParam(':Name', $Name);
-                $stmt->bindParam(':Surname', $Surname);
-                $stmt->bindParam(':Username', $Username);
-                $stmt->bindParam(':Password', $Password);
-                $stmt->bindParam(':Country', $Country);
-                $stmt->bindParam(':City', $City);
-                $stmt->bindParam(':Address', $Address);
-                $stmt->bindParam(':PostalCode', $PostalCode);
-                $stmt->bindParam(':Email', $Email);
-                $stmt->bindParam(':PhoneNumber', $PhoneNumber);
+          <label for="ProfileImage">Profile image:</label>
+          <input type="file"  name="fileToUpload" required  id="ProfileImage"><br>
+    <hr>
+    
 
-                $Name = $_POST['Name'];
-                $Surname = $_POST['Surname'];
-                $Username = $_POST['Username'];
-                $_SESSION["AdministratorUsername"]=$_POST['Username'];
-                $Password = password_hash($_POST['Password'], PASSWORD_DEFAULT);
-                $Country = $_POST['Country'];
-                $City = $_POST['City'];
-                $Address = $_POST['Address'];
-                $PostalCode = $_POST['PostalCode'];
-                $Email = $_POST['Email'];
-                $PhoneNumber = $_POST['PhoneNumber'];
-                $stmt->execute();
-                $_SESSION["AdministratorName"]=$_POST['Name'];
-                header('Location: /EZCUT/Salon/SalonRegistration.php');
-              }
-    ?>
+    <button type="submit" class="registerbtn" name="submit">Register as administrator.</button>
+  </div>
+  
+ 
+</form>
 
   </body>
 </html>

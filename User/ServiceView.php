@@ -1,15 +1,11 @@
 
-    <?php
+   <?php
     /*
 Main variables
 $TotalMinutesNeeded(minutes needed for this service)
 $BookingsArray(a matrix containing all the booking in a specific day for a specific Staff)
 $AllStaffID(all the id of the stafs that is in this salon)
 $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
-
-
-
-
 |StaffID|IntervalNr|BeginTime|FinishTime|
 */
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
@@ -82,7 +78,9 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
                      $BookingsArray[$indiceX][$indiceY+1]=new DateTime($row['FinishTime']);
                      $indiceX++;
                  }
-                 if ($BookingsArray[0][0]!=null) {//se ci sono appuntamenti nel primo giorno devo crearmi gli intervalli di disponibilità
+
+
+                 if ($BookingsArray!=null) {//se ci sono appuntamenti nel primo giorno devo crearmi gli intervalli di disponibilità
                      $BookingsArrayLastX=0;
                      $BookingsArrayLastY=0;
                      //ho controlato se ci sta tra le ore 7 e il primo appuntamento
@@ -111,7 +109,6 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
                          $IndiceIntervallo++;
                      }
 
-                        
                     
                      for ($i=0;$i<count($BookingsArray)-1;$i++) {//se non ci sta parto dal promo appuntamento e calcolo gli intervalli successivi
                             $result=$BookingsArray[$i+1][$BookingsArrayLastY]->diff($BookingsArray[$i][$BookingsArrayLastY+1]);//la differenza tra l'inizio del secondo e la fine del 1
@@ -244,7 +241,6 @@ for ($s=0;$s<count($AllStaffID);$s++) {//Analizzo ogni staff
                                             <div class="col">
                                             '.$StaffIDBookingPerDate[$i][2].'-'.$StaffIDBookingPerDate[$i][3].'
                                             </div>
-
                                             <div class="col ">
                                                     <div class="row">
                                                             <div class="col">

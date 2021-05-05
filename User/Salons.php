@@ -1,28 +1,26 @@
-
-    <?php
+<?php
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     ?>
-    <h1 id="HomePageCategories"><?php echo 'Category:'.$_GET['CategoryPass'] ?></h1>
+ <h1 id="HomePageCategories">Main Salons</h1>
+    <form class="form-inline">
+        <div class="Center">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search in categories" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</div>
+  </form>
     <br>
 
 
-<div class="container-fluid centralContent">
+
 <?php
-$GETSalons = $dbh->getInstance()->prepare('SELECT DISTINCT hairdressingsalons.SalonID,hairdressingsalons.Name,hairdressingsalons.City,hairdressingsalons.AverageSalonRating,hairdressingsalons.Address,hairdressingsalons.ShortDescription
-FROM hairdressingsalons
-INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID
-INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
-WHERE servicecategories.ServiceCategoryName="'.$_GET['CategoryPass'].'"
-AND hairdressingsalons.Status="Confirmed"
-ORDER BY hairdressingsalons.Name DESC ;');//get  salons categories
+
+
+$GETSalons = $dbh->getInstance()->prepare("SELECT DISTINCT hairdressingsalons.SalonID,hairdressingsalons.Name,hairdressingsalons.City,hairdressingsalons.AverageSalonRating,hairdressingsalons.Address,hairdressingsalons.ShortDescription
+FROM hairdressingsalons ORDER BY Name DESC LIMIT 7;");
 $GETSalons->execute();
 $resultSalons=$GETSalons;
- ?>
 
-
-<?php
-if ($resultSalons!=null) {
-  while ($row = $resultSalons->fetch()) {
+while ($row = $resultSalons->fetch()) {
     $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM hairdressingsalons 
     INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID 
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
@@ -97,12 +95,9 @@ echo '
 
 ';
 }
-}else{
-    echo 'No salons have this category yet';
-}
-  ?>
-
-  </body>
+?>
+</div>
+</body>
 </html>
 
 

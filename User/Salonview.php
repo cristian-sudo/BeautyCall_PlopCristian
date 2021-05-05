@@ -9,53 +9,17 @@
 
 
 <div class="container-fluid centralContent">
+
+
+
 <?php
 $SalonInformationsArray;
 $stmt = $dbh->getInstance()->prepare("SELECT * FROM HairdressingSalons WHERE Name =:SalonName");
 $stmt->bindParam(':SalonName', $SalonName);
 $SalonName = $_GET['Salonview'];
 $stmt->execute();
-$row = $stmt->fetch();
-    if ($row) {
-        ///////putting informations of salons in an array
-        $SalonInformationsArray['SalonName']=$row['Name'];
-        $SalonInformationsArray['SalonID']=$row['SalonID'];
-        $SalonInformationsArray['SalonCountry']=$row['Country'];
-        $SalonInformationsArray['SalonAddress']=$row['Address'];
-        $SalonInformationsArray['SalonPostalCode']=$row['PostalCode'];
-        $SalonInformationsArray['SalonShortDescription']=$row['ShortDescription'];
-        $SalonInformationsArray['SalonEmail']=$row['Email'];
-        $SalonInformationsArray['SalonPhoneNumber']=$row['PhoneNumber'];
-        $SalonInformationsArray['SalonAverageSalonRating']=$row['AverageSalonRating'];
-        $SalonInformationsArray['SalonStatus']=$row['Status'];
-        //Display basic informations
-        echo '
-<div class="row">
-      <div class="col-sm">
-      <h7>Country:</h7><br>'.$SalonInformationsArray['SalonCountry'].'</h7>
-      </div>
-      <div class="col-sm">
-      <h7>Address:</h7><br>'.$SalonInformationsArray['SalonAddress'].'</h7>
-      </div>
-      <div class="col-sm">
-      <h7>Postal code:</h7><br>'.$SalonInformationsArray['SalonPostalCode'].'</h7>
-      </div>
-      <div class="col-sm">
-      <h7>Email:</h7><br>'.$SalonInformationsArray['SalonEmail'].'</h7>
-      </div>
-      <div class="col-sm">
-      <h7>Phone Number:</h7><br>'.$SalonInformationsArray['SalonPhoneNumber'].'</h7>
-      </div>
-      <div class="col-sm">
-      <h7>Phone Average Ratings:</h7><br>'.$SalonInformationsArray['SalonAverageSalonRating'].'</h7>
-      </div>
-</div>
-<div class="row">
-      <div class="col-sm"> 
-      <h4 class="ShortDescription">'.$SalonInformationsArray['SalonShortDescription'].'</h4>
-      </div>
-</div>
- ';
+$row5 = $stmt->fetch();
+    if ($row5) {
         ///////Getting all the salon categories
         if (isset($_GET['Categoryview'])) {
 
@@ -63,7 +27,7 @@ $row = $stmt->fetch();
       $GETSalonsCategories = $dbh->getInstance()->prepare('SELECT DISTINCT servicecategories.ServiceCategoryName FROM servicecategories
       INNER JOIN services ON servicecategories.ServiceCategoryID=services.ServiceCategoryID
       INNER JOIN hairdressingsalons ON services.SalonID=hairdressingsalons.SalonID
-      WHERE hairdressingsalons.SalonID="'.$SalonInformationsArray['SalonID'].'"
+      WHERE hairdressingsalons.SalonID="'.$row5['SalonID'].'"
       ORDER BY hairdressingsalons.Name DESC ;');//get  salons categories
       $GETSalonsCategories->execute();
             $resultSalonsCategories=$GETSalonsCategories;
@@ -80,6 +44,7 @@ $row = $stmt->fetch();
 ';
             foreach ($resultSalonsCategories as $key2 => $value2) {
                 echo '<a class="dropdown-item" href="/EZCUT/User/Salonview.php?Salonview='.$_GET['Salonview'].'&Categoryview='.$value2['ServiceCategoryName'].'">' . $value2['ServiceCategoryName'] . '</a>';
+  
             }
             echo ' </div>
 </div>   
@@ -89,7 +54,7 @@ $row = $stmt->fetch();
 ';
         }
 ///////////////
-$GETSalonsCategoriesServices = $dbh->getInstance()->prepare('SELECT DISTINCT services.ServiceName,services.ShortDescription,services.TimeDurationHours,services.TimeDurationMinutes FROM servicecategories
+$GETSalonsCategoriesServices = $dbh->getInstance()->prepare('SELECT DISTINCT services.ServiceID, services.ServiceName,services.ShortDescription,services.TimeDurationHours,services.TimeDurationMinutes FROM servicecategories
 INNER JOIN services ON servicecategories.ServiceCategoryID=services.ServiceCategoryID
 INNER JOIN hairdressingsalons ON services.SalonID=hairdressingsalons.SalonID
 WHERE hairdressingsalons.Name="'.$_GET['Salonview'].'"
@@ -104,34 +69,70 @@ $indice=0;
 $today = date("Y-m-d");
 while ($row = $InputRow->fetch()) {
    echo '
-   <a href="/EZCUT/User/DateSelector.php?ServicePass='.$row['ServiceName'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'&Date='.$today.'">
+   <div class="col-md-8"> 
+                        <div class="card mb-4">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">';
+//get 2 photos for this service
+$GETPhotos = $dbh->getInstance()->prepare('SELECT ImageName FROM ServiceImages
+WHERE ServiceID="'.$row['ServiceID'].'" LIMIT 2;');
+$GETPhotos->execute();
+$resultGETPhotos=$GETPhotos;
+while ($row8 = $resultGETPhotos->fetch()) {
+    $first=0;
+    
+                        echo '
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="/EZCUT/Images/ServiceImages/'.$row8['ImageName'].'" alt="">
+                          </div>
+                          
+      ';
+      
+}    
+      
+                  echo '               
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
 
-   <div class="row ServicesRows">
-      <div class="col-3 col">
-       <h1 class="ServiceName">' .$row['ServiceName'].'</h1>
-      </div>
 
-      <div class="col-4 col">
-       <h6>Description:<br>
-       '.$row['ShortDescription'].'
-       </h6>
-      </div>
+                            
 
-      <div class="col-3 col">
-       3 images
-      </div>
 
-      <div class="col-1 col">
-      <h6>Time:<br>
-      '.$row['TimeDurationHours'].'h,'.$row['TimeDurationMinutes'].'min
-      </h6>
-      </div>
 
-    </div>
-    </a> <br>';
+                            <div class="card-body">
+                                <h2 class="card-title">'.$row['ServiceName'].'</h2>
+                                <p class="card-text">'.$row['ShortDescription'].'</p>
+                                <a class="btn btn-primary" href="/EZCUT/User/DateSelector.php?ServicePass='.$row['ServiceName'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'&Date='.$today.'">Book→</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Today:'.date("l").','.date("Y.m.d").'
+                            </div>
+                        </div>
+                                   
+</div>';
 }
 
-
+echo '
+<footer class="py-5 bg-dark">
+<div class="container">
+<p class="m-0 text-center text-white">
+Salon Informations:<br>
+Country:'.$row5['Country'].'
+Address: '.$row5['Address'].'
+Postal Code:'.$row5['PostalCode'].'
+Email:'.$row5['Email'].'
+Phone Number:'.$row5['PhoneNumber'].'
+</p>
+</div>
+</footer>';
 
 
         //print_r($SalonInformationsArray);

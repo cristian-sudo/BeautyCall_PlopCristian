@@ -1,140 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <?php  require('UserMenu.php')?>
+        <!-- Page header-->
+        <header>
+            <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
 
-    <?php
-    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
-    ?>
-    <h1 id="HomePageCategories">Main Categories</h1>
-    <br>
-
-
-<div class="container-fluid centralContent">
-
-<?php require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingCategories.php');
-$NumerOfElements=0;
-$ArrayElements;
-$indice=0;
-while ($row = $resultCategories->fetch()) {
-    $ArrayElements[$indice]=$row['ServiceCategoryName'];
-    $ArrayElementsPhoto[$indice]=$row['ImageName'];
-    $NumerOfElements++;
-    $indice++;
-}
-$rowsNeeded=0;
-if ($NumerOfElements%3!=0) {//if the number is divisible by 3 with no rest
-    $rowsNeeded=$NumerOfElements/3;
-    $rowsNeeded=floor($rowsNeeded)+1;//round the number with deffect and add 1 for an extra collumn
-} else {
-    $rowsNeeded=$NumerOfElements/3;
-}
-if ($NumerOfElements>0) {
-    for ($i=0;$i<$rowsNeeded-1;$i++) {
-        echo'<div class="row">';//riga esterna
-                  for ($u=0;$u<3;$u++) {//faccio 3 collone esterne grandi
-                      echo'
-                        <div class="col MainCollons col-xs-12">
-                        <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
-                            <div class="row RowTitle">
-                                  <div class=" col ColTitle">
-                                    '.$ArrayElements[$NumerOfElements-1].'
-                                  </div>
-                            </div>
-
-                            <div class="row rows">
-                                <div class="col colImageContainer">
-                                <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
-                                </div>
-                            </div>
-                            </a>
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Fierst.jpeg" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Hairstyle</h3>
+                            <p>Here you can find the best service provider based on category in your city.</p>
                         </div>
-                              ';
-                      $NumerOfElements=$NumerOfElements-1;
-                  };
-        echo '</div>';
-    }
-    $ModificheFatte=0;
-    //due collone
-    if ($NumerOfElements%3==2) {//in sospeso 2 collone
-                    echo'<div class="row ">';//riga esterna
-                    for ($u=0;$u<2;$u++) {//faccio 3 collone esterne grandi
-                      echo'
-                      <div class="col MainCollons col-xs-12">
-                      <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
-                          <div class="row RowTitle">
-                                <div class=" col ColTitle">
-                                  '.$ArrayElements[$NumerOfElements-1].'
-                                </div>
-                          </div>
-
-                          <div class="row rows">
-                              <div class="col colImageContainer">
-                              <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
-                              </div>
-                          </div>
-                          </a>
-                      </div>
-                            ';
-                        $NumerOfElements=$NumerOfElements-1;
-                    };
-        echo '</div>';
-        $ModificheFatte=1;
-    };
-                      
-    //una collona
-    if ($NumerOfElements%3==1) {
-        echo'<div class="row">';//riga esterna
-                  for ($u=0;$u<1;$u++) {//faccio 3 collone esterne grandi
-                    echo'
-                    <div class="col MainCollons col-xs-12">
-                    <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
-                        <div class="row RowTitle">
-                              <div class=" col ColTitle">
-                                '.$ArrayElements[$NumerOfElements-1].'
-                              </div>
-                        </div>
-
-                        <div class="row rows">
-                            <div class="col colImageContainer">
-                            <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
-                            </div>
-                        </div>
-                        </a>
                     </div>
-                          ';
-                      $NumerOfElements=$NumerOfElements-1;
-                  };
-        echo '</div>';
-        $ModificheFatte=1;
-    }
 
-    //3 collone
+                    <div class="carousel-item">
 
-    if ($NumerOfElements%3==0 && $ModificheFatte==0) {//scrittura dell'ultima riga
-            echo'<div class="row">';//riga esterna
-          for ($u=0;$u<3;$u++) {//faccio 3 collone esterne grandi
-            echo'
-                        <div class="col MainCollons col-xs-12">
-                        <a  href="CategorySalons.php?CategoryPass='.$ArrayElements[$NumerOfElements-1].'">
-                            <div class="row RowTitle">
-                                  <div class=" col ColTitle">
-                                    '.$ArrayElements[$NumerOfElements-1].'
-                                  </div>
-                            </div>
-
-                            <div class="row rows">
-                                <div class="col colImageContainer">
-                                <img class="ImageCategoryDimentions" src="/EZCUT/Images/ServiceCategoryImages/'.$ArrayElementsPhoto[$NumerOfElements-1].'" alt="NomeCategoria" >
-                                </div>
-                            </div>
-                            </a>
+                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Second.jpeg" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Makeup</h3>
+                            <p>Here you can find the best service provider based on category in your city.</p>
                         </div>
-                              ';
-              $NumerOfElements=$NumerOfElements-1;
-          };
-        echo '</div>';
-    }
-} else {
-    echo '<h1 id="HomePageCategories">No categories yet</h1>';
-}
-    echo '<br>';?>
+                    </div>
 
-  </body>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Thirth.jpeg" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>And much more..</h3>
+                            <p>Here you can find the best service provider based on category in your city.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </header>
+        <!-- Page Content-->
+        <section class="py-5">
+            <div class="container">
+                <h1 class="mb-4">EZCUT, the future!</h1>
+                <!-- Marketing Icons Section-->
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="card h-100">
+                            <h4 class="card-header">Rapidity</h4>
+                            <div class="card-body">
+                              <p class="card-text">EZCUT helps you to avoid the queue. Simply chose your salon, your service and book at the time you need</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="card h-100">
+                            <h4 class="card-header">Innovativeness</h4>
+                            <div class="card-body"><p class="card-text">EZCUT innovates the way you organise your time.</p></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card h-100">
+                            <h4 class="card-header">Convenience</h4>
+                            <div class="card-body"><p class="card-text">The service is free and gives you bonusses and sales at your favourite salon.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="my-0" />
+        <!-- Portfolio Section-->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="mb-4">Main Categories</h2>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="card h-100">
+                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/hairstyle.jpeg" alt="..." /></a>
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle">Hairstyle</a></h4>
+                                <p class="card-text">Chose your favourite hairdressing salon.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="card h-100">
+                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/makeup.jpeg" alt="..." /></a>
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup">Makeup</a></h4>
+                                <p class="card-text">Do your makeup.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="card h-100">
+                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/tattoo.jpeg" alt="..." /></a>
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos">Tattoos</a></h4>
+                                <p class="card-text">Make a tattoo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+
+                </div>
+            </div>
+        </section>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Made by Cristian Plop</p></div>
+        </footer>
+       
+    </body>
 </html>
+
+
+

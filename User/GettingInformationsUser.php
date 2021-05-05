@@ -1,12 +1,11 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/header.php');
 $stmt = $dbh->getInstance()->prepare("SELECT * FROM Users
-         WHERE UserID =:UserID");
-         $stmt->bindParam(':UserID', $UserID);
-         $UserID = $_SESSION['UserID'];
+         WHERE Username =:Username");
+         $stmt->bindParam(':Username', $Username);
+         $Username = $_SESSION['Username'];
          $stmt->execute();
          $row = $stmt->fetch();
-         if($row){//if isset on administrator
+         if($row){
                  $_SESSION['Name'] = $row['Name'];
                  $_SESSION['Surname']=$row['Surname'];
                  $_SESSION['Username']=$row['Username'];
@@ -16,10 +15,13 @@ $stmt = $dbh->getInstance()->prepare("SELECT * FROM Users
                  $_SESSION['PostalCode']=$row['PostalCode'];
                  $_SESSION['Email']=$row['Email'];
                  $_SESSION['PhoneNumber']=$row['PhoneNumber'];
+                 $_SESSION['UserID']=$row['UserID'];
+              //header('Location: HomePage.php');
+             // exit;
              }else {
-              header('Location: /EZCUT/index.php');
-              exit;
+             // header('Location: /EZCUT/index.php');
+              //exit;
              }
-          
+          //print_r($_SESSION);
 
  ?>

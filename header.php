@@ -8,7 +8,7 @@
 <html lang="en" dir="ltr">
 <head>
 <style media="screen">
-  <?php require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Style.css');?>
+  <?php require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/styles.css');?>
 </style>
 </head>
 <body>
