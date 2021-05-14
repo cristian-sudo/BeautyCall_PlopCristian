@@ -28,14 +28,14 @@ if ($row) {
   foreach ($row as $key => $value) {
     $value['OpeningTimeID']=$_SESSION;
 }}
-
 //Salon*
-$stmt = $dbh->getInstance()->prepare("SELECT * FROM HairdressingSalons WHERE AdministratorID ='".$_SESSION['AdministratorID']."'");
+$stmt = $dbh->getInstance()->prepare("SELECT * FROM serviceprovider WHERE AdministratorID ='".$_SESSION['AdministratorID']."'");
 $stmt->execute();
 $row = $stmt->fetch();
 $_SESSION['SalonName']=$row['Name'];
-$_SESSION['SalonID']=$row['SalonID'];
+$_SESSION['ServiceProviderID']=$row['ServiceProviderID'];
 $_SESSION['SalonCountry']=$row['Country'];
+$_SESSION['SalonCity']=$row['City'];
 $_SESSION['SalonAddress']=$row['Address'];
 $_SESSION['SalonPostalCode']=$row['PostalCode'];
 $_SESSION['SalonShortDescription']=$row['ShortDescription'];

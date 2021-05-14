@@ -1,4 +1,19 @@
 
+.sideBackground{
+
+}
+
+.DataStyle{
+  text-align: center;
+}
+.formDate{
+  padding-top: 10%;
+  margin-left: 10%;
+}
+.MyBB{
+  padding-left: 40%;
+
+}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -46,6 +61,12 @@
   padding-left: 8%;
   
 }
+.CenterText{
+
+text-align: center;
+font-family: RobotoSlab;
+}
+
 
 .prova{
 
@@ -104,7 +125,7 @@
 }
 
 tr{
-border-bottom: solid 3px;
+
 
 }
 .red{
@@ -185,13 +206,7 @@ box-shadow: 1px 1px 2px black, 0 0 25px lightgrey, 0 0 5px linen;
 #ChoseDate{
   text-align: center;
 }
-.CategoryViewCenterText{
-  text-align: center;
-  font-size: 20px;
-  padding-right: 60px;
-  margin-left: 90px;
-  float: right;
-}
+
 
 #DataSelectorDiv{
   font-size: 25px;
@@ -302,15 +317,16 @@ body{
   text-align: center;
   color: black;
 }
+.red{
+  background-color: red;
+}
 
 .HeaderElement{
-  padding-top: -10px;
-  margin-left: -12px;
-  padding-right: -160px;
+  width: 100%;
+  padding-left: 30%;
   font-size: 26px;
   text-align: center;
-  background-color: transparent;
-  color:black;
+
   border: none;
 }
 .HeaderElement2{
@@ -2802,10 +2818,8 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
-.btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+.btn-secondary{
+  background-color: #d3d9df;
 }
 .btn-secondary:hover {
   color: #fff;
@@ -4747,6 +4761,9 @@ input[type=button].btn-block {
   padding: 0.75rem 1.25rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+.card-footer1 {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 .card-footer:last-child {
   border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);

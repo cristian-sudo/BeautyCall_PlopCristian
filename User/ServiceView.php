@@ -9,14 +9,30 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
 |StaffID|IntervalNr|BeginTime|FinishTime|
 */
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
+    if(!isset($_POST['Confirm'])){
     echo '
-     <h1 id="HomePageCategories"> '.$_GET['Salonview'].'  ||  '.$_GET['ServicePass'].'</h1>
+    <section class="py-5">
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs-->
+        <h1>
+        '.$_GET['Salonview'].':'.$_GET['ServicePass'].'
+        </h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/EZCUT/User/DateSelector.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">Change Dates</a></li>
+            <li class="breadcrumb-item active">Chose the Costumer</li>
+        </ol>
+
+
+
+
+
+
      ';
      if (isset($_POST['date'])) {
          //getting the time needed for this service
          $stmt = $dbh->getInstance()->prepare("SELECT services.TimeDurationHours,services.TimeDurationMinutes FROM services
-    INNER JOIN hairdressingsalons on services.SalonID=hairdressingsalons.SalonID
-    WHERE services.ServiceName = :ServiceName and hairdressingsalons.Name=:SalonName");
+    INNER JOIN serviceprovider on services.ServiceProviderID=serviceprovider.ServiceProviderID
+    WHERE services.ServiceName = :ServiceName and serviceprovider.Name=:SalonName");
          $stmt->bindParam(':ServiceName', $ServiceName);
          $stmt->bindParam(':SalonName', $SalonName);
          $ServiceName = $_GET['ServicePass'];
@@ -34,8 +50,8 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
 
          //getting all the staff fot the salon
          $stmt1 = $dbh->getInstance()->prepare("SELECT Staff.StaffID FROM Staff
-   INNER JOIN hairdressingsalons ON Staff.SalonID=hairdressingsalons.SalonID
-   WHERE hairdressingsalons.Name =:SalonName");
+   INNER JOIN serviceprovider ON Staff.ServiceProviderID=serviceprovider.ServiceProviderID
+   WHERE serviceprovider.Name =:SalonName");
          $stmt1->bindParam(':SalonName', $SalonName);
          $SalonName = $_GET['Salonview'];
          $stmt1->execute();
@@ -56,8 +72,8 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
              for ($External=0;$External<count($AllStaffID);$External++) {
                  $IndiceIntervallo=0;
                  $stmt1 = $dbh->getInstance()->prepare("SELECT bookings.BeginTime, bookings.FinishTime FROM bookings
-            INNER JOIN hairdressingsalons ON bookings.SalonID=hairdressingsalons.SalonID
-            WHERE hairdressingsalons.Name =:SalonName
+            INNER JOIN serviceprovider ON bookings.ServiceProviderID=serviceprovider.ServiceProviderID
+            WHERE serviceprovider.Name =:SalonName
             AND bookings.Date=:today
             AND bookings.StaffID=:StaffID
             ORDER BY bookings.BeginTime ASC");
@@ -183,25 +199,11 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
      }
 ?>
 <?php
-if(!isset($_POST['Confirm'])){
-    echo'
-    <div class="container-fluid">
-    <div class="row">
-            <div class="col-1 Back ">
-              <a href="/EZCUT/User/DateSelector.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">Change the date</a>  
-            </div>
-    </div>
-    <div class="row">
-    <div class="col">
-        <h4 id="ForDateTEXT">For:'.$_POST['date'].' we have these avalable times intervals and costumers disponible:<br>
-        Chose your favorite costumers and insert the time you prefer for this service, based on given intervals.</h4><br>
-    </div>
-</div>';
-////////
-}
+if(!$AllStaffID==null){
 for ($s=0;$s<count($AllStaffID);$s++) {//Analizzo ogni staff
+    echo '<div class="card mb-4">';
     ///getting staff name
-    $stmt = $dbh->getInstance()->prepare("SELECT Staff.Name FROM Staff
+    $stmt = $dbh->getInstance()->prepare("SELECT Staff.Name, Staff.ImageName FROM Staff
     WHERE StaffID = :StaffID");
     $stmt->bindParam(':StaffID', $StaffID);
     $StaffID = $AllStaffID[$s];
@@ -213,65 +215,74 @@ for ($s=0;$s<count($AllStaffID);$s++) {//Analizzo ogni staff
     }
     
     echo '
- <div   class="row shadow p-3 mb-5 bg-white rounded RowOgniStaff">
- <div class="col-12">
-                            <div class="row RowOgniStaff2">
-                                    <div class="col-6 col">'.$StaffName.'</div>
-                                    <div class="col-6 col">Immagine</div>
-                            </div>
-                    ';
+    <div class="card-body">
+        <div class="row">
+                 <div class="col-lg-6">
+                     <h2 class="card-title">'.$StaffName.'</h2>
+                     <a href="#!"><img class="img-fluid rounded" src="/EZCUT/Images/StaffImages/'.$row['ImageName'].'" alt="..." /></a>
+                 </div>
+
+                 <div class="col-lg-6">
+                        <h2 class="card-title">These are the avalable intervals.</h2>
+                        <p class="card-text">Chose the time you want to start the booking:</p>';
+
+
                 //il ciclo per mostrare gli intervalli
                 for ($i=0;$i<count($StaffIDBookingPerDate);$i++) {
                     if ($StaffIDBookingPerDate[$i][0]==$AllStaffID[$s]) {//devo controlare se il elemento analizato è di questo staf
-                     
-                    echo '<div class="row RowOgniStaff2">';//inizio row interna
-                    echo '<div class="col">';
-                    echo '<form method="POST" action="Booking.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">';
-                        if ($StaffIDBookingPerDate[$i][2]==$StaffIDBookingPerDate[$i][3]) {
-                            echo '
-                            <div class="row">
-                            <div class="col-6 ">Booked for all day</div>
-                            <div class="col-6 ">###</div>
-                            </div>
-                            ';
-                            
-                        } else {
-                            echo '
-                                    <div class="row">
-                                            <div class="col">
-                                            '.$StaffIDBookingPerDate[$i][2].'-'.$StaffIDBookingPerDate[$i][3].'
-                                            </div>
-                                            <div class="col ">
-                                                    <div class="row">
-                                                            <div class="col">
-                                                                <input required min="'.$StaffIDBookingPerDate[$i][2].'" max="'.$StaffIDBookingPerDate[$i][3].'" type="time" name="InsertBeginTime" id="InsertTimeInput"> 
-                                                                <input type="hidden" value="'.$AllStaffID[$s].'" name="StaffID"> 
-                                                                <input type="hidden" value="'.$_POST['date'].'" name="Date">
-                                                            </div>
-                                                    </div>
-                                                    <div class="row">
-                                                            <div class="col">
-                                                            <button type="submit" name="ConfirmBooking" class="btn btn-primary btn-lg btn-block buton">Confirm Booking</button>
-                                                            </div>
-                                                    </div>
-                                            </div>
-                                    </div>
-                        
-                            ';
-                        }
-                        
-                        
-                    echo '</form>';//fine form per ogni riga interna
-                    echo '</div>';//fine col interna
-                    echo '</div>';//fine row interna
-                    }
+                                                if ($StaffIDBookingPerDate[$i][2]==$StaffIDBookingPerDate[$i][3]) {
+                                                    echo '
+                                                    Booked all day!
+                                                    ';  
+                                                } else {
+                                                        echo '<form method="POST" action="Booking.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">';
+                                                                                                            echo '
+                                                        Avalable from '.$StaffIDBookingPerDate[$i][2].' to '.$StaffIDBookingPerDate[$i][3].'
+                                                        <input required min="'.$StaffIDBookingPerDate[$i][2].'" max="'.$StaffIDBookingPerDate[$i][3].'" type="time" name="InsertBeginTime" > 
+                                                        <input type="hidden" value="'.$AllStaffID[$s].'" name="StaffID"> 
+                                                        <input type="hidden" value="'.$_POST['date'].'" name="Date">
+                                                        <button type="submit" name="ConfirmBooking" class="btn btn-primary btn-sm">Confirm Booking</button>
+                                                        </form>
+                                                        ';
+                                                    }
+
+
+
+
+                       
                     
                 }
-    echo '</div>';//fine col per ogni staff
-    echo '</div><br>';//fine row per ogni staff
+  
     
 }
 
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '
+<div class="card-footer text-muted">
+Costumer:'.$StaffName.'
+</div>';
+echo '</div>';
+
+
+}
+    }else{
+echo 'No staff yet';
+
+    }
+echo '
+</div>
+';
+    }else{
+        header('Location: /EZCUT/HomePage.php');
+         exit;
+    }
+    echo '
+
+</section>
+</div>
+';//fine container e selection
 ?>
 </body>
 </html>

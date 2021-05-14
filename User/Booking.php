@@ -11,16 +11,16 @@
        // print_r($_POST);
         
         //print_r($_GET);
-//getting SalonID
-$SalonID;
-$stmt = $dbh->getInstance()->prepare("SELECT SalonID FROM hairdressingsalons
+//getting ServiceProviderID
+$ServiceProviderID;
+$stmt = $dbh->getInstance()->prepare("SELECT ServiceProviderID FROM serviceprovider
          WHERE Name =:SalonName");
  $stmt->bindParam(':SalonName', $SalonName);
  $SalonName = $_GET['Salonview'];
  $stmt->execute();
  $row = $stmt->fetch();
  if($row){//if isset on administrator
-    $SalonID= $row['SalonID']; 
+    $ServiceProviderID= $row['ServiceProviderID']; 
      }
 ///
 ///Getting ServiceID
@@ -48,12 +48,12 @@ $stmt = $dbh->getInstance()->prepare("SELECT ServiceID,TimeDurationHours,TimeDur
 
 
 
-$stmt = $dbh->getInstance()->prepare("INSERT INTO bookings (BeginTime,Date,BookingStatus,SalonID,ServiceID,UserID,FinishTime,StaffID)
-VALUES (:BeginTime,:Date,:BookingStatus,:SalonID,:ServiceID,:UserID,:FinishTime,:StaffID)");
+$stmt = $dbh->getInstance()->prepare("INSERT INTO bookings (BeginTime,Date,BookingStatus,ServiceProviderID,ServiceID,UserID,FinishTime,StaffID)
+VALUES (:BeginTime,:Date,:BookingStatus,:ServiceProviderID,:ServiceID,:UserID,:FinishTime,:StaffID)");
 $stmt->bindParam(':BeginTime', $BeginTime);
 $stmt->bindParam(':Date', $Date);
 $stmt->bindParam(':BookingStatus', $BookingStatus);
-$stmt->bindParam(':SalonID', $SalonID);
+$stmt->bindParam(':ServiceProviderID', $ServiceProviderID);
 $stmt->bindParam(':ServiceID', $ServiceID);
 $stmt->bindParam(':UserID', $UserID);
 $stmt->bindParam(':FinishTime', $FinishTime);
@@ -64,7 +64,7 @@ $Date = $_POST['Date'];
 $BookingStatus = "Booked";
 $UserID = $_SESSION['UserID'];
 $StaffID = $_POST['StaffID'];
-$SalonID = $SalonID;
+$ServiceProviderID = $ServiceProviderID;
 $ServiceID = $ServiceIDFind;
 $FinishTime = $FinishTimeToPut;
 $stmt->execute();

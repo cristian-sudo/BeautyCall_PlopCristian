@@ -37,9 +37,9 @@ exit;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if (isset($_POST['Add'])) {
-  $stmt = $dbh->getInstance()->prepare('INSERT INTO products (ProductName,ShortDescription,PicesAvailable,PricePerUnit,QuantityOfProduct,SalonID,ProductCategoryID)'.'
+  $stmt = $dbh->getInstance()->prepare('INSERT INTO products (ProductName,ShortDescription,PicesAvailable,PricePerUnit,QuantityOfProduct,ServiceProviderID,ProductCategoryID)'.'
   VALUES
-("'.$_POST["ProductName"].'","'.$_POST["ShortDescription"].'",'.$_POST["PicesAvailable"].','.$_POST["PricePerUnit"].','.$_POST["QuantityOfProduct"].','.$_SESSION["SalonID"].','.$_POST["ProductCategoryID"].')');
+("'.$_POST["ProductName"].'","'.$_POST["ShortDescription"].'",'.$_POST["PicesAvailable"].','.$_POST["PricePerUnit"].','.$_POST["QuantityOfProduct"].','.$_SESSION["ServiceProviderID"].','.$_POST["ProductCategoryID"].')');
   $stmt->execute();
   header('Location: ManageProducts.php');
   exit;

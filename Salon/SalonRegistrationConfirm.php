@@ -35,7 +35,7 @@
         $row1 = $stmt->fetch();
         $_SESSION['OpeningTimeID']=$row1['OpeningTimeID'];
 
-                $stmt = $dbh->getInstance()->prepare("INSERT INTO hairdressingsalons(Name, Country, City, Address, PostalCode,ShortDescription, Email, PhoneNumber, AdministratorID, OpeningTimeID,Status)
+                $stmt = $dbh->getInstance()->prepare("INSERT INTO serviceprovider(Name, Country, City, Address, PostalCode,ShortDescription, Email, PhoneNumber, AdministratorID, OpeningTimeID,Status)
                         values(:Name, :Country, :City, :Address, :PostalCode,:ShortDescription,:Email, :PhoneNumber, :AdministratorID, :OpeningTimeID, :Status)");
                 $stmt->bindParam(':Name', $Name);
                 $stmt->bindParam(':Country', $Country);

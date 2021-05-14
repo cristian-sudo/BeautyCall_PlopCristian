@@ -1,7 +1,7 @@
 <?php
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     ?>
- <h1 id="HomePageCategories">Main Salons</h1>
+ <h1 id="HomePageCategories">Main Providers</h1>
     <form class="form-inline">
         <div class="Center">
     <input class="form-control mr-sm-2" type="search" placeholder="Search in categories" aria-label="Search">
@@ -15,16 +15,15 @@
 <?php
 
 
-$GETSalons = $dbh->getInstance()->prepare("SELECT DISTINCT hairdressingsalons.SalonID,hairdressingsalons.Name,hairdressingsalons.City,hairdressingsalons.AverageSalonRating,hairdressingsalons.Address,hairdressingsalons.ShortDescription
-FROM hairdressingsalons ORDER BY Name DESC LIMIT 7;");
+$GETSalons = $dbh->getInstance()->prepare("SELECT DISTINCT serviceprovider.ServiceProviderID,serviceprovider.Name,serviceprovider.City,serviceprovider.AverageSalonRating,serviceprovider.Address,serviceprovider.ShortDescription
+FROM serviceprovider ORDER BY Name DESC LIMIT 7;");
 $GETSalons->execute();
 $resultSalons=$GETSalons;
-
 while ($row = $resultSalons->fetch()) {
-    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM hairdressingsalons 
-    INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID 
+    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceprovider 
+    INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-    WHERE hairdressingsalons.Name="'.$row['Name'].'" LIMIT 1');
+    WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 1');
     $GETACategory->execute();
     $resultCategory=$GETACategory;
     while($row2 = $resultCategory->fetch()){
@@ -32,8 +31,7 @@ while ($row = $resultSalons->fetch()) {
     }
     
 
-
-
+if(isset($DefaultCategory)){
 echo '
 <a  href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$DefaultCategory.'">
 <section class="py-5">
@@ -46,10 +44,10 @@ echo '
                             <ul>
                             ';
                             //get max 5 categories
-                            $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM hairdressingsalons 
-                            INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID 
+                            $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM serviceprovider 
+                            INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
                             INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-                            WHERE hairdressingsalons.Name="'.$row['Name'].'" LIMIT 5');
+                            WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 5');
                             $GETACategory1->execute();
                             $resultCategory1=$GETACategory1;
                             while($row3 = $resultCategory1->fetch()){
@@ -67,18 +65,25 @@ echo '
 
                                 </ul>
                         </div>';
-                        $GETSalonImage = $dbh->getInstance()->prepare('SELECT ImageName FROM SalonImages 
-                            WHERE SalonID="'.$row['SalonID'].'" LIMIT 1');
+                        $GETSalonImage = $dbh->getInstance()->prepare('SELECT ImageName FROM serviceproviderimages 
+                            WHERE ServiceProviderID="'.$row['ServiceProviderID'].'" LIMIT 1');
                             $GETSalonImage->execute();
                             $result=$GETSalonImage;
                             $row6=$result->fetch();
+                            if(isset($row6['ImageName'])){
                             echo'
                               <div class="col-lg-6">
                                 <img class="img-fluid rounded" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="..." />
                                 ';
                                 echo '
-                            </div>
-                </div>
+                            </div>';}
+                echo '
+                            </div>';}
+                            else{
+                             
+                            }
+                            echo '
+
                 
             </div>
         </section>

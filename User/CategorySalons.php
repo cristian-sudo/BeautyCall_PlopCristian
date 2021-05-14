@@ -8,13 +8,13 @@
 
 <div class="container-fluid centralContent">
 <?php
-$GETSalons = $dbh->getInstance()->prepare('SELECT DISTINCT hairdressingsalons.SalonID,hairdressingsalons.Name,hairdressingsalons.City,hairdressingsalons.AverageSalonRating,hairdressingsalons.Address,hairdressingsalons.ShortDescription
-FROM hairdressingsalons
-INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID
+$GETSalons = $dbh->getInstance()->prepare('SELECT DISTINCT serviceprovider.ServiceProviderID,serviceprovider.Name,serviceprovider.City,serviceprovider.AverageSalonRating,serviceprovider.Address,serviceprovider.ShortDescription
+FROM serviceprovider
+INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID
 INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
 WHERE servicecategories.ServiceCategoryName="'.$_GET['CategoryPass'].'"
-AND hairdressingsalons.Status="Confirmed"
-ORDER BY hairdressingsalons.Name DESC ;');//get  salons categories
+AND serviceprovider.Status="Confirmed"
+ORDER BY serviceprovider.Name DESC ;');//get  salons categories
 $GETSalons->execute();
 $resultSalons=$GETSalons;
  ?>
@@ -23,10 +23,10 @@ $resultSalons=$GETSalons;
 <?php
 if ($resultSalons!=null) {
   while ($row = $resultSalons->fetch()) {
-    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM hairdressingsalons 
-    INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID 
+    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceprovider 
+    INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-    WHERE hairdressingsalons.Name="'.$row['Name'].'" LIMIT 1');
+    WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 1');
     $GETACategory->execute();
     $resultCategory=$GETACategory;
     while($row2 = $resultCategory->fetch()){
@@ -37,7 +37,7 @@ if ($resultSalons!=null) {
 
 
 echo '
-<a  href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$DefaultCategory.'">
+<a  href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$_GET['CategoryPass'].'">
 <section class="py-5">
             <div class="container">
                 <div class="row SalonRow">
@@ -48,10 +48,10 @@ echo '
                             <ul>
                             ';
                             //get max 5 categories
-                            $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM hairdressingsalons 
-                            INNER JOIN services ON hairdressingsalons.SalonID=services.SalonID 
+                            $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM serviceprovider 
+                            INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
                             INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-                            WHERE hairdressingsalons.Name="'.$row['Name'].'" LIMIT 5');
+                            WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 5');
                             $GETACategory1->execute();
                             $resultCategory1=$GETACategory1;
                             while($row3 = $resultCategory1->fetch()){
@@ -69,8 +69,8 @@ echo '
 
                                 </ul>
                         </div>';
-                        $GETSalonImage = $dbh->getInstance()->prepare('SELECT ImageName FROM SalonImages 
-                            WHERE SalonID="'.$row['SalonID'].'" LIMIT 1');
+                        $GETSalonImage = $dbh->getInstance()->prepare('SELECT ImageName FROM ServiceProviderImages 
+                            WHERE ServiceProviderID="'.$row['ServiceProviderID'].'" LIMIT 1');
                             $GETSalonImage->execute();
                             $result=$GETSalonImage;
                             $row6=$result->fetch();

@@ -30,7 +30,7 @@
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
     $stmt = $dbh->getInstance()->prepare("SELECT * FROM products
       INNER JOIN productcategories ON products.ProductCategoryID = productcategories.ProductCategoryID
-      WHERE SalonID='".$_SESSION['SalonID']."'");
+      WHERE ServiceProviderID='".$_SESSION['ServiceProviderID']."'");
     $stmt->execute();
     $Try=$stmt->fetch();
     echo "<h1>Add a new product<h1><br>";

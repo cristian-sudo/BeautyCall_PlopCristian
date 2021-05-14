@@ -7,7 +7,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingInformationsUser.php');
 <div class="TextDimension">
 <nav class="navbar navbar-expand-lg navbar-light bg-light    justify-content-between">
 
-  <a class="nav-link" id="Logo" href="/EZCUT/User/HomePage.php">EZCUT</a>
+  <a class="nav-link" id="Logo" href="/EZCUT/User/HomePage.php">BeautyCall</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,7 +20,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingInformationsUser.php');
       </li>
       
       <li class="nav-item active">
-        <a class="nav-link" href="Salons.php">Salons</a>
+        <a class="nav-link" href="Salons.php">Providers</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#"> </a>

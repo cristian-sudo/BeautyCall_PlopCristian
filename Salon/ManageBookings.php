@@ -47,9 +47,9 @@
     bookings
 INNER JOIN services ON bookings.ServiceID = services.ServiceID
 INNER JOIN users ON bookings.UserID = users.UserID
-INNER JOIN hairdressingsalons ON bookings.SalonID = hairdressingsalons.SalonID
+INNER JOIN serviceprovider ON bookings.ServiceProviderID = serviceprovider.ServiceProviderID
 INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.ServiceCategoryID
-    WHERE hairdressingsalons.Name='".$_SESSION['SalonName']."' ORDER BY bookings.BookingStatus DESC
+    WHERE serviceprovider.Name='".$_SESSION['SalonName']."' ORDER BY bookings.BookingStatus DESC
  ");
     $stmt->execute();
     $Try=$stmt->fetch();

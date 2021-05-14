@@ -8,6 +8,7 @@
         <?php  require('UserMenu.php')?>
         <!-- Page header-->
         <header>
+            
             <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
@@ -55,21 +56,21 @@
         <!-- Page Content-->
         <section class="py-5">
             <div class="container">
-                <h1 class="mb-4">EZCUT, the future!</h1>
+                <h1 class="mb-4">BeautyCall, the future!</h1>
                 <!-- Marketing Icons Section-->
                 <div class="row">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="card h-100">
                             <h4 class="card-header">Rapidity</h4>
                             <div class="card-body">
-                              <p class="card-text">EZCUT helps you to avoid the queue. Simply chose your salon, your service and book at the time you need</p>
+                              <p class="card-text">BeautyCall helps you to avoid the queue. Simply chose your salon, your service and book at the time you need</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="card h-100">
                             <h4 class="card-header">Innovativeness</h4>
-                            <div class="card-body"><p class="card-text">EZCUT innovates the way you organise your time.</p></div>
+                            <div class="card-body"><p class="card-text">BeautyCall innovates the way you organise your time.</p></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -87,7 +88,7 @@
             <div class="container">
                 <h2 class="mb-4">Main Categories</h2>
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-12 mb-4">
                         <div class="card h-100">
                             <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/hairstyle.jpeg" alt="..." /></a>
                             <div class="card-body">
@@ -96,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-12 mb-4">
                         <div class="card h-100">
                             <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/makeup.jpeg" alt="..." /></a>
                             <div class="card-body">
@@ -105,7 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-12 mb-4">
                         <div class="card h-100">
                             <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/tattoo.jpeg" alt="..." /></a>
                             <div class="card-body">

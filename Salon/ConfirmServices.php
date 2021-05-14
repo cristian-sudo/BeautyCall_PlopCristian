@@ -45,9 +45,9 @@ header('Location: ManageServices.php');
 exit;
 }
 if (isset($_POST['Add'])) {
-  $stmt = $dbh->getInstance()->prepare('INSERT INTO services (ServiceName,ServiceCategoryID,Price,TimeDurationHours,TimeDurationMinutes,ShortDescription,SalonID)'.'
+  $stmt = $dbh->getInstance()->prepare('INSERT INTO services (ServiceName,ServiceCategoryID,Price,TimeDurationHours,TimeDurationMinutes,ShortDescription,ServiceProviderID)'.'
   VALUES
-("'.$_POST["ServiceName"].'",'.$_POST["ServiceCategoryID"].','.$_POST["Price"].','.$_POST["TimeDurationHours"].','.$_POST["TimeDurationMinutes"].',"'.$_POST["ShortDescription"].'",'.$_SESSION["SalonID"].')');
+("'.$_POST["ServiceName"].'",'.$_POST["ServiceCategoryID"].','.$_POST["Price"].','.$_POST["TimeDurationHours"].','.$_POST["TimeDurationMinutes"].',"'.$_POST["ShortDescription"].'",'.$_SESSION["ServiceProviderID"].')');
   $stmt->execute();
   header('Location: ManageServices.php');
   exit;
