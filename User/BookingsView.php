@@ -101,7 +101,24 @@ echo '
                 }
         }
 
+        if($row['BookingStatus']=="Refused" ){
 
+            
+                    echo '
+            <div class="row">
+                  <div class="col-sm-3">Status:</div>
+                  <div class="col-sm-1">
+                  <span style="color:red">Refused</span>
+                  </div>
+            
+          </div>
+           
+           
+            ';
+
+
+                
+        }
 
 
            
