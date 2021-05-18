@@ -341,25 +341,43 @@ echo '
         Status:&nbsp '.$row['BookingStatus'].'    <br>
 
     </div>
-   
+    <div class="col">';
+    if($row['BookingStatus']=="Booked"){
+
+      echo '
+      Actions:
     
-    <div class="col">
-        Actions:
-
-        <form action="" method="post">
-        <input type="submit" value="Mark as finished"></input>
-        </form>
-
-        <form action="" method="post">
-        <input type="submit" value="Refuse booking"></input>
-        </form>
-
-        <form action="" method="post">
-        <input type="submit" value="Contact the client"></input>
-        </form>
-
+                                            <form action="BookingManage.php" method="post">
+                                            <input type="hidden" name="BookingID" value="'.$row['BookingID'].'">
+                                            <input type="hidden" name="Action" value="Finished">
+                                            <button class="btn btn-primary " name="submit" type="submit">
+                                            Mark as finished
+                                            </button>
+                                            </form>
+    
+                                            <form action="BookingManage.php" method="post">
+                                            <input type="hidden" name="BookingID" value="'.$row['BookingID'].'">
+                                            <input type="hidden" name="Action" value="Refused">
+                                            <button class="btn btn-primary " name="submit" type="submit">
+                                            Refuse
+                                            </button>
+                                            
+                                            </form>
+      
+      
+      
+      ';
+    }
+    if($row['BookingStatus']=="Finished"){
+    echo '<span style="color:green; ">Finished!!</span>';
+    }
+    if($row['BookingStatus']=="Refused"){
+      echo '<span style="color:red; ">Refused!!</span>';
+    }
+    
+   
+echo '
     </div>
-
 </div>
 
 ';
