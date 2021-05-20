@@ -2,13 +2,20 @@
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     ?>
  <h1 id="HomePageCategories">Main Providers</h1>
-    <form class="form-inline">
-        <div class="Center">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search in categories" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</div>
-  </form>
-    <br>
+
+
+
+
+    
+
+
+  <form action="RicercaSaloniPHP.php" method="post" class="">
+                                    <input class="form-control " type="text" name="search" placeholder="Search.."> <br>
+                            <div class="result">
+                              
+                            </div>
+                       
+                            </form>
 
 
 
@@ -102,6 +109,26 @@ echo '
 }
 ?>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(' input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("RicercaSaloniPHP.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    
+});
+</script>
 </body>
 </html>
 
