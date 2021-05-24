@@ -4,6 +4,24 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <style>
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input:focus {
+  border: 3px solid #555;
+}
+
+
+</style>
   <body >
     <?php
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
@@ -11,58 +29,244 @@
     $stmt->execute();
     $row=$stmt;
    if ($row) {
-echo"<h1 id='openingDays'>These are salon's opening days:</h1>";
-      echo '<table class="table table-hover table-dark">';
-      foreach ($row as $key => $value) {
-        echo "<tr><td>Monday</td>"."<td>".$value['Monday']."</td></tr>";
-        echo "<tr><td>Tuesday</td>"."<td>".$value['Tuesday']."</td></tr>";
-        echo "<tr><td>Wednesday</td>"."<td>".$value['Wednesday']."</td></tr>";
-        echo "<tr><td>Thursday</td>"."<td>".$value['Thursday']."</td></tr>";
-        echo "<tr><td>Friday</td>"."<td>".$value['Friday']."</td></tr>";
-        echo "<tr><td>Saturday</td>"."<td>".$value['Saturday']."</td></tr>";
-        echo "<tr><td>Sunday</td>"."<td>".$value['Sunday']."</td></tr>";}
-      echo "</table>";
+    foreach ($row as $key => $value) {
+
+echo '
+<div class="container-fluid">';
+
+if($value['Monday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Monday:&nbsp '.$value['Monday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Monday:&nbsp  <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+
+
+if($value['Tuesday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Tuesday:&nbsp '.$value['Tuesday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Tuesday:&nbsp <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+if($value['Wednesday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Wednesday:&nbsp '.$value['Wednesday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Wednesday:&nbsp  <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+
+if($value['Thursday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Thursday:&nbsp '.$value['Thursday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Thursday:&nbsp  <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+if($value['Friday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Friday:&nbsp '.$value['Friday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Friday:&nbsp  <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+if($value['Saturday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Saturday:&nbsp '.$value['Saturday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Saturday:&nbsp  <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+if($value['Sunday']!=null){
+  echo'
+<div class="card-footer text-muted">
+    <div style="text-align:center;">Sunday:&nbsp '.$value['Sunday'].'</div>
+</div>';
+}else{
+  echo'
+  <div class="card-footer text-muted">
+      <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+  </div>'; 
+}
+
+
+      
+      }
+      echo "<div>";
       /////////////////////////////////////////////////////////////////////////////////////////////
       echo '
       <form action="/EZCUT/Salon/ConfirmOpeningTime.php" method="POST">
-      <h1>OpeningTime</h1>
-      <label for="MondayOpen">Monday</label>
-      <input type="time" name="MondayOpen" required>
-      <label for="MondayClosing">-</label>
-      <input type="time" name="MondayClosing" required><br>
+      ';
+$stmt2 = $dbh->getInstance()->prepare("SELECT * FROM OpeningTime WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
+$stmt2->execute();
+$row2=$stmt2;
+foreach ($row2 as $key => $value) {
+  if($value['Monday']!=null){
+$ExplodedM=explode("-",$value['Monday']);
+$MondayB=$ExplodedM[0];
+$MondayF=$ExplodedM[1];
+  }else{
+    $MondayB=0;
+    $MondayF=0; 
+  }
 
-      <label for="TuesdayOpen">Tuesday</label>
-      <input type="time" name="TuesdayOpen" required>
-      <label for="TuesdayClosing">-</label>
-      <input type="time" name="TuesdayClosing" required><br>
 
-      <label for="WednesdayOpen">Wednesday</label>
-      <input type="time" name="WednesdayOpen" required>
-      <label for="WednesdayClosing">-</label>
-      <input type="time" name="WednesdayClosing" required><br>
 
-      <label for="ThursdayOpen">Thursday</label>
-      <input type="time" name="ThursdayOpen" required>
-      <label for="ThursdayClosing">-</label>
-      <input type="time" name="ThursdayClosing" required><br>
+  if($value['Tuesday']!=null){
+$ExplodedT1=explode("-",$value['Tuesday']);
+$TuesdayB=$ExplodedT1[0];
+$TuesdayF=$ExplodedT1[1];
+}else{
+  $TuesdayB=0;
+  $TuesdayF=0; 
+}
 
-      <label for="FridayOpen">Friday</label>
-      <input type="time" name="FridayOpen" required>
-      <label for="FridayClosing">-</label>
-      <input type="time" name="FridayClosing" required><br>
 
-      <label for="SaturdayOpen">Saturday</label>
-      <input type="time" name="SaturdayOpen" required>
-      <label for="SaturdayClosing">-</label>
-      <input type="time" name="SaturdayClosing" required><br>
+if($value['Wednesday']!=null){
+$ExplodedW=explode("-",$value['Wednesday']);
+$WednesdayB=$ExplodedW[0];
+$WednesdayF=$ExplodedW[1];
+}else{
+  $WednesdayB=0;
+  $WednesdayF=0; 
+}
 
-      <label for="SundayOpen">Sunday</label>
-      <input type="time" name="SundayOpen" required>
-      <label for="SundayClosing">-</label>
-      <input type="time" name="SundayClosing" required><br>
 
-      <input type="submit" name="submit" value="Modifica" >
+if($value['Thursday']!=null){
+$ExplodedT2=explode("-",$value['Thursday']);
+$ThursdayB=$ExplodedT2[0];
+$ThursdayF=$ExplodedT2[1];
+}else{
+  $ThursdayB=0;
+  $ThursdayF=0; 
+}
+
+
+if($value['Friday']!=null){
+$ExplodedF=explode("-",$value['Friday']);
+$FridayB=$ExplodedF[0];
+$FridayF=$ExplodedF[1];
+}else{
+  $FridayB=0;
+  $FridayF=0; 
+}
+
+
+if($value['Saturday']!=null){
+$ExplodedS1=explode("-",$value['Saturday']);
+$SaturdayB=$ExplodedS1[0];
+$SaturdayF=$ExplodedS1[1];
+}else{
+  $SaturdayB=0;
+  $SaturdayF=0; 
+}
+
+
+if($value['Sunday']!=null){
+$ExplodedS2=explode("-",$value['Sunday']);
+$SundayB=$ExplodedS2[0];
+$SundayF=$ExplodedS2[1];
+}else{
+  $SundayB=0;
+  $SundayF=0; 
+}
+
+
+echo '
+<div class="row">
+<div class="col" style="font-size: 30px;">Monday</div>
+<div class="col"> <input type="time" name="MondayOpen" value="'.$MondayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="MondayClosing" value="'.$MondayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="MondayAllDay"  ></div>
+</div>
+
+<div class="row">
+<div class="col" style="font-size: 30px;">Tuesday</div>
+<div class="col"> <input type="time" name="TuesdayOpen" value="'.$TuesdayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="TuesdayClosing" value="'.$TuesdayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="TuesdayAllDay"  ></div>
+</div>
+
+<div class="row">
+<div class="col" style="font-size: 30px;">Wednesday</div>
+<div class="col"> <input type="time" name="WednesdayOpen" value="'.$WednesdayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="WednesdayClosing" value="'.$WednesdayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="WednesdayAllDay"  ></div>
+</div>
+
+<div class="row">
+<div class="col" style="font-size: 30px;">Thursday</div>
+<div class="col"> <input type="time" name="ThursdayOpen" value="'.$ThursdayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="ThursdayClosing" value="'.$ThursdayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="ThursdayAllDay"  ></div>
+</div>
+
+<div class="row">
+<div class="col" style="font-size: 30px;">Friday</div>
+<div class="col"> <input type="time" name="FridayOpen" value="'.$FridayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="FridayClosing" value="'.$FridayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="FridayAllDay"  ></div>
+</div>
+
+<div class="row">
+<div class="col" style="font-size: 30px;">Saturday</div>
+<div class="col"> <input type="time" name="SaturdayOpen" value="'.$SaturdayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="SaturdayClosing" value="'.$SaturdayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="SaturdayAllDay"  ></div>
+</div>
+
+<div class="row">
+<div class="col" style="font-size: 30px;">Sunday</div>
+<div class="col"> <input type="time" name="SundayOpen" value="'.$SundayB.'"  ></div>
+<div class="col" style="text-align: center;">-</div>
+<div class="col"> <input type="time" name="SundayClosing" value="'.$SundayF.'"  ></div>
+<div class="col"> Closed all day:<input type="checkbox" name="SundayAllDay"  ></div>
+</div>
+
+
+
+
+      <input type="submit" name="submit" value="Modify" >
       </form>';}
+}
   ?>
   </body>
 </html>
