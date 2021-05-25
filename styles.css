@@ -119,14 +119,8 @@ font-family: RobotoSlab;
   border-radius: 30px;
 }
 
-.col{
-  padding: 10px;
-  border-radius: 50px 20px;
-}
-.row{
-  padding: 10px;
-  border-radius: 50px;
-}
+
+
 
 tr{
 
@@ -936,6 +930,7 @@ pre code {
 .no-gutters > [class*=col-] {
   padding-right: 0;
   padding-left: 0;
+  
 }
 
 .col-xl,

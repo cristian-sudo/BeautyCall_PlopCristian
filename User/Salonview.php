@@ -105,10 +105,11 @@ $row5 = $stmt->fetch();
                        $GETPhotos = $dbh->getInstance()->prepare('SELECT ImageName FROM ServiceImages
                        WHERE ServiceID="'.$row['ServiceID'].'" LIMIT 2;');
                        $GETPhotos->execute();
-                       $resultGETPhotos=$GETPhotos;
                        $first=0;
+   
                   
-                       while ($row8 = $resultGETPhotos->fetch()) {
+                       while ($row8 = $GETPhotos->fetch()) {
+                         
                          
                           if($first==0){
                          

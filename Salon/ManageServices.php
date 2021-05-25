@@ -3,28 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <style media="screen">
-    .zui-table {
-  border: solid 1px #DDEEEE;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font: normal 13px Arial, sans-serif;
+    <style>
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
 }
-.zui-table thead th {
-  background-color: #DDEFEF;
-  border: solid 1px #DDEEEE;
-  color: #336B6B;
-  padding: 10px;
-  text-align: left;
-  text-shadow: 1px 1px 1px #fff;
+
+input:focus {
+  border: 3px solid #555;
 }
-.zui-table tbody td {
-  border: solid 1px #DDEEEE;
-  color: #333;
-  padding: 10px;
-  text-shadow: 1px 1px 1px #fff;
-}
-    </style>
+
+
+</style>
   </head>
   <body>
 
@@ -32,56 +28,153 @@
 </html>
 <?php
 require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
-$stmt = $dbh->getInstance()->prepare("
-SELECT ServiceCategories.ServiceCategoryName, ServiceCategories.ServiceCategoryID
+echo '<div class="container-fluid">';
+$stmt = $dbh->getInstance()->prepare('
+SELECT * 
    FROM
-   hairdressingsalonsservicecategories
-INNER JOIN hairdressingsalons ON hairdressingsalonsservicecategories.ServiceProviderID = hairdressingsalons.ServiceProviderID
-INNER JOIN servicecategories ON hairdressingsalonsservicecategories.ServiceCategoryID = servicecategories.ServiceCategoryID
-WHERE hairdressingsalonsservicecategories.ServiceProviderID='".$_SESSION['ServiceProviderID']."' ORDER BY ServiceCategories.ServiceCategoryName ASC
-");
-$stmt->execute();
-$Try=$stmt->fetch();
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-echo "<h1>Add a new ServiceCategory<h1><br>";
-echo '<form method="POST" action="ConfirmServiceCategories.php">
-<table class="zui-table">
-<tr>
-<th><h4>Service Category Name</h4></th>
-</tr>
-<tr>
-<td><input type="text" name="ServiceCategoryName" required></td>
-<td><button type="submit" name="Add">Add a new service category</button></td>
-</tr>
-</table>
-</form>';
-if ($Try) {//if exist results
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-echo "<h1>Edit existing service categories</h1><br>";
-  echo "
-<table class='zui-table'><tr>
-<th>Service Category ID</th>
-<th>Service Category Name</th>
-</tr>";//print the values
+   services
+INNER JOIN servicecategories ON services.ServiceCategoryID = servicecategories.ServiceCategoryID
+WHERE services.ServiceProviderID="'.$_SESSION['ServiceProviderID'].'"
+');
 $stmt->execute();
 $row=$stmt;
-  foreach ($row as $key => $value) {
-    echo "<form method='post' action='ConfirmServiceCategories.php'>";
-    echo "<tr>";
-    echo "<td>".$value['ServiceCategoryID']."</td>";
-    echo "<td>".$value['ServiceCategoryName']."</td>";
-    echo "</tr>";
-    //inputs
-    echo "<tr>";
-    echo '
-    <td><input type="text" name="ServiceCategoryID" value="'.$value['ServiceCategoryID'].'" readonly></td>
-    <td><input type="text" name="ServiceCategoryName"></td>
-    <td><input type="submit" value="Confirm Changes" name="Confirm"></td>
-    <td><input type="submit" value="Delete ServiceCategory" name="Delete"></td>
-    </form>
-    </tr>';}
-  echo "</table>";
-}else{
-  echo "No service categories yet";
+   if ($row) {
+     echo '
+     <div class="row"> 
+          <div class="col"> 
+          
+          
+                  <a href="" style="font-size:30px; color:blue; background-color: #fff;"> ..Add a new Service..</a>
+                
+          
+          
+          </div>
+     </div>
+     ';
+    foreach ($row as $key => $row) {
+
+
+      echo '
+      <div style="  padding-top:50px">
+      <form action="ConfirmManageServces.php" method="post" enctype="multipart/form-data">
+      <input type="hidden"  name="ServiceID" value="'.$row['ServiceID'].'">
+      <div class="row" > 
+      <div class="col" style="padding-left:140px">
+      <label for="ServiceName">ServiceName:</label>
+      <input type="text"  name="ServiceName" value="'.$row['ServiceName'].'">
+      </div>
+      </div>
+      
+      <div class="row"> 
+      <div class="col" style="padding-left:140px">
+      <label for="ShortDescription">ShortDescription:</label>
+      <input type="text"  name="Surname" value="'.$row['ShortDescription'].'">
+      </div>
+      </div>
+      
+      <div class="row"> 
+      <div class="col" style="padding-left:140px">
+      <label for="Price">Price:</label>
+      <input type="number"  name="Price" value="'.$row['Price'].'">
+      </div>
+      </div>
+      
+      <div class="row"> 
+      <div class="col" style="padding-left:140px">
+      <label for="TimeDurationHours">TimeDurationHours:</label>
+      <input type="number"  name="TimeDurationHours" value="'.$row['TimeDurationHours'].'" >
+      </div>
+      </div>
+      
+    
+      <div class="row"> 
+      <div class="col" style="padding-left:140px">
+      <label for="TimeDurationMinutes">TimeDurationMinutes:</label>
+      <input type="number"  name="TimeDurationHours" value="'.$row['TimeDurationMinutes'].'" >
+      </div>
+      </div>
+
+
+      <div class="row"> 
+      <div class="col" style="padding-left:140px">
+      <label for="TimeDurationMinutes">Category:</label>
+      <input type="text"  name="TimeDurationHours" value="'.$row['ServiceCategoryName'].'" >
+      </div>
+      </div>
+      
+      
+      ';
+     echo '
+      <div class="row"> 
+      <div class="col" style="padding-left:140px">';
+      $stmt5 = $dbh->getInstance()->prepare('SELECT * FROM ServiceImages
+      
+      WHERE ServiceID ="'.$row['ServiceID'].'"
+');     
+$stmt5->execute();
+while($row5 = $stmt5->fetch()){  
+  
+      echo '
+
+      <img src="/EZCUT/Images/ServiceImages/'.$row5['ImageName'].'" alt="" width="760" height="350">
+      <a href="CancelImageService.php?ServiceImageID='.$row5['ServiceImagesID'].'&ImageName='.$row5['ImageName'].'" style="font-size:40px">Cancel</a>
+   
+      
+      
+      ';
+  
 }
+echo '
+<div class="row">
+<div class="col">
+<label for="fname">Photo:[Recommended to be 750px  X   350px]</label>
+<input type="file" id="fname" name="fileToUpload" >
+</div>
+</div>';
+
+
+      
+    
+
+
+
+
+
+
+
+      echo '
+      </div>
+      </div>
+    
+
+<div class="row">
+<div class="col">
+<input type="submit"   name="Submit" value="Confirm changes" >
+</div></div>
+      
+      
+
+
+
+      </form>
+      </div>
+      ';
+
+    }
+  
+  }else{
+    echo '
+    <div class="row">
+        <div class="col" >
+        <h1 style="text-align:center; font-size:30px;">   There are not services, add some. </h1><br>
+        
+        </div>
+    </div>
+    
+    
+';
+  }
+
+
+echo '</div>';
  ?>

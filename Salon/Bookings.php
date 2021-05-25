@@ -187,7 +187,12 @@ if($row['BookingStatus']=="Refused"){
                                     }
                                     if($entrato!=true)
                                     {
-                                      echo 'no booking yet';
+                                      
+                                      echo '
+  <div style="color:green; font-size:30px; text-align:center; ">
+  <span>No bookings yet!!</span>
+  </div>';
+                                     
                                     }
                                     
 
@@ -386,10 +391,19 @@ echo '
 
 if($entrato!=true){
  
-  echo 'no booking yet';
+  echo '
+  <div style="color:green; font-size:30px; text-align:center; ">
+  <span>No bookings yet!!</span>
+  </div>';
+
 }
 }else{
-    echo'order by not valid';
+  echo '
+  <div style="color:green; font-size:30px; text-align:center; ">
+  <span>Order by not valid!!</span>
+  </div>';
+  
+    
 }
 }
 
