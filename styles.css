@@ -50,6 +50,7 @@
 }
 .SalonRow{
   box-shadow: 5px 10px #888888;
+  padding:20px;
 }
 .SalonName{
   text-align: center;

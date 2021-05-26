@@ -5,10 +5,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
                     <!-- Map Column-->
                     <div class="col-lg-8 mb-4">
                         <!-- Embedded Google Map-->
-                        <iframe style="width: 100%; height: 650px; border: 0" src="https://www.google.com/maps?q=<?php echo $_SESSION['SalonCity'].' '.$_SESSION['SalonAddress'] ?> &output=embed"></iframe>   
-                        </div>
-                          <!-- Contact Details Column-->
-
+                        <iframe style="width: 90%; height: 650px; border: 0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBv8MQOQ5LKn7PPzSVQcvJK2XSjTgFjEkc&amp;q=<?php echo $_SESSION['SalonCity'].' '.$_SESSION['SalonAddress'] ?> "></iframe>   
+                       <!-- Contact Details Column-->
+                       </div>
 
 
                           <div class="col-lg-4 mb-4">

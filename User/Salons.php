@@ -1,6 +1,8 @@
 <?php
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
     ?>
+    <div class="container-fluid">
+   
  <h1 id="HomePageCategories">Main Providers</h1>
 
 
@@ -129,6 +131,8 @@ $(document).ready(function(){
     
 });
 </script>
+
+</div>
 </body>
 </html>
 

@@ -44,7 +44,7 @@ $row=$stmt;
           <div class="col"> 
           
           
-                  <a href="" style="font-size:30px; color:blue; background-color: #fff;"> ..Add a new Service..</a>
+                  <a href="AddNewService.php" style="font-size:30px; color:blue; background-color: #fff;"> ..Add a new Service..</a>
                 
           
           
@@ -61,28 +61,28 @@ $row=$stmt;
       <div class="row" > 
       <div class="col" style="padding-left:140px">
       <label for="ServiceName">ServiceName:</label>
-      <input type="text"  name="ServiceName" value="'.$row['ServiceName'].'">
+      <input type="text"  name="ServiceName" value="'.$row['ServiceName'].'" required>
       </div>
       </div>
       
       <div class="row"> 
       <div class="col" style="padding-left:140px">
       <label for="ShortDescription">ShortDescription:</label>
-      <input type="text"  name="Surname" value="'.$row['ShortDescription'].'">
+      <input type="text"  name="ShortDescription" value="'.$row['ShortDescription'].'" required> 
       </div>
       </div>
       
       <div class="row"> 
       <div class="col" style="padding-left:140px">
       <label for="Price">Price:</label>
-      <input type="number"  name="Price" value="'.$row['Price'].'">
+      <input type="number"  name="Price" value="'.$row['Price'].'" required>
       </div>
       </div>
       
       <div class="row"> 
       <div class="col" style="padding-left:140px">
       <label for="TimeDurationHours">TimeDurationHours:</label>
-      <input type="number"  name="TimeDurationHours" value="'.$row['TimeDurationHours'].'" >
+      <input type="number"  name="TimeDurationHours" value="'.$row['TimeDurationHours'].'" required>
       </div>
       </div>
       
@@ -90,15 +90,14 @@ $row=$stmt;
       <div class="row"> 
       <div class="col" style="padding-left:140px">
       <label for="TimeDurationMinutes">TimeDurationMinutes:</label>
-      <input type="number"  name="TimeDurationHours" value="'.$row['TimeDurationMinutes'].'" >
+      <input type="number"  name="TimeDurationMinutes" value="'.$row['TimeDurationMinutes'].'" required>
       </div>
       </div>
 
 
       <div class="row"> 
       <div class="col" style="padding-left:140px">
-      <label for="TimeDurationMinutes">Category:</label>
-      <input type="text"  name="TimeDurationHours" value="'.$row['ServiceCategoryName'].'" >
+      <span style="font-size:30px; color:blue;">Category:'.$row['ServiceCategoryName'].'</span>
       </div>
       </div>
       

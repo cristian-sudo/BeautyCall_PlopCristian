@@ -11,7 +11,9 @@ WHERE bookings.ServiceProviderID =:ServiceProviderID ORDER BY Surname ASC");
     $stmt10->bindParam(':ServiceProviderID', $ServiceProviderID);
     $ServiceProviderID = $_SESSION['ServiceProviderID'];
     $stmt10->execute();
+    $entrato=false;
     while ($row = $stmt10->fetch()) {
+        $entrato=true;
 $NOB=0;
             $stmt12 = $dbh->getInstance()->prepare('SELECT count(*) AS NOB FROM bookings
             WHERE UserID="'.$row['UserID'].'" AND ServiceProviderID="'.$_SESSION['ServiceProviderID'].'"  ');
@@ -32,6 +34,12 @@ echo '
 
 
 
+    }
+    if($entrato!=true){
+echo '
+  <div style="color:green; font-size:30px; text-align:center; ">
+  <span>No clients yet!</span>
+  </div>';
     }
 
 

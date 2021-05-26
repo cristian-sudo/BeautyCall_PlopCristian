@@ -53,9 +53,9 @@ if (isset($_GET['StaffManageName'])){
     AND Name="'.$_GET['StaffManageName'].'"  
     ');   
     $stmt1->execute();
-    $Controll=null;
+    $Controll2=null;
         while($row = $stmt1->fetch()){
-            $Controll=true;
+            $Controll2=true;
             echo '
             <form action="ConfirmStaffInformations.php" method="post" enctype="multipart/form-data">
             <input type="hidden"  name="StaffID" value="'.$row['StaffID'].'">
@@ -183,7 +183,7 @@ if (isset($_GET['StaffManageName'])){
             </form>
             ';
         }
-        if($Controll!=true){
+        if($Controll2!=true){
             echo 'Inexistent costumer.';
         }
 

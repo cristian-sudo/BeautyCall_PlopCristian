@@ -88,9 +88,11 @@ a {
           <input type="text" name="PostalCode" required><br>
           <label for="Email">Email</label>
           <input type="email" name="Email" required><br>
+
           <label for="PhoneNumber">PhoneNumber</label>
           <input type="text" name="PhoneNumber" required><br>
-          <label for="ShortDescription">PhoneNumber</label>
+
+          <label for="ShortDescription">ShortDescription</label>
           <input type="text" name="ShortDescription" required><br>
           <p>Put the opening time for your salon</p>
 
@@ -180,7 +182,6 @@ a {
 <td>
 </tr>
 </table>
-<p>Put some general photos of your salon:</p>
           <button type="submit"  name="submit">Register as administrator.</button>
         </form>
         <hr>
