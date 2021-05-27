@@ -34,91 +34,136 @@ input:focus {
 echo '
 <div class="container-fluid">';
 
-if($value['Monday']!=null){
+if($value['Monday']!=null &&$value['Monday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Monday:&nbsp '.$value['Monday'].'</div>
 </div>';
-}else{
+}elseif($value['Monday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Monday:&nbsp  <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
 
 
-if($value['Tuesday']!=null){
+if($value['Tuesday']!=null && $value['Tuesday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Tuesday:&nbsp '.$value['Tuesday'].'</div>
 </div>';
-}else{
+}elseif($value['Tuesday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Tuesday:&nbsp <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
-if($value['Wednesday']!=null){
+
+
+if($value['Wednesday']!=null && $value['Wednesday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Wednesday:&nbsp '.$value['Wednesday'].'</div>
 </div>';
-}else{
+}elseif($value['Wednesday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Wednesday:&nbsp  <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
 
-if($value['Thursday']!=null){
+
+
+if($value['Thursday']!=null && $value['Thursday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Thursday:&nbsp '.$value['Thursday'].'</div>
 </div>';
-}else{
+}elseif($value['Thursday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Thursday:&nbsp  <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
-if($value['Friday']!=null){
+
+
+if($value['Friday']!=null && $value['Friday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Friday:&nbsp '.$value['Friday'].'</div>
 </div>';
-}else{
+}elseif($value['Friday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Friday:&nbsp  <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
-if($value['Saturday']!=null){
+
+
+if($value['Saturday']!=null && $value['Saturday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Saturday:&nbsp '.$value['Saturday'].'</div>
 </div>';
-}else{
+}elseif($value['Saturday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Saturday:&nbsp  <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
-if($value['Sunday']!=null){
+
+
+if($value['Sunday']!=null && $value['Sunday']!="-"){
   echo'
 <div class="card-footer text-muted">
     <div style="text-align:center;">Sunday:&nbsp '.$value['Sunday'].'</div>
 </div>';
-}else{
+}elseif($value['Sunday']=="-"){
   echo'
   <div class="card-footer text-muted">
       <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
   </div>'; 
+}else{
+  echo'
+  <div class="card-footer text-muted">
+  <div style="text-align:center;">Sunday:&nbsp  <span style="color:red;">Closed<span></div>
+</div>';  
 }
 
 

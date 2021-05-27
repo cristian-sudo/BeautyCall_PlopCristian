@@ -37,7 +37,7 @@ echo '
          
          
         <div class="col-sm">
-        <form method="post" action="CancelBooking">
+        <form method="post" action="">
 
         <button class="btn btn-primary " name="submit" type="submit">
         Require cancelation.
@@ -63,9 +63,9 @@ echo '
 <input id="" type="hidden" value="'.$row['ServiceProviderID'].'" name="ServiceProviderID">
 <input id="" type="hidden" value="'.$row['BookingID'].'" name="BookingID">
 <input id="" type="hidden" value="'.$_SESSION['UserID'].'" name="UserID">
-
-
-<input type="submit" value="Confirm">
+<button class="btn btn-primary " name="submit" type="submit">
+        Confirm
+</button>
 </form>
 
                      </div>
