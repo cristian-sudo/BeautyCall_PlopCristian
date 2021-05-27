@@ -4,7 +4,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandler.php');
 require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandlerObject.php');
 //get all categories, and control if isset a post value with that name.
 
-
+print_r($_POST);
 
 
   
@@ -28,8 +28,7 @@ function generateRandomString($length = 10)
     
 
 if(isset($_FILES['fileToUpload'])){
-   
-    $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Images/StaffImages/";
+    $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/EZCUT/Images/ServiceImages/";
     // $target_file is the new file name including the extension
     // $_FILES["fileToUpload"] contains an entry corresponding to the file uploaded
     // by pushing the button with name fileToUpload
@@ -39,10 +38,6 @@ if(isset($_FILES['fileToUpload'])){
 
     $temp = explode(".", $_FILES["fileToUpload"]["name"]);
     $newfilename = round(microtime(true)) . '.' . end($temp);
-    
-
-
-
     $target_file = $target_dir . $newfilename;
     $uploadOk = 1;
     // get information about the extension
@@ -89,86 +84,51 @@ if(isset($_FILES['fileToUpload'])){
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
 
-        $stmt1 = $dbh->getInstance()->prepare('INSERT INTO Staff (Name, Surname,Email,PhoneNumber,ServiceProviderID,ImageName)
-        VALUES (:Name, :Surname,:Email,:PhoneNumber,:ServiceProviderID,:ImageName);
+        $stmt1 = $dbh->getInstance()->prepare('INSERT INTO services (ServiceName,ServiceCategoryID,Price,TimeDurationHours,TimeDurationMinutes,ShortDescription,ServiceProviderID)
+        VALUES (:ServiceName, :ServiceCategoryID,:Price,:TimeDurationHours,:TimeDurationMinutes,:ShortDescription,:ServiceProviderID);
         ');  
-         $stmt1->bindParam(':Name', $Name);
-         $stmt1->bindParam(':Surname', $Surname);
-         $stmt1->bindParam(':Email', $Email);
-         $stmt1->bindParam(':PhoneNumber', $PhoneNumber);
+         $stmt1->bindParam(':ServiceName', $ServiceName);
+         $stmt1->bindParam(':ServiceCategoryID', $ServiceCategoryID);
+         $stmt1->bindParam(':Price', $Price);
+         $stmt1->bindParam(':TimeDurationHours', $TimeDurationHours);
+         $stmt1->bindParam(':TimeDurationMinutes', $TimeDurationMinutes);
+         $stmt1->bindParam(':ShortDescription', $ShortDescription);
          $stmt1->bindParam(':ServiceProviderID', $ServiceProviderID);
-         $stmt1->bindParam(':ImageName', $ImageName);
     
-         $Name=$_POST['Name']; 
-         $Surname=$_POST['Surname']; 
-         $Email=$_POST['Email']; 
-         $PhoneNumber=$_POST['Phone']; 
+         $ServiceName=$_POST['ServiceName']; 
+         $ServiceCategoryID=$_POST['Category']; 
+         $Price=$_POST['Price']; 
+         $TimeDurationHours=$_POST['TimeDurationHours']; 
+         $TimeDurationMinutes=$_POST['TimeDurationMinutes']; 
+         $ShortDescription=$_POST['ShortDescription']; 
          $ServiceProviderID=$_SESSION['ServiceProviderID']; 
-         $ImageName=$newfilename; 
         $stmt1->execute();
 
-
-        $stmt8 = $dbh->getInstance()->prepare('SELECT MAX(StaffID) AS MAX
-        FROM Staff
-        WHERE StaffID;
+        $stmt8 = $dbh->getInstance()->prepare('SELECT MAX(ServiceID) AS MAX
+        FROM services
+        WHERE ServiceID;
 
         ');   
         $stmt8->execute();
         $MAX=$stmt8->fetch();
-
-        $stmt6 = $dbh->getInstance()->prepare('SELECT  * FROM servicecategories  
-        ');   
-        $stmt6->execute();
-            while($row = $stmt6->fetch()){
-  
-        //scorro i risulatti dei post
-
-
-        foreach ($_POST as $index => $value) {
-           if($index==$row['ServiceCategoryName']){
-
-
-
-
-        $stmt12 = $dbh->getInstance()->prepare('SELECT ServiceCategoryID 
-        FROM ServiceCategories
-        WHERE ServiceCategoryName="'.$row['ServiceCategoryName'].'";
-
-        ');   
-        $stmt12->execute();
-        $CategoryID=$stmt12->fetch();
+echo $MAX['MAX'];
+        $stmt2 = $dbh->getInstance()->prepare('INSERT INTO serviceImages (ImageName,ServiceID)
+        VALUES (:ImageName, :ServiceID);
+        ');  
+         $stmt2->bindParam(':ImageName', $ImageName);
+         $stmt2->bindParam(':ServiceID', $ServiceID);
+         $ImageName= $newfilename;
+         $ServiceID=$MAX['MAX']; 
+        $stmt2->execute();
+        header('Location: ManageServices.php');
+        exit;
 
 
 
-          
 
-            $stmt10 = $dbh->getInstance()->prepare('INSERT INTO StaffCategories (StaffID,ServiceCategoryID)
-            VALUES ("'.$MAX['MAX'].'","'.$CategoryID['ServiceCategoryID'].'"); 
-            ');   
-            $stmt10->execute();
-
-            
-           
-        
-        }
-    }
-}
-
-
-      } else {
-        echo "Sorry, there was an error uploading your file.";
       }
-    }
-    
 
 
-
-        
-    }
-/////////////////////////////////////////////
-
-
-header('Location: StaffManage.php?StaffManageName='.$_POST['Name']);
-exit;
-
+}
+}
 ?>

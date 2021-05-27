@@ -90,7 +90,7 @@ if (isset($_GET['StaffManageName'])){
             <h3 style="text-align:center;">Categories:</h3><br>';
             //get all categories in general
             //get categories of this staff
-            $stmt2 = $dbh->getInstance()->prepare('SELECT * FROM servicecategories
+            $stmt2 = $dbh->getInstance()->prepare('SELECT DISTINCT  servicecategories.ServiceCategoryID, servicecategories.ServiceCategoryName FROM servicecategories
             INNER JOIN services ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
             WHERE ServiceProviderID ="'.$_SESSION['ServiceProviderID'].'"
             ORDER BY ServiceCategoryName ASC
@@ -105,7 +105,7 @@ if (isset($_GET['StaffManageName'])){
             
                         <input type="checkbox"  id="Categories" name="'.$row10['ServiceCategoryName'].'" value="'.$row10['ServiceCategoryName'].'"';
 
-                        $stmt6 = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM servicecategories
+                        $stmt6 = $dbh->getInstance()->prepare('SELECT   DISTINCT ServiceCategoryName FROM servicecategories
                         INNER JOIN staffcategories ON servicecategories.ServiceCategoryID=staffcategories.ServiceCategoryID
                         WHERE StaffID ="'.$row['StaffID'].'"
                         ORDER BY ServiceCategoryName ASC

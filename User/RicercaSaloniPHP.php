@@ -22,10 +22,14 @@ if(isset($_REQUEST["term"])){
         WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 1');
         $GETACategory->execute();
         $resultCategory=$GETACategory;
+        $entrato=null;
         while($row2 = $resultCategory->fetch()){
+            $entrato=true;
        $DefaultCategory=$row2['ServiceCategoryName'];
         }
-
+if($entrato!=true){
+    $DefaultCategory='Hairstyle';
+}
     
    
             

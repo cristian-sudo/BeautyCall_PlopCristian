@@ -54,7 +54,7 @@ echo'
             echo ' <h3 style="text-align:center;">Categories:</h3><br>';
             //get all categories in general
             //get categories of this staff
-            $stmt2 = $dbh->getInstance()->prepare('SELECT * FROM servicecategories
+            $stmt2 = $dbh->getInstance()->prepare('SELECT DISTINCT servicecategories.ServiceCategoryName,servicecategories.ServiceCategoryID FROM servicecategories
             INNER JOIN services ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
             WHERE ServiceProviderID ="'.$_SESSION['ServiceProviderID'].'"
             ORDER BY ServiceCategoryName ASC
