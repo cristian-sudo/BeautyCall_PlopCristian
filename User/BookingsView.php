@@ -38,7 +38,10 @@ echo '
          
         <div class="col-sm">
         <form method="post" action="CancelBooking">
-        <input type="submit" value="Cancel booking">
+
+        <button class="btn btn-primary " name="submit" type="submit">
+        Require cancelation.
+                            </button>
         </form>
          
         </div></div>';

@@ -115,14 +115,14 @@ $row5 = $stmt->fetch();
                          
                                               echo '
                                                       <div class="carousel-item active">
-                                                        <img class="d-block w-100" style="height: 420px;width: 350px;" src="/EZCUT/Images/ServiceImages/'.$row8['ImageName'].'" alt="">
+                                                        <img class="d-block w-100" style="height: 600px;width: 350px;" src="/EZCUT/Images/ServiceImages/'.$row8['ImageName'].'" alt="">
                                                       </div>
                             ';
                             $first=1;
                        }else{
                               echo '
                                                       <div class="carousel-item ">
-                                                         <img class="d-block w-100" style="height: 420px;width: 350px;" src="/EZCUT/Images/ServiceImages/'.$row8['ImageName'].'" alt="">
+                                                         <img class="d-block w-100" style="height: 600px;width: 350px;" src="/EZCUT/Images/ServiceImages/'.$row8['ImageName'].'" alt="">
                                                        </div>
                              
                        ';

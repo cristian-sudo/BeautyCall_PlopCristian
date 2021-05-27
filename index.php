@@ -226,8 +226,8 @@
         <div class='window'>
           <div class='overlay'></div>
           <div class='content'>
-            <div class='welcome'>EZCUT</div>
-            <div class='subtitle'>We're almost done. Before using our services you need to create an account or login.</div>
+            <div class='welcome'>BeautyCall</div>
+            <div class='subtitle'>First you need to register or login for using our services.</div>
             <div class='input-fields'>
               <form action="/EZCUT/Login.php" method="post">
                     <input type='text' placeholder='Username' class='input-line full-width' name="Username" required></input>
