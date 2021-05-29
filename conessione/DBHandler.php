@@ -1,8 +1,6 @@
 <?php
-
 class DBHandler {
     private  $db;
-    //once you call the function it creates a connection
     function __construct() {
         $this->connect_database();
     }
@@ -12,7 +10,6 @@ class DBHandler {
     private function connect_database() {
         define('USER', 'root');
         define('PASSWORD', '');
-        // Database connection
         try {
             $connection_string = 'mysql:host=localhost;dbname=ezcut;charset=utf8';
             $connection_array = array(
@@ -27,5 +24,4 @@ class DBHandler {
         }
     }
 }
-
 ?>

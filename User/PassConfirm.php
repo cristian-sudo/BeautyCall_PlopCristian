@@ -7,8 +7,6 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/UserMenu.php');
 <input type="password" name="pass"></input>
 <input type="submit" value="Confirm"></input>
 </form>
-
-
 </div>
 </body>
 </html>

@@ -2,7 +2,6 @@
 require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
 ?>
 <div class="row">
-
 <div class="col">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -14,8 +13,6 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
   </div>
 </div>
 </div>
-
-
 <div class="col">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,7 +21,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <!-- get all staff-->
       <?php
-      $stmt99 = $dbh->getInstance()->prepare('SELECT Name FROM Staff
+      $stmt99 = $dbh->getInstance()->prepare('SELECT Name FROM Staffs
       WHERE ServiceProviderID ="'.$_SESSION['ServiceProviderID'].'"
       ORDER BY Name ASC
       ');
@@ -35,12 +32,9 @@ echo '
 ';
       }
       ?>
-
-   
   </div>
 </div>
 </div>
-
 <div class="col">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,11 +55,9 @@ echo '
 ';
       }
       ?>
-    
   </div>
 </div>
 </div>
-
 <div class="col">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,8 +80,6 @@ echo '
   </div>
 </div>
 </div>
-
-
 <div class="col">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,25 +91,18 @@ echo '
     <a class="dropdown-item" href="Bookings.php?OrderBy=Status&StatusName=Finished">Finished</a>
   </div>
 </div>
-
-
-
 </div>
-
-
 </div>
 <?php
-
 if(!isset($_GET['OrderBy'])){
-                                    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+                                    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
                                     INNER JOIN users ON bookings.UserID=users.UserID
                                     INNER JOIN services ON bookings.ServiceID=services.ServiceID
-                                    INNER JOIN staff ON bookings.StaffID=staff.StaffID
+                                    INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
                                     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
                                     WHERE bookings.ServiceProviderID =:ServiceProviderID
                                     ORDER BY bookings.BookingID DESC
-                                    ");
-                                    
+                                    ");                                   
                                         $stmt5->bindParam(':ServiceProviderID', $ServiceProviderID);
                                         $ServiceProviderID = $_SESSION['ServiceProviderID'];
                                         $stmt5->execute();
@@ -140,13 +123,9 @@ if(!isset($_GET['OrderBy'])){
                                         Finish Time:&nbsp '.$row['FinishTime'].'    <br>
                                         Costumer:&nbsp '.$row['StaffName'].'    <br>
                                         Status:&nbsp '.$row['BookingStatus'].'    <br>
-
                                     </div>
-
-
                                     <div class="col">';
 if($row['BookingStatus']=="Booked"){
-
   echo '
   Actions:
 
@@ -157,18 +136,13 @@ if($row['BookingStatus']=="Booked"){
                                         Mark as finished
                                         </button>
                                         </form>
-
                                         <form action="BookingManage.php" method="post">
                                         <input type="hidden" name="BookingID" value="'.$row['BookingID'].'">
                                         <input type="hidden" name="Action" value="Refused">
                                         <button class="btn btn-primary " name="submit" type="submit">
                                         Refuse
-                                        </button>
-                                        
-                                        </form>
-  
-  
-  
+                                        </button>                               
+                                        </form> 
   ';
 }
 if($row['BookingStatus']=="Finished"){
@@ -177,33 +151,25 @@ echo '<span style="color:green; ">Finished!!</span>';
 if($row['BookingStatus']=="Refused"){
   echo '<span style="color:red; ">Refused!!</span>';
 }
-
                                      echo '
                                     </div>
                                     </div>
                                     ';
-
-
                                     }
                                     if($entrato!=true)
-                                    {
-                                      
+                                    {                                    
                                       echo '
   <div style="color:green; font-size:30px; text-align:center; ">
   <span>No bookings yet!!</span>
-  </div>';
-                                     
-                                    }
-                                    
-
+  </div>';                                 
+    }                                 
 }else{
     $Valid=null;
-
 if($_GET['OrderBy']=="BookingStatus"){
-    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
     INNER JOIN users ON bookings.UserID=users.UserID
     INNER JOIN services ON bookings.ServiceID=services.ServiceID
-    INNER JOIN staff ON bookings.StaffID=staff.StaffID
+    INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
     WHERE bookings.ServiceProviderID =:ServiceProviderID
     ORDER BY bookings.".$_GET['OrderBy']." DESC
@@ -213,9 +179,8 @@ if($_GET['OrderBy']=="BookingStatus"){
         $stmt5->execute();
         $Valid=True;
 }
-
 if($_GET['OrderBy']=="Older"){
-    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
     INNER JOIN users ON bookings.UserID=users.UserID
     INNER JOIN services ON bookings.ServiceID=services.ServiceID
     INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
@@ -228,10 +193,8 @@ if($_GET['OrderBy']=="Older"){
         $stmt5->execute();
         $Valid=True;
 }
-
-
 if($_GET['OrderBy']=="Newer"){
-    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+    $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
     INNER JOIN users ON bookings.UserID=users.UserID
     INNER JOIN services ON bookings.ServiceID=services.ServiceID
     INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
@@ -244,17 +207,14 @@ if($_GET['OrderBy']=="Newer"){
         $stmt5->execute();
         $Valid=True;
 }
-
-
-
 if($_GET['OrderBy']=="Staff" && isset($_GET['StaffName'])){
-  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
   INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
   INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
   WHERE bookings.ServiceProviderID =:ServiceProviderID
-  AND Staff.Name="'.$_GET['StaffName'].'"
+  AND Staffs.Name="'.$_GET['StaffName'].'"
   ORDER BY bookings.Date ASC
   ');
       $stmt5->bindParam(':ServiceProviderID', $ServiceProviderID);
@@ -262,10 +222,8 @@ if($_GET['OrderBy']=="Staff" && isset($_GET['StaffName'])){
       $stmt5->execute();
       $Valid=True;
 }
-
-
 if($_GET['OrderBy']=="CategoryName" && isset($_GET['CategoryPass'])){
-  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
   INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
@@ -279,10 +237,8 @@ if($_GET['OrderBy']=="CategoryName" && isset($_GET['CategoryPass'])){
       $stmt5->execute();
       $Valid=True;
 }
-
-
 if($_GET['OrderBy']=="ServiceName" && isset($_GET['ServicePass'])){
-  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
   INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
@@ -296,10 +252,8 @@ if($_GET['OrderBy']=="ServiceName" && isset($_GET['ServicePass'])){
       $stmt5->execute();
       $Valid=True;
 }
-
-
 if($_GET['OrderBy']=="Status" && isset($_GET['StatusName'])){
-  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
+  $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staffs.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
   INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
@@ -313,23 +267,10 @@ if($_GET['OrderBy']=="Status" && isset($_GET['StatusName'])){
       $stmt5->execute();
       $Valid=True;
 }
-
-
-
-
-
-
-
-
-
-
-
 if($Valid==True){
     $entrato=null;
     while ($row = $stmt5->fetch()) {
 $entrato=true;
-
-
 echo '
 <div class="card-footer text-muted row">
     <div class="col">
@@ -344,33 +285,25 @@ echo '
         Finish Time:&nbsp '.$row['FinishTime'].'    <br>
         Costumer:&nbsp '.$row['StaffName'].'    <br>
         Status:&nbsp '.$row['BookingStatus'].'    <br>
-
     </div>
     <div class="col">';
     if($row['BookingStatus']=="Booked"){
-
       echo '
       Actions:
-    
                                             <form action="BookingManage.php" method="post">
                                             <input type="hidden" name="BookingID" value="'.$row['BookingID'].'">
                                             <input type="hidden" name="Action" value="Finished">
                                             <button class="btn btn-primary " name="submit" type="submit">
                                             Mark as finished
                                             </button>
-                                            </form>
-    
+                                            </form>   
                                             <form action="BookingManage.php" method="post">
                                             <input type="hidden" name="BookingID" value="'.$row['BookingID'].'">
                                             <input type="hidden" name="Action" value="Refused">
                                             <button class="btn btn-primary " name="submit" type="submit">
                                             Refuse
-                                            </button>
-                                            
-                                            </form>
-      
-      
-      
+                                            </button>                                          
+                                            </form>          
       ';
     }
     if($row['BookingStatus']=="Finished"){
@@ -379,57 +312,24 @@ echo '
     if($row['BookingStatus']=="Refused"){
       echo '<span style="color:red; ">Refused!!</span>';
     }
-    
-   
 echo '
     </div>
 </div>
-
 ';
-
     }
-
 if($entrato!=true){
- 
   echo '
   <div style="color:green; font-size:30px; text-align:center; ">
   <span>No bookings yet!!</span>
   </div>';
-
 }
 }else{
   echo '
   <div style="color:green; font-size:30px; text-align:center; ">
   <span>Order by not valid!!</span>
-  </div>';
-  
-    
+  </div>';   
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
-                   
-
-
-
-
-
+?>                 
 </body>
 </html>

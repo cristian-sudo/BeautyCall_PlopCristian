@@ -2,26 +2,20 @@
 require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/GettingInformationsSalon.php');
 ?>
 <div class="container-fluid">
-
 <div class="TextDimension">
 <nav class="navbar navbar-expand-lg navbar-light bg-light    justify-content-between">
-
   <a class="nav-link" id="Logo" href="HomePageSalon.php"><?php echo $_SESSION['SalonName'];?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="Clients.php">Clients <span class="sr-only">(current)</span></a>
       </li>
-      
       <li class="nav-item active">
         <a class="nav-link" href="Bookings.php">Bookings</a>
       </li>
-      
 </ul>
 <ul class="navbar-nav">
       <li class="nav-item dropdown ">
@@ -37,15 +31,12 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/GettingInformationsSalon.php');
         </div>
       </li>
       <li>
-
 <?php
 $stmt = $dbh->getInstance()->prepare("SELECT administratorImage FROM administrators
 WHERE AdministratorID =:AdministratorID");
 $stmt->bindParam(':AdministratorID', $AdministratorID);
 $AdministratorID = $_SESSION['AdministratorID'];
 $stmt->execute();
-
-
 $row = $stmt->fetch();
 if($row){
       if($row['administratorImage']!=null){
@@ -62,8 +53,6 @@ if($row){
     </ul>
 
   </div>
-
-
 </nav>
   </div>
 </div>

@@ -4,8 +4,6 @@
     ?>
     <h1 id="HomePageCategories"><?php echo 'Category:'.$_GET['CategoryPass'] ?></h1>
     <br>
-
-
 <div class="container-fluid centralContent">
 <?php
 $GETSalons = $dbh->getInstance()->prepare('SELECT DISTINCT serviceproviders.ServiceProviderID,serviceproviders.Name,serviceproviders.City,serviceproviders.AverageSalonRating,serviceproviders.Address,serviceproviders.ShortDescription
@@ -14,12 +12,10 @@ INNER JOIN services ON serviceproviders.ServiceProviderID=services.ServiceProvid
 INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
 WHERE servicecategories.ServiceCategoryName="'.$_GET['CategoryPass'].'"
 AND serviceproviders.Status="Confirmed"
-ORDER BY serviceproviders.Name DESC ;');//get  salons categories
+ORDER BY serviceproviders.Name DESC ;');
 $GETSalons->execute();
 $resultSalons=$GETSalons;
  ?>
-
-
 <?php
 if ($resultSalons!=null) {
   while ($row = $resultSalons->fetch()) {
@@ -32,10 +28,6 @@ if ($resultSalons!=null) {
     while($row2 = $resultCategory->fetch()){
    $DefaultCategory=$row2['ServiceCategoryName'];
     }
-    
-
-
-
 echo '
 <a  href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$_GET['CategoryPass'].'">
 <section class="py-5">
@@ -47,7 +39,6 @@ echo '
                             <p>This service provider have this categories and much more:</p>
                             <ul>
                             ';
-                            //get max 5 categories
                             $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM serviceproviders 
                             INNER JOIN services ON serviceproviders.ServiceProviderID=services.ServiceProviderID 
                             INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
@@ -80,21 +71,10 @@ echo '
                                 ';
                                 echo '
                             </div>
-                </div>
-                
+                </div> 
             </div>
         </section>
         </a>
-
-
-
-
-
-
-
-
-
-
 ';
 }
 }else{

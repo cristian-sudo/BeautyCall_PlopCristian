@@ -4,9 +4,7 @@
         <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
-        <!-- Navigation-->
         <?php  require('UserMenu.php')?>
-        <!-- Page header-->
         <header>
             
             <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
@@ -24,7 +22,6 @@
                             <p>Here you can find the best service provider based on category in your city.</p>
                         </div>
                     </div>
-
                     <div class="carousel-item">
 
                         <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Second.jpeg" alt="..." />
@@ -53,11 +50,9 @@
                 </a>
             </div>
         </header>
-        <!-- Page Content-->
         <section class="py-5">
             <div class="container">
                 <h1 class="mb-4">BeautyCall, the future!</h1>
-                <!-- Marketing Icons Section-->
                 <div class="row">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="card h-100">
@@ -83,7 +78,6 @@
             </div>
         </section>
         <hr class="my-0" />
-        <!-- Portfolio Section-->
         <section class="py-5 bg-light">
             <div class="container">
                 <h2 class="mb-4">Main Categories</h2>
@@ -115,10 +109,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-
                 </div>
             </div>
         </section>

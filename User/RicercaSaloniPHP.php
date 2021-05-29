@@ -3,11 +3,6 @@
  require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandler.php');
  require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandlerObject.php');
 if(isset($_REQUEST["term"])){
-
-
-    
-
-
     $stmt = $dbh->getInstance()->prepare('SELECT  DISTINCT Name FROM serviceproviders
     WHERE Name  LIKE :term
     ');   
@@ -29,10 +24,7 @@ if(isset($_REQUEST["term"])){
         }
 if($entrato!=true){
     $DefaultCategory='Hairstyle';
-}
-    
-   
-            
+}        
             echo '
             <a href="Salonview.php?Salonview='.$row['Name'].'&Categoryview='.$DefaultCategory.'" class="list-group-item list-group-item-action Red">';
             echo  $row["Name"];
@@ -44,5 +36,4 @@ if($entrato!=true){
         echo '</a>';
     }
 } 
-
 ?>

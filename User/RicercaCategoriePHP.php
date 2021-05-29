@@ -9,8 +9,6 @@ if(isset($_REQUEST["term"])){
     $term = $_REQUEST["term"] . '%';
     $stmt->bindParam(":term", $term);
     $stmt->execute();
-
-    
     if($stmt->rowCount() > 0){
         while($row = $stmt->fetch()){
             
@@ -25,5 +23,4 @@ if(isset($_REQUEST["term"])){
         echo '</a>';
     }
 } 
-
 ?>

@@ -3,12 +3,10 @@
          require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandler.php');
          require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandlerObject.php');
       if (isset($_POST["Name"])) {
-///////////////////////////////////////////////
           $stmt = $dbh->getInstance()->prepare("SELECT AdministratorID FROM Administrators WHERE AdministratorName ='".$_SESSION['AdministratorName']."'");
           $stmt->execute();
           $row = $stmt->fetch();
           $_SESSION['AdministratorID']=$row['AdministratorID'];
- /////////////////////////////////////////////
  $stmt = $dbh->getInstance()->prepare("INSERT INTO OpeningTimes(Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,AdministratorID)
          values(:Monday,:Tuesday,:Wednesday,:Thursday,:Friday,:Saturday,:Sunday,:AdministratorID)");
          $stmt->bindParam(':Monday', $Monday);
@@ -28,13 +26,10 @@
          $Sunday = $_POST['SundayOpen']."-".$_POST['SundayClosing'];
          $AdministratorID = $_SESSION['AdministratorID'];
         $stmt->execute();
-
-//////////////////////////////////////////////
         $stmt = $dbh->getInstance()->prepare("SELECT OpeningTimeID FROM OpeningTimes WHERE AdministratorID ='".$_SESSION['AdministratorID']."'");
         $stmt->execute();
         $row1 = $stmt->fetch();
         $_SESSION['OpeningTimeID']=$row1['OpeningTimeID'];
-
                 $stmt = $dbh->getInstance()->prepare("INSERT INTO serviceproviders(Name, Country, City, Address, PostalCode,ShortDescription, Email, PhoneNumber, AdministratorID, OpeningTimeID,Status)
                         values(:Name, :Country, :City, :Address, :PostalCode,:ShortDescription,:Email, :PhoneNumber, :AdministratorID, :OpeningTimeID, :Status)");
                 $stmt->bindParam(':Name', $Name);

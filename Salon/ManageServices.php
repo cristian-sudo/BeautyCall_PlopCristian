@@ -93,8 +93,6 @@ $row=$stmt;
       <input type="number"  name="TimeDurationMinutes" value="'.$row['TimeDurationMinutes'].'" required>
       </div>
       </div>
-
-
       <div class="row"> 
       <div class="col" style="padding-left:140px">
       <span style="font-size:30px; color:blue;">Category:'.$row['ServiceCategoryName'].'</span>
@@ -114,7 +112,6 @@ $stmt5->execute();
 while($row5 = $stmt5->fetch()){  
   
       echo '
-
       <img src="/EZCUT/Images/ServiceImages/'.$row5['ImageName'].'" alt="" width="760" height="350">
       <a href="CancelImageService.php?ServiceImageID='.$row5['ServiceImagesID'].'&ImageName='.$row5['ImageName'].'" style="font-size:40px">Cancel</a>
    
@@ -145,16 +142,12 @@ echo '
       </div>
       </div>
     
-
 <div class="row">
 <div class="col">
 <input type="submit"   name="Submit" value="Confirm changes" >
 </div></div>
       
       
-
-
-
       </form>
       </div>
       ';

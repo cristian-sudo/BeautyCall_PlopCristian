@@ -2,12 +2,9 @@
 require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
 ?>
 <?php
-
-
 $stmt10 = $dbh->getInstance()->prepare("SELECT DISTINCT users.UserID,Name,Surname FROM users
 INNER JOIN bookings ON bookings.UserID=users.UserID
 WHERE bookings.ServiceProviderID =:ServiceProviderID ORDER BY Surname ASC");
-
     $stmt10->bindParam(':ServiceProviderID', $ServiceProviderID);
     $ServiceProviderID = $_SESSION['ServiceProviderID'];
     $stmt10->execute();
@@ -21,19 +18,11 @@ $NOB=0;
             while ($row1 = $stmt12->fetch()) {
                 $NOB=$row1['NOB'];
             }
-
-
 echo '
-
 <div class="card-footer text-muted">
-
     Name:&nbsp '.$row['Name'].'  &nbsp  '.$row['Surname'].'    <br>
     Total number of bookings:'.$NOB.'
-
 </div>';
-
-
-
     }
     if($entrato!=true){
 echo '
@@ -41,15 +30,6 @@ echo '
   <span>No clients yet!</span>
   </div>';
     }
-
-
-
 ?>
-                   
-
-
-
-
-
 </body>
 </html>
