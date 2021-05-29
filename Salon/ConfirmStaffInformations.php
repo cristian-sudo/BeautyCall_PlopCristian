@@ -164,14 +164,14 @@ if(isset($_FILES['fileToUpload'])){
         if($row){
         if($row['ImageName']!=null)
         unlink($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Images/UserImages/'.$row['ImageName']);
-        $stmt = $dbh->getInstance()->prepare('UPDATE staff SET ImageName=:ImageName
+        $stmt = $dbh->getInstance()->prepare('UPDATE staffs SET ImageName=:ImageName
           WHERE StaffID ="'.$_POST['StaffID'].'"');
           $stmt->bindParam(':ImageName', $ImageName);
           $ImageName=$newfilename;
           $stmt->execute();
 
         }else {
-          $stmt = $dbh->getInstance()->prepare('UPDATE staff SET ImageName=:ImageName
+          $stmt = $dbh->getInstance()->prepare('UPDATE staffs SET ImageName=:ImageName
           WHERE StaffID ="'.$_POST['StaffID'].'"');
           $stmt->bindParam(':ImageName', $ImageName);
           $ImageName=$newfilename;

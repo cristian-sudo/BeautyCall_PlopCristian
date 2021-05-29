@@ -13,7 +13,7 @@
         //print_r($_GET);
 //getting ServiceProviderID
 $ServiceProviderID;
-$stmt = $dbh->getInstance()->prepare("SELECT ServiceProviderID FROM serviceprovider
+$stmt = $dbh->getInstance()->prepare("SELECT ServiceProviderID FROM serviceproviders
          WHERE Name =:SalonName");
  $stmt->bindParam(':SalonName', $SalonName);
  $SalonName = $_GET['Salonview'];

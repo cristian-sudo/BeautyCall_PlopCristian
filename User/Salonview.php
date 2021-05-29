@@ -14,7 +14,7 @@
                         <!-- Search Widget-->
 <?php
 $SalonInformationsArray;
-$stmt = $dbh->getInstance()->prepare("SELECT * FROM serviceprovider WHERE Name =:SalonName");
+$stmt = $dbh->getInstance()->prepare("SELECT * FROM serviceproviders WHERE Name =:SalonName");
 $stmt->bindParam(':SalonName', $SalonName);
 $SalonName = $_GET['Salonview'];
 $stmt->execute();
@@ -26,9 +26,9 @@ $row5 = $stmt->fetch();
         ///////Getting all the salon categories
      $GETSalonsCategories = $dbh->getInstance()->prepare('SELECT DISTINCT servicecategories.ServiceCategoryName FROM servicecategories
      INNER JOIN services ON servicecategories.ServiceCategoryID=services.ServiceCategoryID
-     INNER JOIN serviceprovider ON services.ServiceProviderID=serviceprovider.ServiceProviderID
-     WHERE serviceprovider.ServiceProviderID="'.$row5['ServiceProviderID'].'"
-     ORDER BY serviceprovider.Name DESC ;');//get  salons categories
+     INNER JOIN serviceproviders ON services.ServiceProviderID=serviceproviders.ServiceProviderID
+     WHERE serviceproviders.ServiceProviderID="'.$row5['ServiceProviderID'].'"
+     ORDER BY serviceproviders.Name DESC ;');//get  salons categories
      $GETSalonsCategories->execute();
            $resultSalonsCategories=$GETSalonsCategories;
            /////print all the categories for this salon
@@ -71,10 +71,10 @@ $row5 = $stmt->fetch();
                       <?php
                        $GETSalonsCategoriesServices = $dbh->getInstance()->prepare('SELECT DISTINCT services.ServiceID, services.ServiceName,services.ShortDescription,services.TimeDurationHours,services.TimeDurationMinutes FROM servicecategories
                        INNER JOIN services ON servicecategories.ServiceCategoryID=services.ServiceCategoryID
-                       INNER JOIN serviceprovider ON services.ServiceProviderID=serviceprovider.ServiceProviderID
-                       WHERE serviceprovider.Name="'.$_GET['Salonview'].'"
+                       INNER JOIN serviceproviders ON services.ServiceProviderID=serviceproviders.ServiceProviderID
+                       WHERE serviceproviders.Name="'.$_GET['Salonview'].'"
                        AND servicecategories.ServiceCategoryName="'.$_GET['Categoryview'].'"
-                       ORDER BY serviceprovider.Name DESC;');//get  salons services wirh this category
+                       ORDER BY serviceproviders.Name DESC;');//get  salons services wirh this category
                        $GETSalonsCategoriesServices->execute();
                        $resultSalonsCategoriesServices=$GETSalonsCategoriesServices;
                        $InputRow=$resultSalonsCategoriesServices;

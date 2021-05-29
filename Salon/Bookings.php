@@ -218,7 +218,7 @@ if($_GET['OrderBy']=="Older"){
     $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
     INNER JOIN users ON bookings.UserID=users.UserID
     INNER JOIN services ON bookings.ServiceID=services.ServiceID
-    INNER JOIN staff ON bookings.StaffID=staff.StaffID
+    INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
     WHERE bookings.ServiceProviderID =:ServiceProviderID
     ORDER BY bookings.Date DESC
@@ -234,7 +234,7 @@ if($_GET['OrderBy']=="Newer"){
     $stmt5 = $dbh->getInstance()->prepare("SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
     INNER JOIN users ON bookings.UserID=users.UserID
     INNER JOIN services ON bookings.ServiceID=services.ServiceID
-    INNER JOIN staff ON bookings.StaffID=staff.StaffID
+    INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
     WHERE bookings.ServiceProviderID =:ServiceProviderID
     ORDER BY bookings.Date ASC
@@ -251,7 +251,7 @@ if($_GET['OrderBy']=="Staff" && isset($_GET['StaffName'])){
   $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
-  INNER JOIN staff ON bookings.StaffID=staff.StaffID
+  INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
   INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
   WHERE bookings.ServiceProviderID =:ServiceProviderID
   AND Staff.Name="'.$_GET['StaffName'].'"
@@ -268,7 +268,7 @@ if($_GET['OrderBy']=="CategoryName" && isset($_GET['CategoryPass'])){
   $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
-  INNER JOIN staff ON bookings.StaffID=staff.StaffID
+  INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
   INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
   WHERE bookings.ServiceProviderID =:ServiceProviderID
   AND servicecategories.ServiceCategoryName="'.$_GET['CategoryPass'].'"
@@ -285,7 +285,7 @@ if($_GET['OrderBy']=="ServiceName" && isset($_GET['ServicePass'])){
   $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
-  INNER JOIN staff ON bookings.StaffID=staff.StaffID
+  INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
   INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
   WHERE bookings.ServiceProviderID =:ServiceProviderID
   AND services.ServiceName="'.$_GET['ServicePass'].'"
@@ -302,7 +302,7 @@ if($_GET['OrderBy']=="Status" && isset($_GET['StatusName'])){
   $stmt5 = $dbh->getInstance()->prepare('SELECT *,users.Name AS UserName,users.Surname AS UserSurname, staff.Name AS StaffName FROM bookings
   INNER JOIN users ON bookings.UserID=users.UserID
   INNER JOIN services ON bookings.ServiceID=services.ServiceID
-  INNER JOIN staff ON bookings.StaffID=staff.StaffID
+  INNER JOIN staffs ON bookings.StaffID=staffs.StaffID
   INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID
   WHERE bookings.ServiceProviderID =:ServiceProviderID
   AND Bookings.BookingStatus="'.$_GET['StatusName'].'"

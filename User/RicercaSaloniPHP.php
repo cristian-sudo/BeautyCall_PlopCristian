@@ -8,7 +8,7 @@ if(isset($_REQUEST["term"])){
     
 
 
-    $stmt = $dbh->getInstance()->prepare('SELECT  DISTINCT Name FROM serviceprovider
+    $stmt = $dbh->getInstance()->prepare('SELECT  DISTINCT Name FROM serviceproviders
     WHERE Name  LIKE :term
     ');   
     $term = $_REQUEST["term"] . '%';
@@ -16,10 +16,10 @@ if(isset($_REQUEST["term"])){
     $stmt->execute();
     if($stmt->rowCount() > 0){
         while($row = $stmt->fetch()){
-    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceprovider 
-        INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
+    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceproviders 
+        INNER JOIN services ON serviceproviders.ServiceProviderID=services.ServiceProviderID 
         INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-        WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 1');
+        WHERE serviceproviders.Name="'.$row['Name'].'" LIMIT 1');
         $GETACategory->execute();
         $resultCategory=$GETACategory;
         $entrato=null;

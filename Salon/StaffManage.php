@@ -27,7 +27,7 @@ input:focus {
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 <?php
-$stmt = $dbh->getInstance()->prepare('SELECT  * FROM Staff
+$stmt = $dbh->getInstance()->prepare('SELECT  * FROM Staffs
 WHERE ServiceProviderID="'.$_SESSION['ServiceProviderID'].'"  
 ');   
 $stmt->execute();
@@ -48,7 +48,7 @@ $Controll=null;
 <?php
 if (isset($_GET['StaffManageName'])){
 
-    $stmt1 = $dbh->getInstance()->prepare('SELECT  * FROM Staff
+    $stmt1 = $dbh->getInstance()->prepare('SELECT  * FROM Staffs
     WHERE ServiceProviderID="'.$_SESSION['ServiceProviderID'].'"
     AND Name="'.$_GET['StaffManageName'].'"  
     ');   
@@ -146,7 +146,7 @@ if (isset($_GET['StaffManageName'])){
            echo '
             <div class="row"> 
             <div class="col" style="padding-left:140px">';
-            $stmt5 = $dbh->getInstance()->prepare('SELECT ImageName FROM Staff
+            $stmt5 = $dbh->getInstance()->prepare('SELECT ImageName FROM Staffs
             WHERE StaffID ="'.$row['StaffID'].'"
       ');     
       $stmt5->execute();

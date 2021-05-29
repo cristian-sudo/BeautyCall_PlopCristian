@@ -19,7 +19,7 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
         </h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="/EZCUT/User/DateSelector.php?ServicePass='.$_GET['ServicePass'].'&Salonview='.$_GET['Salonview'].'&Categoryview='.$_GET['Categoryview'].'">Change Dates</a></li>
-            <li class="breadcrumb-item active">Chose the Costumer</li>
+            <li class="breadcrumb-item active">Chose the Staff</li>
         </ol>
 
 
@@ -31,8 +31,8 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
      if (isset($_POST['date'])) {
          //getting the time needed for this service
          $stmt = $dbh->getInstance()->prepare("SELECT services.TimeDurationHours,services.TimeDurationMinutes FROM services
-    INNER JOIN serviceprovider on services.ServiceProviderID=serviceprovider.ServiceProviderID
-    WHERE services.ServiceName = :ServiceName and serviceprovider.Name=:SalonName");
+    INNER JOIN serviceproviders on services.ServiceProviderID=serviceproviders.ServiceProviderID
+    WHERE services.ServiceName = :ServiceName and serviceproviders.Name=:SalonName");
          $stmt->bindParam(':ServiceName', $ServiceName);
          $stmt->bindParam(':SalonName', $SalonName);
          $ServiceName = $_GET['ServicePass'];
@@ -49,9 +49,9 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
          $TotalMinutesNeeded=($ServiceTimeRequiredHours*60)+$ServiceTimeRequiredMinutes;
 
          //getting all the staff fot the salon
-         $stmt1 = $dbh->getInstance()->prepare("SELECT Staff.StaffID FROM Staff
-   INNER JOIN serviceprovider ON Staff.ServiceProviderID=serviceprovider.ServiceProviderID
-   WHERE serviceprovider.Name =:SalonName");
+         $stmt1 = $dbh->getInstance()->prepare("SELECT Staffs.StaffID FROM Staffs
+   INNER JOIN serviceproviders ON Staffs.ServiceProviderID=serviceproviders.ServiceProviderID
+   WHERE serviceproviders.Name =:SalonName");
          $stmt1->bindParam(':SalonName', $SalonName);
          $SalonName = $_GET['Salonview'];
          $stmt1->execute();
@@ -72,8 +72,8 @@ $StaffIDBookingPerDate(contains for each Staff his booking for a specific day)
              for ($External=0;$External<count($AllStaffID);$External++) {
                  $IndiceIntervallo=0;
                  $stmt1 = $dbh->getInstance()->prepare("SELECT bookings.BeginTime, bookings.FinishTime FROM bookings
-            INNER JOIN serviceprovider ON bookings.ServiceProviderID=serviceprovider.ServiceProviderID
-            WHERE serviceprovider.Name =:SalonName
+            INNER JOIN serviceproviders ON bookings.ServiceProviderID=serviceproviders.ServiceProviderID
+            WHERE serviceproviders.Name =:SalonName
             AND bookings.Date=:today
             AND bookings.StaffID=:StaffID
             ORDER BY bookings.BeginTime ASC");
@@ -203,7 +203,7 @@ if(!$AllStaffID==null){
 for ($s=0;$s<count($AllStaffID);$s++) {//Analizzo ogni staff
     echo '<div class="card mb-4">';
     ///getting staff name
-    $stmt = $dbh->getInstance()->prepare("SELECT Staff.Name, Staff.ImageName FROM Staff
+    $stmt = $dbh->getInstance()->prepare("SELECT Staffs.Name, Staffs.ImageName FROM Staffs
     WHERE StaffID = :StaffID");
     $stmt->bindParam(':StaffID', $StaffID);
     $StaffID = $AllStaffID[$s];
@@ -261,7 +261,7 @@ echo '</div>';
 echo '</div>';
 echo '
 <div class="card-footer text-muted">
-Costumer:'.$StaffName.'
+Staff:'.$StaffName.'
 </div>';
 echo '</div>';
 

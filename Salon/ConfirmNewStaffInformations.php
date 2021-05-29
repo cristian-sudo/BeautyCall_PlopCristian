@@ -89,7 +89,7 @@ if(isset($_FILES['fileToUpload'])){
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
 
-        $stmt1 = $dbh->getInstance()->prepare('INSERT INTO Staff (Name, Surname,Email,PhoneNumber,ServiceProviderID,ImageName)
+        $stmt1 = $dbh->getInstance()->prepare('INSERT INTO Staffs (Name, Surname,Email,PhoneNumber,ServiceProviderID,ImageName)
         VALUES (:Name, :Surname,:Email,:PhoneNumber,:ServiceProviderID,:ImageName);
         ');  
          $stmt1->bindParam(':Name', $Name);
@@ -109,7 +109,7 @@ if(isset($_FILES['fileToUpload'])){
 
 
         $stmt8 = $dbh->getInstance()->prepare('SELECT MAX(StaffID) AS MAX
-        FROM Staff
+        FROM Staffs
         WHERE StaffID;
 
         ');   

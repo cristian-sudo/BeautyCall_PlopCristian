@@ -24,15 +24,15 @@
 <?php
 
 
-$GETSalons = $dbh->getInstance()->prepare("SELECT DISTINCT serviceprovider.ServiceProviderID,serviceprovider.Name,serviceprovider.City,serviceprovider.AverageSalonRating,serviceprovider.Address,serviceprovider.ShortDescription
-FROM serviceprovider ORDER BY Name DESC LIMIT 7;");
+$GETSalons = $dbh->getInstance()->prepare("SELECT DISTINCT serviceproviders.ServiceProviderID,serviceproviders.Name,serviceproviders.City,serviceproviders.AverageSalonRating,serviceproviders.Address,serviceproviders.ShortDescription
+FROM serviceproviders ORDER BY Name DESC LIMIT 7;");
 $GETSalons->execute();
 $resultSalons=$GETSalons;
 while ($row = $resultSalons->fetch()) {
-    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceprovider 
-    INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
+    $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceproviders 
+    INNER JOIN services ON serviceproviders.ServiceProviderID=services.ServiceProviderID 
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-    WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 1');
+    WHERE serviceproviders.Name="'.$row['Name'].'" LIMIT 1');
     $GETACategory->execute();
     $resultCategory=$GETACategory;
     while($row2 = $resultCategory->fetch()){
@@ -53,10 +53,10 @@ echo '
                             <ul>
                             ';
                             //get max 5 categories
-                            $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM serviceprovider 
-                            INNER JOIN services ON serviceprovider.ServiceProviderID=services.ServiceProviderID 
+                            $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM serviceproviders 
+                            INNER JOIN services ON serviceproviders.ServiceProviderID=services.ServiceProviderID 
                             INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
-                            WHERE serviceprovider.Name="'.$row['Name'].'" LIMIT 5');
+                            WHERE serviceproviders.Name="'.$row['Name'].'" LIMIT 5');
                             $GETACategory1->execute();
                             $resultCategory1=$GETACategory1;
                             while($row3 = $resultCategory1->fetch()){

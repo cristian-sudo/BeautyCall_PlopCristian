@@ -17,7 +17,7 @@ if($_POST['Rate']!=null){
     $result = $stmt4->fetch();
     $toInsert=$result['MAX(BookingRatingID)'];
  
-    $stmt4 = $dbh->getInstance()->prepare('INSERT INTO serviceproviderratings (ServiceProviderID,SalonRatingID)
+    $stmt4 = $dbh->getInstance()->prepare('INSERT INTO serviceproviderratings (ServiceProviderID,BookingRatingID)
     VALUES ("'.$_POST['ServiceProviderID'].'","'.$toInsert.'")');
     $stmt4->execute();
 
@@ -29,7 +29,7 @@ if($_POST['Rate']!=null){
  
 
 
-    $stmt2 = $dbh->getInstance()->prepare('SELECT RatingsNumber FROM serviceprovider
+    $stmt2 = $dbh->getInstance()->prepare('SELECT RatingsNumber FROM serviceproviders
     WHERE ServiceProviderID="'.$_POST['ServiceProviderID'].'"');
     $stmt2->execute();
     $result2 = $stmt2->fetch();
@@ -38,16 +38,16 @@ if($_POST['Rate']!=null){
  
     if(!isset($result2['RatingsNumber'])){
         echo 'vuoto e lo metto a 1';
-        $stmt = $dbh->getInstance()->prepare(' UPDATE serviceprovider
-        SET serviceprovider.RatingsNumber = "1"
+        $stmt = $dbh->getInstance()->prepare(' UPDATE serviceproviders
+        SET serviceproviders.RatingsNumber = "1"
         WHERE ServiceProviderID="'.$_POST['ServiceProviderID'].'"');
         $stmt->execute();
         $MAXNUMBER=1;
     }
     else{
         echo 'non vuoto e lo incremento';
-        $stmt = $dbh->getInstance()->prepare(' UPDATE serviceprovider
-        SET serviceprovider.RatingsNumber = "'.$IncNum.'"
+        $stmt = $dbh->getInstance()->prepare(' UPDATE serviceproviders
+        SET serviceproviders.RatingsNumber = "'.$IncNum.'"
         WHERE ServiceProviderID="'.$_POST['ServiceProviderID'].'"');
         $stmt->execute();
         $MAXNUMBER=$IncNum;
@@ -56,7 +56,7 @@ if($_POST['Rate']!=null){
 
 //calcolare la nuova media
 $stmt6 = $dbh->getInstance()->prepare('SELECT  bookingratings.BookingRatingNumber FROM bookingratings
-INNER JOIN serviceproviderratings ON serviceproviderratings.SalonRatingID=bookingratings.BookingRatingID
+INNER JOIN serviceproviderratings ON serviceproviderratings.BookingRatingID=bookingratings.BookingRatingID
 WHERE serviceproviderratings.ServiceProviderID="'.$_POST['ServiceProviderID'].'"');
     $stmt6->execute();
     $somma=0;
@@ -65,8 +65,8 @@ WHERE serviceproviderratings.ServiceProviderID="'.$_POST['ServiceProviderID'].'"
 $somma=$somma+$row['BookingRatingNumber'];
     }
     $media=ceil($somma/$MAXNUMBER);
-    $stmt10 = $dbh->getInstance()->prepare(' UPDATE serviceprovider
-    SET serviceprovider.AverageSalonRating = "'.$media.'"
+    $stmt10 = $dbh->getInstance()->prepare(' UPDATE serviceproviders
+    SET serviceproviders.AverageSalonRating = "'.$media.'"
     WHERE ServiceProviderID="'.$_POST['ServiceProviderID'].'"');
     $stmt10->execute();
     header('Location: /EZCUT/User/BookingsView.php?fatto=TRUE');

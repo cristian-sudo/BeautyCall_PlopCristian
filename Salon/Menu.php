@@ -29,7 +29,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/GettingInformationsSalon.php');
           MyCompany
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="StaffManage.php">Costumers</a> 
+                  <a class="dropdown-item" href="StaffManage.php">Staffs</a> 
                   <a class="dropdown-item" href="ManageOpeningTime.php">Opening Times</a> 
                   <a class="dropdown-item" href="ManageServices.php">Services</a>
                   <a class="dropdown-item" href="ManageSalonInformations.php">Salon Informations</a>

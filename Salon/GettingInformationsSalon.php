@@ -21,7 +21,7 @@ $stmt = $dbh->getInstance()->prepare("SELECT * FROM Administrators
          $_SESSION['AdministratorPhoneNumber']=$row['PhoneNumber'];
      }
 //OpeningTimeID
-$stmt = $dbh->getInstance()->prepare("SELECT * FROM OpeningTime WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
+$stmt = $dbh->getInstance()->prepare("SELECT * FROM openingtimes WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
 $stmt->execute();
 $row=$stmt;
 if ($row) {
@@ -29,7 +29,7 @@ if ($row) {
     $value['OpeningTimeID']=$_SESSION;
 }}
 //Salon*
-$stmt = $dbh->getInstance()->prepare("SELECT * FROM serviceprovider WHERE AdministratorID ='".$_SESSION['AdministratorID']."'");
+$stmt = $dbh->getInstance()->prepare("SELECT * FROM serviceproviders WHERE AdministratorID ='".$_SESSION['AdministratorID']."'");
 $stmt->execute();
 $row = $stmt->fetch();
 $_SESSION['SalonName']=$row['Name'];

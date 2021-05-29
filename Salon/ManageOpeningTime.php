@@ -25,7 +25,7 @@ input:focus {
   <body >
     <?php
     require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/Salon/Menu.php');
-    $stmt = $dbh->getInstance()->prepare("SELECT * FROM OpeningTime WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
+    $stmt = $dbh->getInstance()->prepare("SELECT * FROM OpeningTimes WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
     $stmt->execute();
     $row=$stmt;
    if ($row) {
@@ -174,7 +174,7 @@ if($value['Sunday']!=null && $value['Sunday']!="-"){
       echo '
       <form action="/EZCUT/Salon/ConfirmOpeningTime.php" method="POST">
       ';
-$stmt2 = $dbh->getInstance()->prepare("SELECT * FROM OpeningTime WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
+$stmt2 = $dbh->getInstance()->prepare("SELECT * FROM OpeningTimes WHERE AdministratorID='".$_SESSION['AdministratorID']."'");
 $stmt2->execute();
 $row2=$stmt2;
 foreach ($row2 as $key => $value) {

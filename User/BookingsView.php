@@ -8,10 +8,10 @@
 </head>
 <div class="container-fluid">
 <?php
-$stmt1 = $dbh->getInstance()->prepare("SELECT BookingRatingID,BookingID,Date,BeginTime,FinishTime,serviceprovider.ServiceProviderID,serviceprovider.Name AS SalonName,ServiceName,staff.Name AS StaffName, BookingStatus, deleted FROM bookings
-INNER JOIN serviceprovider ON bookings.ServiceProviderID=serviceprovider.ServiceProviderID
+$stmt1 = $dbh->getInstance()->prepare("SELECT BookingRatingID,BookingID,Date,BeginTime,FinishTime,serviceproviders.ServiceProviderID,serviceproviders.Name AS SalonName,ServiceName,staffs.Name AS StaffName, BookingStatus, deleted FROM bookings
+INNER JOIN serviceproviders ON bookings.ServiceProviderID=serviceproviders.ServiceProviderID
 INNER JOIN services ON bookings.ServiceID=services.ServiceID
-INNER JOIN Staff ON bookings.StaffID=Staff.StaffID
+INNER JOIN Staffs ON bookings.StaffID=Staffs.StaffID
 WHERE bookings.UserID =:UserID ORDER BY BookingID DESC");
     $stmt1->bindParam(':UserID', $UserID);
     $UserID = $_SESSION['UserID'];

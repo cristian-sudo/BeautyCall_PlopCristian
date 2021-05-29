@@ -4,7 +4,7 @@
    require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/conessione/DBHandlerObject.php');
    print_r($_POST);
     if(isset($_POST['submit'])){
-      $stmt = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+      $stmt = $dbh->getInstance()->prepare("UPDATE openingtimes SET
         Monday=:Monday,
         Tuesday=:Tuesday,
         Wednesday=:Wednesday,
@@ -33,7 +33,7 @@
               $AdministratorID = $_SESSION['AdministratorID'];
              $stmt->execute();
 if(isset($_POST['MondayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
   Monday=null
   WHERE AdministratorID=:AdministratorID
 ");
@@ -43,7 +43,7 @@ $stmt1->execute();
 }
 
 if(isset($_POST['TuesdayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
   Tuesday=null
   WHERE AdministratorID=:AdministratorID
 ");
@@ -54,7 +54,7 @@ $stmt1->execute();
 
 
 if(isset($_POST['WednesdayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
   Wednesday=null
   WHERE AdministratorID=:AdministratorID
 ");
@@ -65,7 +65,7 @@ $stmt1->execute();
 
 
 if(isset($_POST['ThursdayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
   Thursday=null
   WHERE AdministratorID=:AdministratorID
 ");
@@ -76,7 +76,7 @@ $stmt1->execute();
 
 
 if(isset($_POST['FridayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
   Friday=null
   WHERE AdministratorID=:AdministratorID
 ");
@@ -87,7 +87,7 @@ $stmt1->execute();
 
 
 if(isset($_POST['SaturdayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
   Monday=null
   WHERE AdministratorID=:AdministratorID
 ");
@@ -98,8 +98,8 @@ $stmt1->execute();
 
 
 if(isset($_POST['SundayAllDay'])){
-  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTime SET
-  Monday=null
+  $stmt1 = $dbh->getInstance()->prepare("UPDATE OpeningTimes SET
+  Sunday=null
   WHERE AdministratorID=:AdministratorID
 ");
 $stmt1->bindParam(':AdministratorID', $AdministratorID);
