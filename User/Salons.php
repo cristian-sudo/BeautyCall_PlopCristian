@@ -82,7 +82,7 @@ echo '
                             if(isset($row6['ImageName'])){
                             echo'
                               <div class="col-lg-6">
-                                <img class="img-fluid rounded" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="..." />
+                                <img class="img-fluid rounded" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="salonImage" />
                                 ';
                                 echo '
                             </div>';}

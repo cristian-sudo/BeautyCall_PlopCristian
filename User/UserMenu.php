@@ -22,9 +22,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/User/GettingInformationsUser.php');
       <li class="nav-item active">
         <a class="nav-link" href="Salons.php">Providers</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"> </a>
-      </li>
+      
 </ul>
 <ul class="navbar-nav">
       <li class="nav-item dropdown ">

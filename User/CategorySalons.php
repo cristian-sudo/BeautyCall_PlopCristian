@@ -36,7 +36,7 @@ echo '
                         <div class="col-lg-6">
                             <h2 class="mb-4 SalonName">'.$row['Name'].'</h2>
                             <p>'.$row['ShortDescription'].'</p>
-                            <p>This service provider have this categories and much more:</p>
+                            <p>This service provider have this categories:</p>
                             <ul>
                             ';
                             $GETACategory1 = $dbh->getInstance()->prepare('SELECT DISTINCT ServiceCategoryName FROM serviceproviders 
@@ -67,7 +67,7 @@ echo '
                             $row6=$result->fetch();
                             echo'
                               <div class="col-lg-6">
-                                <img class="img-fluid rounded" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="..." />
+                                <img class="img-fluid rounded" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="SalonImages" />
                                 ';
                                 echo '
                             </div>

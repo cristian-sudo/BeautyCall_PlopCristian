@@ -10,6 +10,8 @@
      <td><?php echo $_SESSION['Name'] ?></td>
      <form action="ModifyUserInfo.php" method="post">
      <td><input type="text" name="Name"></td>
+
+     
      <td><input type="submit" value="Confirm" name="Confirm"></td>
      </form>
 </tr>

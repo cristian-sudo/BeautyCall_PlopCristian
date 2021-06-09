@@ -112,7 +112,7 @@ $stmt5->execute();
 while($row5 = $stmt5->fetch()){  
   
       echo '
-      <img src="/EZCUT/Images/ServiceImages/'.$row5['ImageName'].'" alt="" width="760" height="350">
+      <img src="/EZCUT/Images/ServiceImages/'.$row5['ImageName'].'" alt="ServiceImages" width="460" height="350">
       <a href="CancelImageService.php?ServiceImageID='.$row5['ServiceImagesID'].'&ImageName='.$row5['ImageName'].'" style="font-size:40px">Cancel</a>
    
       

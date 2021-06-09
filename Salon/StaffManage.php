@@ -20,7 +20,7 @@ input:focus {
     <div class="col">
                 <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Costumers
+                    Staff
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 <?php
@@ -34,7 +34,7 @@ $Controll=null;
        echo ' <a class="dropdown-item" href="StaffManage.php?StaffManageName='.$row3["Name"].'">'.$row3["Name"].'</a>';
     }
     if($Controll!=true){
-        echo ' <a class="dropdown-item" href="">No costumers</a>'; 
+        echo ' <a class="dropdown-item" href="">No Staff</a>'; 
     }
 ?>
                 </div>
@@ -132,7 +132,7 @@ if (isset($_GET['StaffManageName'])){
         }else{
             echo '
       
-            <img src="/EZCUT/Images/StaffImages/'.$row5['ImageName'].'" alt="" width="450" height="350">
+            <img src="/EZCUT/Images/StaffImages/'.$row5['ImageName'].'" alt="StaffImages" width="450" height="350">
             <label for="fname">Photo:[Recommended to be 450px  X   350px]</label>
             <input type="file" id="fname" name="fileToUpload" >
             ';
@@ -146,13 +146,13 @@ if (isset($_GET['StaffManageName'])){
             ';
         }
         if($Controll2!=true){
-            echo 'Inexistent costumer.';
+            echo 'Inexistent staff.';
         }
 }else{
     echo '
     <div class="row">
         <div class="col" >
-        <h1 style="text-align:center;">   Select the costumer to manage OR</h1><br>
+        <h1 style="text-align:center;">   Select the staff to manage OR</h1><br>
         <h1 style="text-align:center;">        <a style="color:blue" href="AddStaff.php"> Add a new Staff<a/>     </h1>
         </div>
     </div>   

@@ -219,7 +219,7 @@ for ($s=0;$s<count($AllStaffID);$s++) {//Analizzo ogni staff
         <div class="row">
                  <div class="col-lg-6">
                      <h2 class="card-title">'.$StaffName.'</h2>
-                     <a href="#!"><img class="img-fluid rounded" src="/EZCUT/Images/StaffImages/'.$row['ImageName'].'" alt="..." /></a>
+                     <a href="#!"><img class="img-fluid rounded" src="/EZCUT/Images/StaffImages/'.$row['ImageName'].'" alt="staffImage" /></a>
                  </div>
 
                  <div class="col-lg-6">

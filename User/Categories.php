@@ -36,7 +36,7 @@ echo '
 <div class="col-lg-4 col-sm-12 mb-4">
 <a href="/EZCUT/User/CategorySalons.php?CategoryPass='.$row['ServiceCategoryName'].'">
                         <div class="card h-100">
-                            <img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/'.$row['ImageName'].'" alt="..." />
+                            <img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/'.$row['ImageName'].'" alt="ServiceCategoryImage" />
                             <div class="card-body">
                                 <h4 class="card-title">'.$row['ServiceCategoryName'].'</h4>
                                 

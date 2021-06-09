@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <style media="screen">
+          <?php  require($_SERVER['DOCUMENT_ROOT'].'/EZCUT/styles.css');?>
           @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
  body,
  html {

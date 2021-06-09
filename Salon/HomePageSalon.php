@@ -18,7 +18,7 @@ $row6=$result->fetch();
 if(isset($row6['ImageName'])){
 echo'
   <div class="col-lg-6">
-    <img style="height: 300px; width: 425px;"  class="card-img-top" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="..." /> 
+    <img style="height: 300px; width: 425px;"  class="card-img-top" src="/EZCUT/Images/SalonImages/'.$row6['ImageName'].'" alt="SalonImages" /> 
     ';
     echo '
 </div>';}

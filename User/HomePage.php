@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link href="styles.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+  <meta name="description" content="Beautycall">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Cristian Plop">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        BeautyCall
+</title>
+        <link href="/EZCUT/styles.css" rel="stylesheet" />
     </head>
     <body>
         <?php  require('UserMenu.php')?>
@@ -16,7 +24,7 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Fierst.jpeg" alt="..." />
+                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Fierst.jpeg" alt="PresentationImage" width="" height="">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Hairstyle</h3>
                             <p>Here you can find the best service provider based on category in your city.</p>
@@ -24,7 +32,7 @@
                     </div>
                     <div class="carousel-item">
 
-                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Second.jpeg" alt="..." />
+                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Second.jpeg" alt="PresentationImage" width="" height="">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Makeup</h3>
                             <p>Here you can find the best service provider based on category in your city.</p>
@@ -32,7 +40,7 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Thirth.jpeg" alt="..." />
+                        <img class="d-block w-100" src="/EZCUT/Images/GeneralImages/Thirth.jpeg" alt="PresentationImage" width="" height="" >
                         <div class="carousel-caption d-none d-md-block">
                             <h3>And much more..</h3>
                             <p>Here you can find the best service provider based on category in your city.</p>
@@ -41,10 +49,12 @@
 
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    Prev
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    Next
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
@@ -56,22 +66,22 @@
                 <div class="row">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="card h-100">
-                            <h4 class="card-header">Rapidity</h4>
+                            <h3 class="card-header">Rapidity</h3>
                             <div class="card-body">
-                              <p class="card-text">BeautyCall helps you to avoid the queue. Simply chose your salon, your service and book at the time you need</p>
+                              <p class="card-text">BeautyCall helps you not to queue. Simply choose your service provider, your needed service, and book at the time you want. </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="card h-100">
-                            <h4 class="card-header">Innovativeness</h4>
+                            <h3 class="card-header">Innovativeness</h3>
                             <div class="card-body"><p class="card-text">BeautyCall innovates the way you organise your time.</p></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="card h-100">
-                            <h4 class="card-header">Convenience</h4>
-                            <div class="card-body"><p class="card-text">The service is free and gives you bonusses and sales at your favourite salon.</p></div>
+                            <h3 class="card-header">Convenience</h3>
+                            <div class="card-body"><p class="card-text">The service is free and gives you bonuses and sales at your favorite service provider.</p></div>
                         </div>
                     </div>
                 </div>
@@ -84,28 +94,28 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-12 mb-4">
                         <div class="card h-100">
-                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/hairstyle.jpeg" alt="..." /></a>
+                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/hairstyle.jpeg" alt="Hairstyle" width="" height=""></a>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle">Hairstyle</a></h4>
+                                <h3 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Hairstyle">Hairstyle</a></h3>
                                 <p class="card-text">Chose your favourite hairdressing salon.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-12 mb-4">
                         <div class="card h-100">
-                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/makeup.jpeg" alt="..." /></a>
+                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/makeup.jpeg" alt="Makeup" width="" height=""></a>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup">Makeup</a></h4>
+                                <h3 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Makeup">Makeup</a></h3>
                                 <p class="card-text">Do your makeup.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-12 mb-4">
                         <div class="card h-100">
-                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/tattoo.jpeg" alt="..." /></a>
+                            <a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos"><img class="card-img-top" src="/EZCUT/Images/ServiceCategoryImages/tattoo.jpeg" alt="Tattoos" width="" height=""></a>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos">Tattoos</a></h4>
-                                <p class="card-text">Make a tattoo.</p>
+                                <h3 class="card-title"><a href="/EZCUT/User/CategorySalons.php?CategoryPass=Tattoos">Tattoos</a></h3>
+                                <p class="card-text">Have a tattoo.</p>
                             </div>
                         </div>
                     </div>
