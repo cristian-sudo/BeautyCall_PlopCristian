@@ -17,8 +17,10 @@ $GETSalons->execute();
 $resultSalons=$GETSalons;
  ?>
 <?php
+      $entrato=false;
 if ($resultSalons!=null) {
   while ($row = $resultSalons->fetch()) {
+    $entrato=true;
     $GETACategory = $dbh->getInstance()->prepare('SELECT ServiceCategoryName FROM serviceproviders 
     INNER JOIN services ON serviceproviders.ServiceProviderID=services.ServiceProviderID 
     INNER JOIN servicecategories ON services.ServiceCategoryID=servicecategories.ServiceCategoryID 
@@ -45,7 +47,9 @@ echo '
                             WHERE serviceproviders.Name="'.$row['Name'].'" LIMIT 5');
                             $GETACategory1->execute();
                             $resultCategory1=$GETACategory1;
+                
                             while($row3 = $resultCategory1->fetch()){
+                             
                           echo '
                           <li>'.$row3['ServiceCategoryName'].'</li>
                           ';
@@ -76,9 +80,11 @@ echo '
         </section>
         </a>
 ';
+
 }
-}else{
-    echo 'No salons have this category yet';
+}
+if($entrato!=true){
+    echo '<h1 style="text-align: center; color: red;">No salons have this category yet</h1>';
 }
   ?>
 
